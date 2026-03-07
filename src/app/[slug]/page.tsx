@@ -74,18 +74,26 @@ export default async function PublicProfilePage(props: { params: Promise<{ slug:
                         </div>
                         <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">Licensed<br />& Insured</span>
                     </div>
-                    <div className="flex flex-col items-center gap-2">
-                        <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center shadow-inner">
-                            <Award className="w-6 h-6 text-blue-400" />
+                    {profile.bbb_rating && (
+                        <div className="flex flex-col items-center gap-2">
+                            <div className="w-12 h-12 rounded-full bg-emerald-950/30 border border-emerald-900/50 flex items-center justify-center shadow-inner relative group cursor-default">
+                                <div className="absolute inset-0 bg-emerald-500/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <Award className="w-6 h-6 text-emerald-400 relative z-10" />
+                            </div>
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">
+                                <span className="text-emerald-400">{profile.bbb_rating}</span> BBB<br />Rating
+                            </span>
                         </div>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">A+ BBB<br />Rating</span>
-                    </div>
-                    <div className="flex flex-col items-center gap-2">
-                        <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center shadow-inner">
-                            <HardHat className="w-6 h-6 text-yellow-500" />
+                    )}
+                    {profile.osha_certified && (
+                        <div className="flex flex-col items-center gap-2">
+                            <div className="w-12 h-12 rounded-full bg-blue-950/30 border border-blue-900/50 flex items-center justify-center shadow-inner relative group cursor-default">
+                                <div className="absolute inset-0 bg-blue-500/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <HardHat className="w-6 h-6 text-blue-400 relative z-10" />
+                            </div>
+                            <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider text-center leading-tight">OSHA<br />Certified</span>
                         </div>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">OSHA<br />Certified</span>
-                    </div>
+                    )}
                 </div>
 
                 {/* Bio */}

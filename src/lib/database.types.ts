@@ -23,6 +23,8 @@ export interface Database {
                     profile_image_url: string | null
                     links: Json | null
                     is_pro: boolean | null
+                    bbb_rating: string | null
+                    osha_certified: boolean | null
                     created_at: string | null
                     updated_at: string | null
                 }
@@ -39,6 +41,8 @@ export interface Database {
                     profile_image_url?: string | null
                     links?: Json | null
                     is_pro?: boolean | null
+                    bbb_rating?: string | null
+                    osha_certified?: boolean | null
                     created_at?: string | null
                     updated_at?: string | null
                 }
@@ -55,6 +59,8 @@ export interface Database {
                     profile_image_url?: string | null
                     links?: Json | null
                     is_pro?: boolean | null
+                    bbb_rating?: string | null
+                    osha_certified?: boolean | null
                     created_at?: string | null
                     updated_at?: string | null
                 }

@@ -54,6 +54,37 @@ export default function BuilderForm({ profile, onChange }: { profile: any, onCha
                     </div>
                 </div>
 
+                <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <label className="block text-sm font-medium text-slate-400 mb-1.5 flex items-center justify-between">
+                            BBB Rating
+                            <span className="text-[10px] text-brand-amber bg-brand-amber/10 px-2 py-0.5 rounded-full">New</span>
+                        </label>
+                        <select
+                            className="w-full rounded-md px-4 py-2 bg-zinc-950 border border-zinc-800 text-slate-100 focus:outline-none focus:border-brand-amber transition-colors appearance-none"
+                            value={profile.bbb_rating || ''}
+                            onChange={e => onChange({ bbb_rating: e.target.value === '' ? null : e.target.value })}
+                        >
+                            <option value="">None / Not Rated</option>
+                            <option value="A+">A+ Rating</option>
+                            <option value="A">A Rating</option>
+                            <option value="A-">A- Rating</option>
+                            <option value="B+">B+ Rating</option>
+                            <option value="B">B Rating</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-slate-400 mb-1.5 opacity-0">OSHA Toggle</label>
+                        <div className="flex items-center h-[42px] px-4 bg-zinc-950 border border-zinc-800 rounded-md transition-colors hover:border-brand-amber/50 cursor-pointer" onClick={() => onChange({ osha_certified: !profile.osha_certified })}>
+                            <div className={`w-5 h-5 rounded border mr-3 flex items-center justify-center transition-colors ${profile.osha_certified ? 'bg-brand-amber border-brand-amber text-zinc-950' : 'bg-transparent border-zinc-600'}`}>
+                                {profile.osha_certified && <svg viewBox="0 0 14 14" fill="none" className="w-3.5 h-3.5"><path d="M3 7L6 10L11 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+                            </div>
+                            <span className="text-sm font-medium text-slate-200">OSHA Certified</span>
+                            <span className="ml-auto text-[10px] text-brand-amber bg-brand-amber/10 px-2 py-0.5 rounded-full">New</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div>
                     <label className="block text-sm font-medium text-slate-400 mb-1.5">Phone Number</label>
                     <input
