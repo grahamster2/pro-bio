@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProBio – Dashboard Redesign Wireframe</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    /* ── Legend ── */
+    .legend {
+      position: fixed; top: 16px; right: 16px; background: #fff;
+      border: 2px solid #333; border-radius: 6px; padding: 12px 16px;
+      font-size: 11px; z-index: 999; line-height: 1.8; width: 190px;
+    }
+    .legend h4 { font-size: 12px; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-bottom: 6px; }
+    .badge { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; color: #fff; margin-right: 4px; }
+    .badge.reuse { background: #4CAF50; }
+    .badge.new   { background: #FF9800; }
+    .badge.issue { background: #e53935; }
+
+    /* ── Wireframe shell ── */
+    .page-title {
+      background: #333; color: #fff;
+      padding: 12px 24px;
+      font-size: 15px; font-family: Arial, sans-serif;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .page-title span { font-size: 11px; color: #bbb; }
+
+    /* ── App layout ── */
+    .app {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      grid-template-rows: auto 1fr;
+      height: calc(100vh - 48px);
+      min-height: 700px;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      grid-row: 1 / 3;
+      background: #fff;
+      border-right: 2px solid #999;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+    .sidebar-logo {
+      padding: 20px 16px 14px;
+      border-bottom: 2px solid #ccc;
+      font-size: 18px; font-weight: bold; letter-spacing: 2px;
+    }
+    .sidebar-nav { flex: 1; padding: 12px 10px; }
+    .nav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: 6px;
+      font-size: 13px; color: #555; cursor: pointer;
+      margin-bottom: 4px; border: 2px solid transparent;
+    }
+    .nav-item.active {
+      background: #eee; border: 2px solid #333; color: #000; font-weight: bold;
+    }
+    .nav-icon { width: 18px; height: 18px; background: #ccc; border-radius: 3px; display: inline-block; flex-shrink: 0; }
+    .sidebar-footer {
+      padding: 14px 14px; border-top: 2px solid #ccc;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .avatar { width: 36px; height: 36px; border-radius: 50%; background: #ccc; border: 2px solid #999; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #666; }
+    .user-name { font-size: 12px; font-weight: bold; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* ── Top bar ── */
+    .topbar {
+      grid-column: 2;
+      background: #fff;
+      border-bottom: 2px solid #ccc;
+      padding: 12px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .topbar h1 { font-size: 20px; font-weight: bold; }
+    .topbar-actions { display: flex; align-items: center; gap: 10px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: 5px; font-size: 12px;
+      font-family: 'Comic Sans MS', cursive;
+      border: 2px solid #333; cursor: pointer;
+      font-weight: bold;
+    }
+    .btn-primary { background: #333; color: #fff; }
+    .btn-outline { background: #fff; color: #333; }
+    .btn-sm { padding: 4px 10px; font-size: 11px; }
+    .ext-icon { width: 10px; height: 10px; border: 1.5px solid currentColor; border-radius: 1px; display: inline-block; position: relative; }
+
+    /* ── Main content ── */
+    .main-content {
+      grid-column: 2;
+      display: flex; flex-direction: column;
+      padding: 20px 24px;
+      overflow: hidden;
+      background: #f5f5f5;
+      gap: 14px;
+    }
+
+    /* ── Progress bar ── */
+    .progress-strip {
+      background: #fff; border: 2px solid #bbb; border-radius: 8px;
+      padding: 12px 16px; display: flex; align-items: center; gap: 16px;
+    }
+    .progress-label { font-size: 12px; font-weight: bold; white-space: nowrap; }
+    .progress-bar-wrap { flex: 1; height: 8px; background: #ddd; border-radius: 4px; border: 1px solid #bbb; overflow: hidden; }
+    .progress-fill { height: 100%; width: 60%; background: repeating-linear-gradient(90deg,#666 0,#666 8px,#999 8px,#999 16px); }
+    .progress-pct { font-size: 12px; font-weight: bold; white-space: nowrap; }
+    .progress-cta { font-size: 11px; color: #666; border: 1.5px dashed #999; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+
+    /* ── Toast notification ── */
+    .toast-area {
+      position: relative; background: #eee; border: 2px dashed #999;
+      border-radius: 8px; padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+      font-size: 12px;
+    }
+    .toast-area::before {
+      content: "✓ Toast / Notification Zone";
+      font-size: 10px; color: #888; position: absolute; top: -9px; left: 10px;
+      background: #f5f5f5; padding: 0 4px;
+    }
+    .toast-success { display: flex; align-items: center; gap: 8px; background: #fff; border: 2px solid #555; border-radius: 6px; padding: 8px 14px; font-size: 12px; }
+    .toast-icon { width: 16px; height: 16px; background: #555; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── Editor + Preview grid ── */
+    .content-grid {
+      flex: 1; display: grid; grid-template-columns: 1fr 340px;
+      gap: 16px; overflow: hidden;
+    }
+
+    /* ── Editor panel ── */
+    .panel {
+      background: #fff; border: 2px solid #bbb; border-radius: 10px;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .panel-header {
+      padding: 10px 16px; border-bottom: 2px solid #ccc;
+      display: flex; align-items: center; justify-content: space-between;
+      background: #fafafa;
+    }
+    .panel-title { font-size: 13px; font-weight: bold; }
+    .panel-body { flex: 1; overflow-y: auto; padding: 16px; }
+
+    /* ── Form fields ── */
+    .form-section { margin-bottom: 20px; }
+    .form-section-title {
+      font-size: 13px; font-weight: bold; border-bottom: 2px solid #ddd;
+      padding-bottom: 6px; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
+    }
+    .field { margin-bottom: 12px; }
+    .field label { display: block; font-size: 11px; color: #555; margin-bottom: 4px; font-weight: bold; }
+    .field-input {
+      width: 100%; height: 34px; border: 2px solid #bbb; border-radius: 5px;
+      background: #f9f9f9; padding: 0 10px; font-family: 'Comic Sans MS', cursive;
+      font-size: 12px;
+    }
+    .field-textarea {
+      width: 100%; height: 80px; border: 2px solid #bbb; border-radius: 5px;
+      background: #f9f9f9; padding: 8px 10px; resize: vertical;
+      font-family: 'Comic Sans MS', cursive; font-size: 12px;
+    }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .field-error { font-size: 10px; color: #c00; margin-top: 3px; }
+    .required-star { color: #c00; }
+
+    .link-item {
+      background: #f5f5f5; border: 2px dashed #bbb; border-radius: 7px;
+      padding: 10px 12px; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;
+    }
+    .link-item-fields { flex: 1; }
+    .link-field { height: 28px; width: 100%; border: 1.5px solid #ccc; border-radius: 4px; background: #fff; margin-bottom: 6px; }
+    .trash-btn { width: 26px; height: 26px; border: 1.5px solid #ccc; border-radius: 4px; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .x { font-size: 14px; color: #c00; }
+
+    /* ── Preview panel ── */
+    .preview-panel { display: flex; flex-direction: column; }
+    .preview-device {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-start; padding: 16px;
+      overflow: hidden;
+    }
+    .phone-frame {
+      width: 200px; border: 8px solid #333; border-radius: 28px;
+      overflow: hidden; background: #e5e5e5; flex-shrink: 0;
+    }
+    .phone-screen { background: #e5e5e5; padding: 10px; }
+    .phone-row { height: 10px; background: #bbb; border-radius: 3px; margin-bottom: 6px; }
+    .phone-row.short { width: 60%; }
+    .phone-row.med   { width: 80%; }
+    .phone-avatar { width: 50px; height: 50px; border-radius: 12px; background: #bbb; border: 2px dashed #888; margin: 8px auto; display: block; }
+    .phone-badge { width: 70%; height: 10px; background: #bbb; border-radius: 10px; margin: 4px auto; }
+    .phone-section { height: 30px; background: #ccc; border-radius: 5px; margin: 6px 0; width: 100%; }
+    .phone-cta { height: 28px; background: #aaa; border-radius: 10px; width: 100%; margin-top: 6px; }
+
+    .preview-note {
+      background: #f0f0f0; border: 1.5px solid #ccc; border-radius: 6px;
+      padding: 8px 12px; text-align: center; font-size: 11px; color: #666;
+      margin: 12px 16px 0;
+    }
+
+    /* ── Reuse badge helper ── */
+    .component-wrapper { position: relative; }
+    .rb {
+      position: absolute; top: -8px; right: 0px; z-index: 10;
+      padding: 2px 6px; border-radius: 3px; font-size: 9px; font-weight: bold;
+      color: #fff; pointer-events: none; white-space: nowrap;
+      font-family: Arial, sans-serif;
+    }
+    .rb.reuse { background: #4CAF50; }
+    .rb.new   { background: #FF9800; }
+
+    /* ── Annotations ── */
+    .annotation {
+      position: absolute; font-size: 10px; color: #c62828;
+      background: #ffecec; border: 1px solid #f44336;
+      border-radius: 3px; padding: 2px 5px; white-space: nowrap;
+      font-family: Arial, sans-serif; font-weight: bold; pointer-events: none; z-index: 20;
+    }
+
+    /* ── Mobile tab bar note ── */
+    .mobile-note-box {
+      background: #fff; border: 2px solid #bbb; border-radius: 10px;
+      padding: 14px 18px;
+    }
+    .mobile-note-title { font-size: 12px; font-weight: bold; margin-bottom: 8px; }
+    .mobile-tabs { display: flex; gap: 0; border: 2px solid #bbb; border-radius: 6px; overflow: hidden; }
+    .mobile-tab { flex: 1; text-align: center; padding: 7px 4px; font-size: 11px; font-weight: bold; background: #f5f5f5; border-right: 2px solid #bbb; }
+    .mobile-tab:last-child { border-right: none; }
+    .mobile-tab.active { background: #333; color: #fff; }
+
+    /* ── Completion items ── */
+    .completion-list { display: flex; gap: 8px; flex-wrap: wrap; }
+    .comp-item { font-size: 10px; padding: 3px 8px; border-radius: 20px; border: 1.5px solid #bbb; background: #fff; display: flex; align-items: center; gap: 4px; }
+    .comp-item.done { background: #eee; text-decoration: line-through; color: #999; }
+    .comp-dot { width: 7px; height: 7px; border-radius: 50%; background: #ccc; flex-shrink: 0; }
+    .comp-dot.done { background: #555; }
+  </style>
+</head>
+<body>
+
+<!-- Legend -->
+<div class="legend">
+  <h4>Legend</h4>
+  <div><span class="badge reuse">REUSE</span> Existing component</div>
+  <div><span class="badge new">NEW</span> Proposed component</div>
+  <div><span class="badge issue">FIX</span> Addresses a review issue</div>
+  <div style="margin-top:8px; font-size:10px; color:#888;">Hover badges for file paths.</div>
+</div>
+
+<!-- Page Label -->
+<div class="page-title">
+  ProBio — Dashboard Redesign Wireframe
+  <span>Option: Balanced Improvements &nbsp;|&nbsp; Pages: /dashboard &nbsp;|&nbsp; Balsamiq-style, Grayscale Only</span>
+</div>
+
+<!-- App shell: Sidebar + Content -->
+<div class="app">
+
+  <!-- ═══════════════════════════════ SIDEBAR ══════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      PRO<span style="color:#333; text-decoration:underline">BIO</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <p style="font-size:10px; color:#999; padding: 2px 12px 6px; font-family:Arial,sans-serif;">NAVIGATION</p>
+
+      <!-- REUSE: existing sidebar links from dashboard/layout.tsx, now with active state -->
+      <!-- REUSE: Link from src/app/dashboard/layout.tsx:42 -->
+      <div class="component-wrapper" style="position:relative;">
+        <span class="rb reuse" title="src/app/dashboard/layout.tsx — add aria-current='page' + active bg">REUSE: nav link</span>
+        <div class="nav-item active" style="margin-top: 16px;">
+          <span class="nav-icon"></span>
+          Builder
+          <!-- FIX: active state now visible with border + bg -->
+        </div>
+      </div>
+
+      <!-- REUSE: settings link -->
+      <div class="component-wrapper" style="position:relative;">
+        <span class="rb reuse" title="src/app/dashboard/layout.tsx:46 — same fix for active state">REUSE: nav link</span>
+        <div class="nav-item">
+          <span class="nav-icon"></span>
+          Settings
+        </div>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <!-- REUSE: UserButton from Clerk -->
+      <div class="component-wrapper" style="position:relative;">
+        <span class="rb reuse" title="@clerk/nextjs UserButton — no changes needed">REUSE: UserButton</span>
+        <div class="avatar">U</div>
+      </div>
+      <div class="user-name">JS Plumbing</div>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════════ TOP BAR ══════════════════════════════ -->
+  <header class="topbar">
+    <h1>Profile Builder</h1>
+    <div class="topbar-actions">
+      <!-- FIX: Add external link icon (↗) to communicate opens new tab -->
+      <!-- REUSE: the existing anchor tag from dashboard/page.tsx:25 — add ExternalLink icon -->
+      <div class="component-wrapper" style="position:relative;">
+        <span class="rb reuse" title="src/app/dashboard/page.tsx:25 — add ExternalLink icon + rel='noopener noreferrer'">REUSE: View Live</span>
+        <button class="btn btn-outline btn-sm">View Live Profile ↗</button>
+      </div>
+      <!-- REUSE: Save Changes button — same as DashboardClient.tsx -->
+      <div class="component-wrapper" style="position:relative;">
+        <span class="rb reuse" title="src/components/DashboardClient.tsx:45 — no changes needed">REUSE: Save btn</span>
+        <button class="btn btn-primary btn-sm">💾 Save Changes</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════ MAIN CONTENT ══════════════════════════════ -->
+  <main class="main-content">
+
+    <!-- ── Profile Completeness Strip (NEW) ── -->
+    <!-- NEW COMPONENT: ProfileProgress — src/components/ProfileProgress.tsx -->
+    <div class="component-wrapper" style="position:relative;">
+      <span class="rb new" title="NEW: src/components/ProfileProgress.tsx — shows profile completion % with missing field prompts">NEW: ProfileProgress</span>
+      <div class="progress-strip">
+        <div class="progress-label">Profile Strength</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-fill"></div>
+        </div>
+        <div class="progress-pct">60%</div>
+        <div class="completion-list">
+          <div class="comp-item done"><span class="comp-dot done"></span> Name</div>
+          <div class="comp-item done"><span class="comp-dot done"></span> Trade</div>
+          <div class="comp-item done"><span class="comp-dot done"></span> Phone</div>
+          <div class="comp-item"><span class="comp-dot"></span> Bio</div>
+          <div class="comp-item"><span class="comp-dot"></span> Photo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Toast Notification Area (FIX: replaces inline message in Editor header) ── -->
+    <!-- NEW COMPONENT: Toast — src/components/Toast.tsx (or use state in DashboardClient) -->
+    <div class="component-wrapper" style="position:relative;">
+      <span class="rb new" title="NEW: Toast notification system — replaces the inline message text near 'Editor' heading in DashboardClient.tsx:43">NEW: Toast (replaces inline msg)</span>
+      <div class="toast-area">
+        <div class="toast-success">
+          <div class="toast-icon"></div>
+          ✓ Profile saved successfully! &nbsp; <span style="font-size:10px; color:#888;">3s ago · auto-dismiss</span>
+        </div>
+        <div style="margin-left:auto; font-size:11px; color:#999;">(appears top-right, auto-dismisses)</div>
+      </div>
+    </div>
+
+    <!-- ── Editor + Preview Grid ── -->
+    <div class="content-grid">
+
+      <!-- ══ LEFT: Editor Panel ══ -->
+      <!-- REUSE: DashboardClient.tsx wrapper + BuilderForm.tsx -->
+      <div class="component-wrapper panel" style="position:relative;">
+        <span class="rb reuse" title="src/components/DashboardClient.tsx + src/components/BuilderForm.tsx — add htmlFor/id pairs, validation messages">REUSE: BuilderForm</span>
+
+        <div class="panel-header">
+          <span class="panel-title">Editor</span>
+          <!-- removed inline message from here — moved to Toast -->
+        </div>
+
+        <div class="panel-body">
+          <!-- Business Info Section -->
+          <div class="form-section">
+            <div class="form-section-title">
+              <span class="nav-icon" style="width:14px; height:14px;"></span>
+              Business Info
+            </div>
+
+            <!-- FIX: Each input now has htmlFor/id pair for accessibility -->
+            <div class="field">
+              <label>Business Name <span class="required-star">*</span></label>
+              <input class="field-input" value="JS Plumbing" />
+              <!-- FIX: htmlFor="business_name" + id="business_name" -->
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label>Trade Category <span class="required-star">*</span></label>
+                <input class="field-input" value="Plumbing" />
+              </div>
+              <div class="field">
+                <label>License No. <span style="font-size:10px; color:#888;">(optional)</span></label>
+                <input class="field-input" value="LIC-4892" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Phone Number <span class="required-star">*</span></label>
+              <input class="field-input" value="(555) 123-4567" />
+            </div>
+
+            <div class="field">
+              <label>Bio</label>
+              <textarea class="field-textarea">20 years of licensed plumbing. Emergency calls welcome.</textarea>
+            </div>
+          </div>
+
+          <!-- Custom Links Section -->
+          <div class="form-section">
+            <div class="form-section-title" style="justify-content: space-between;">
+              <span>Custom Links</span>
+              <!-- REUSE: Add Link button from BuilderForm.tsx:80 -->
+              <button class="btn btn-outline btn-sm" style="font-size:10px;">+ Add Link</button>
+            </div>
+
+            <div class="link-item">
+              <div class="link-item-fields">
+                <div class="link-field"></div>
+                <div class="link-field" style="background:#f0f0f0;"></div>
+              </div>
+              <div class="trash-btn"><span class="x">✕</span></div>
+            </div>
+            <!-- FIX: Trash button now has aria-label="Remove link" -->
+
+            <div style="text-align:center; border: 2px dashed #ccc; border-radius: 7px; padding: 14px; font-size: 11px; color: #999;">
+              + Add links to Calendly, Google Reviews, social media...
+            </div>
+          </div>
+
+          <!-- ── FIX NOTE: Hardcoded badges / job stamp ── -->
+          <div style="background: #fff8e1; border: 2px solid #e6ac00; border-radius: 6px; padding: 10px 12px; font-size: 11px; margin-top: 8px;">
+            <strong>⚠ Design Note:</strong> Trust badges (BBB, OSHA) and the "Job in Arlington" stamp on the public profile are currently hardcoded. Suggest making them data-driven or removing until real data is available.
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ RIGHT: Preview Panel ══ -->
+      <!-- REUSE: MobilePreview.tsx — shown on desktop (no changes) -->
+      <div class="component-wrapper panel preview-panel" style="position:relative;">
+        <span class="rb reuse" title="src/components/MobilePreview.tsx — no layout changes; now also shown on md screens via tab switch">REUSE: MobilePreview</span>
+
+        <div class="panel-header">
+          <span class="panel-title">Live Preview</span>
+          <span style="font-size:10px; color:#888;">Updates as you type</span>
+        </div>
+
+        <div class="preview-device">
+          <!-- Phone frame sketch -->
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <img class="phone-avatar" alt="avatar placeholder" />
+              <div class="phone-row med"></div>
+              <div class="phone-badge"></div>
+              <div class="phone-row short" style="margin: 4px auto; width:80%;"></div>
+              <div class="phone-section"></div>
+              <div class="phone-section"></div>
+              <div class="phone-section" style="height:50px;"></div>
+              <div class="phone-cta"></div>
+            </div>
+          </div>
+
+          <div class="preview-note">
+            Preview reflects your saved profile. Changes auto-update without saving.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content-grid -->
+
+    <!-- ── Mobile Tab Bar Callout (NEW pattern for md screens) ── -->
+    <!-- NEW COMPONENT: MobileTabBar — pattern to be applied in DashboardClient.tsx -->
+    <div class="component-wrapper" style="position:relative; margin-top: 4px;">
+      <span class="rb new" title="NEW: Add md:hidden tab switcher in DashboardClient.tsx so tablet users can switch between Editor and Preview">NEW: Tablet Tab Switch</span>
+      <div class="mobile-note-box">
+        <div class="mobile-note-title">📱 Tablet / md screen improvement — Editor ↔ Preview tab switcher (hidden on lg+)</div>
+        <div class="mobile-tabs">
+          <div class="mobile-tab active">✏️ Editor</div>
+          <div class="mobile-tab">👁 Preview</div>
+        </div>
+        <p style="font-size:10px; color:#888; margin-top: 6px;">
+          Currently, MobilePreview is hidden below <code>lg</code> breakpoint. This tab switcher lets tablet users toggle between editor and preview without losing content.
+        </p>
+      </div>
+    </div>
+
+  </main><!-- /main-content -->
+
+</div><!-- /app -->
+
+<!-- ────────────────────────────── ANNOTATIONS ────────────────────────────── -->
+<div style="background:#fff; border-top: 2px solid #ccc; padding: 20px 32px;">
+  <h3 style="font-size: 14px; font-family: Arial, sans-serif; margin-bottom: 14px; font-weight: bold;">Key Changes vs Current Implementation</h3>
+  <table style="width: 100%; border-collapse: collapse; font-size: 12px; font-family: Arial, sans-serif;">
+    <thead>
+      <tr style="background:#eee;">
+        <th style="border: 1px solid #ccc; padding: 7px 10px; text-align:left;">#</th>
+        <th style="border: 1px solid #ccc; padding: 7px 10px; text-align:left;">Change</th>
+        <th style="border: 1px solid #ccc; padding: 7px 10px; text-align:left;">Why</th>
+        <th style="border: 1px solid #ccc; padding: 7px 10px; text-align:left;">File(s)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="border:1px solid #ccc; padding:6px 10px;">1</td>
+        <td style="border:1px solid #ccc; padding:6px 10px;"><span class="badge new">NEW</span> ProfileProgress bar</td>
+        <td style="border:1px solid #ccc; padding:6px 10px;">Guides users to complete missing fields; improves profile quality</td>
+        <td style="border:1px solid #ccc; padding:6px 10px; font-family:monospace; font-size:11px;">src/components/ProfileProgress.tsx (new)</td>
+      </tr>
+      <tr style="background:#fafafa;">
+        <td style="border:1px solid #ccc; padding:6px 10px;">2</td>
+        <td style="border:1px solid #ccc; padding:6px 10px;"><span class="badge new">NEW</span> Toast replaces inline message</td>
+        <td style="border:1px solid #ccc; padding:6px 10px;">Inline message near "Editor" heading is easily missed; toast is noticeable</td>
+        <td style="border:1px solid #ccc; padding:6px 10px; font-family:monospace; font-size:11px;">DashboardClient.tsx:43</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #ccc; padding:6px 10px;">3</td>
+        <td style="border:1px solid #ccc; padding:6px 10px;"><span class="badge reuse">REUSE</span> Active nav state added</td>
+        <td style="border:1px solid #ccc; padding:6px 10px;">No current page indication; confusing with 2+ nav items</td>
+        <td style="border:1px solid #ccc; padding:6px 10px; font-family:monospace; font-size:11px;">dashboard/layout.tsx:42-49</td>
+      </tr>
+      <tr style="background:#fafafa;">
+        <td style="border:1px solid #ccc; padding:6px 10px;">4</td>
+        <td style="border:1px solid #ccc; padding:6px 10px;"><span class="badge new">NEW</span> Tablet tab switcher (Editor/Preview)</td>
+        <td style="border:1px solid #ccc; padding:6px 10px;">Preview is invisible at md breakpoint; users can't verify how their profile looks</td>
+        <td style="border:1px solid #ccc; padding:6px 10px; font-family:monospace; font-size:11px;">DashboardClient.tsx:59</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #ccc; padding:6px 10px;">5</td>
+        <td style="border:1px solid #ccc; padding:6px 10px;"><span class="badge reuse">REUSE</span> "View Live ↗" + ExternalLink icon</td>
+        <td style="border:1px solid #ccc; padding:6px 10px;">No indication that the link opens a new tab; causes user surprise</td>
+        <td style="border:1px solid #ccc; padding:6px 10px; font-family:monospace; font-size:11px;">dashboard/page.tsx:25</td>
+      </tr>
+      <tr style="background:#fafafa;">
+        <td style="border:1px solid #ccc; padding:6px 10px;">6</td>
+        <td style="border:1px solid #ccc; padding:6px 10px;"><span class="badge reuse">REUSE</span> htmlFor/id on all form inputs</td>
+        <td style="border:1px solid #ccc; padding:6px 10px;">Labels are not programmatically linked to inputs — WCAG 2.1 SC 1.3.1</td>
+        <td style="border:1px solid #ccc; padding:6px 10px; font-family:monospace; font-size:11px;">BuilderForm.tsx, OnboardingForm.tsx</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
