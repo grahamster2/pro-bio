@@ -38,6 +38,8 @@ export interface Database {
                     stripe_current_period_end: string | null
                     theme_color: string | null
                     background_image_url: string | null
+                    bbb_rating: string | null
+                    osha_certified: boolean | null
                     created_at: string
                     updated_at: string | null
                 }
@@ -66,6 +68,8 @@ export interface Database {
                     stripe_current_period_end?: string | null
                     theme_color?: string | null
                     background_image_url?: string | null
+                    bbb_rating?: string | null
+                    osha_certified?: boolean | null
                     created_at?: string | null
                     updated_at?: string | null
                 }
@@ -94,6 +98,8 @@ export interface Database {
                     stripe_current_period_end?: string | null
                     theme_color?: string | null
                     background_image_url?: string | null
+                    bbb_rating?: string | null
+                    osha_certified?: boolean | null
                     created_at?: string | null
                     updated_at?: string | null
                 }

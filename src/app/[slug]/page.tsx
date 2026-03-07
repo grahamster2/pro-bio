@@ -172,18 +172,22 @@ export default async function PublicProfilePage(props: Props) {
                             </span>
                         </span>
                     </div>
-                    <div className="flex flex-col items-center gap-2 opacity-40 grayscale">
-                        <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center shadow-inner">
-                            <Award className="w-6 h-6 text-blue-400" />
+                    {profile.bbb_rating && (
+                        <div className="flex flex-col items-center gap-2">
+                            <div className="w-12 h-12 rounded-full border border-blue-500/30 bg-blue-500/10 flex items-center justify-center shadow-inner">
+                                <Award className="w-6 h-6 text-blue-400" />
+                            </div>
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">{profile.bbb_rating} BBB<br />Rating</span>
                         </div>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">A+ BBB<br />Rating</span>
-                    </div>
-                    <div className="flex flex-col items-center gap-2 opacity-40 grayscale">
-                        <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center shadow-inner">
-                            <HardHat className="w-6 h-6 text-yellow-500" />
+                    )}
+                    {profile.osha_certified && (
+                        <div className="flex flex-col items-center gap-2">
+                            <div className="w-12 h-12 rounded-full border border-yellow-500/30 bg-yellow-500/10 flex items-center justify-center shadow-inner">
+                                <HardHat className="w-6 h-6 text-yellow-500" />
+                            </div>
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">OSHA<br />Certified</span>
                         </div>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">OSHA<br />Certified</span>
-                    </div>
+                    )}
                 </div>
 
                 {/* Bio */}

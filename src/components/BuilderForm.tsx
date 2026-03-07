@@ -300,6 +300,67 @@ export default function BuilderForm({ profile, onChange }: { profile: any, onCha
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 pt-6 border-t border-zinc-800/60">
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-400 mb-1.5 flex items-center gap-2">
+                                                BBB Rating (Optional)
+                                                {!profile.is_premium && <span className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest text-brand-amber bg-brand-amber/10 px-1.5 py-0.5 rounded border border-brand-amber/20"><Star className="w-2.5 h-2.5 fill-brand-amber" /> PRO</span>}
+                                            </label>
+                                            <select
+                                                className="w-full rounded-md px-4 py-2 bg-zinc-950 border border-zinc-800 text-slate-100 focus:outline-none focus:border-brand-amber text-sm transition-colors"
+                                                value={profile.bbb_rating || ''}
+                                                onChange={e => {
+                                                    if (!profile.is_premium) {
+                                                        setIsUpgradeModalOpen(true);
+                                                        return;
+                                                    }
+                                                    onChange({ bbb_rating: e.target.value })
+                                                }}
+                                            >
+                                                <option value="">None</option>
+                                                <option value="A+">A+</option>
+                                                <option value="A">A</option>
+                                                <option value="A-">A-</option>
+                                                <option value="B+">B+</option>
+                                                <option value="B">B</option>
+                                                <option value="B-">B-</option>
+                                                <option value="C+">C+</option>
+                                                <option value="C">C</option>
+                                                <option value="C-">C-</option>
+                                                <option value="D+">D+</option>
+                                                <option value="D">D</option>
+                                                <option value="D-">D-</option>
+                                                <option value="F">F</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-400 mb-1.5 flex items-center gap-2">
+                                                OSHA Certification
+                                                {!profile.is_premium && <span className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest text-brand-amber bg-brand-amber/10 px-1.5 py-0.5 rounded border border-brand-amber/20"><Star className="w-2.5 h-2.5 fill-brand-amber" /> PRO</span>}
+                                            </label>
+                                            <label className="flex items-center gap-3 bg-zinc-950 hover:bg-zinc-900 border border-zinc-800 rounded-md px-4 py-2 h-[38px] cursor-pointer transition-colors max-w-fit">
+                                                <div className="relative shrink-0">
+                                                    <input
+                                                        type="checkbox"
+                                                        className="sr-only"
+                                                        checked={profile.osha_certified || false}
+                                                        onChange={(e) => {
+                                                            if (!profile.is_premium) {
+                                                                setIsUpgradeModalOpen(true);
+                                                                return;
+                                                            }
+                                                            onChange({ osha_certified: e.target.checked })
+                                                        }}
+                                                    />
+                                                    <div className={`block w-10 h-6 rounded-full transition-colors duration-300 ${profile.osha_certified ? 'bg-brand-amber' : 'bg-zinc-800 border border-zinc-700'}`}></div>
+                                                    <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full shadow-sm transition-transform duration-300 ${profile.osha_certified ? 'translate-x-4' : ''}`}></div>
+                                                </div>
+                                                <span className="text-sm text-slate-300 font-medium">OSHA Certified</span>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
                         </div>
