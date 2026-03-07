@@ -7,6 +7,18 @@
   --font-heading: var(--font-oswald), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --color-brand-amber: #f59e0b;
+
+  --animate-loop-scroll: loop-scroll 30s linear infinite;
+
+  @keyframes loop-scroll {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 :root {

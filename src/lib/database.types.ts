@@ -19,13 +19,26 @@ export interface Database {
                     license_number: string | null
                     phone_number: string | null
                     bio: string | null
-                    is_emergency_available: boolean | null
                     profile_image_url: string | null
+                    photo_library_urls: string[] | null
                     links: Json | null
-                    is_pro: boolean | null
-                    bbb_rating: string | null
-                    osha_certified: boolean | null
-                    created_at: string | null
+                    service_options: string[] | null
+                    is_emergency_available: boolean | null
+                    is_licensed_insured: boolean | null
+                    insurance_document_url: string | null
+                    verification_status: string | null
+                    accepts_credit_cards: boolean | null
+                    offers_financing: boolean | null
+                    free_consultations: boolean | null
+                    has_seen_tutorial: boolean | null
+                    is_premium: boolean | null
+                    stripe_customer_id: string | null
+                    stripe_subscription_id: string | null
+                    stripe_price_id: string | null
+                    stripe_current_period_end: string | null
+                    theme_color: string | null
+                    background_image_url: string | null
+                    created_at: string
                     updated_at: string | null
                 }
                 Insert: {
@@ -40,9 +53,19 @@ export interface Database {
                     is_emergency_available?: boolean | null
                     profile_image_url?: string | null
                     links?: Json | null
+                    photo_library_urls?: string[] | null
+                    service_options?: string[] | null
+                    is_licensed_insured?: boolean | null
+                    insurance_document_url?: string | null
+                    verification_status?: string | null
                     is_pro?: boolean | null
-                    bbb_rating?: string | null
-                    osha_certified?: boolean | null
+                    is_premium?: boolean | null
+                    stripe_customer_id?: string | null
+                    stripe_subscription_id?: string | null
+                    stripe_price_id?: string | null
+                    stripe_current_period_end?: string | null
+                    theme_color?: string | null
+                    background_image_url?: string | null
                     created_at?: string | null
                     updated_at?: string | null
                 }
@@ -58,9 +81,19 @@ export interface Database {
                     is_emergency_available?: boolean | null
                     profile_image_url?: string | null
                     links?: Json | null
+                    photo_library_urls?: string[] | null
+                    service_options?: string[] | null
+                    is_licensed_insured?: boolean | null
+                    insurance_document_url?: string | null
+                    verification_status?: string | null
                     is_pro?: boolean | null
-                    bbb_rating?: string | null
-                    osha_certified?: boolean | null
+                    is_premium?: boolean | null
+                    stripe_customer_id?: string | null
+                    stripe_subscription_id?: string | null
+                    stripe_price_id?: string | null
+                    stripe_current_period_end?: string | null
+                    theme_color?: string | null
+                    background_image_url?: string | null
                     created_at?: string | null
                     updated_at?: string | null
                 }

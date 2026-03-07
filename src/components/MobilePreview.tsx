@@ -47,13 +47,15 @@ export default function MobilePreview({ profile }: { profile: any }) {
 
                 {/* Trust Badges */}
                 <div className="px-6 py-5 bg-zinc-950 flex justify-between gap-2 border-b border-zinc-900">
-                    <div className="flex flex-col items-center gap-1.5 flex-1">
-                        <div className="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center shadow-inner">
-                            <ShieldCheck className="w-4 h-4 text-brand-amber" />
+                    <div className={`flex flex-col items-center gap-1.5 flex-1 ${!profile.is_licensed_insured ? 'opacity-40 grayscale' : ''}`}>
+                        <div className={`w-9 h-9 rounded-full border flex items-center justify-center shadow-inner ${profile.is_licensed_insured && profile.verification_status === 'Verified' ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-zinc-900 border-zinc-800'}`}>
+                            <ShieldCheck className={`w-4 h-4 ${profile.is_licensed_insured && profile.verification_status === 'Verified' ? 'text-emerald-400' : 'text-brand-amber'}`} />
                         </div>
-                        <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">Licensed<br />Insured</span>
+                        <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">
+                            {profile.is_licensed_insured && profile.verification_status !== 'Verified' ? 'Self-Reported\nLicensed' : 'Licensed\nInsured'}
+                        </span>
                     </div>
-                    <div className="flex flex-col items-center gap-1.5 flex-1">
+                    <div className="flex flex-col items-center gap-1.5 flex-1 opacity-40 grayscale">
                         <div className="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center shadow-inner">
                             <Award className="w-4 h-4 text-blue-400" />
                         </div>
@@ -81,11 +83,17 @@ export default function MobilePreview({ profile }: { profile: any }) {
                 {links.length > 0 && (
                     <div className="px-6 py-8 space-y-3 bg-zinc-950">
                         <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Links</h3>
-                        {links.map((link: any, i: number) => (
-                            <a key={i} href={link.url || '#'} onClick={e => e.preventDefault()} className="flex justify-center w-full py-4 px-4 bg-zinc-900 rounded-xl text-sm font-bold text-slate-100 border border-zinc-800 shadow-sm relative overflow-hidden group">
-                                <span className="relative z-10">{link.title || 'Link Title'}</span>
-                            </a>
-                        ))}
+                        {links.map((link: any, i: number) => {
+                            let domain = link.url;
+                            try { domain = new URL(link.url).hostname; } catch { }
+
+                            return (
+                                <a key={i} href={link.url || '#'} onClick={e => e.preventDefault()} className="flex items-center w-full py-4 px-4 bg-zinc-900 rounded-xl text-sm font-bold text-slate-100 border border-zinc-800 shadow-sm relative overflow-hidden group hover:border-zinc-700 transition-colors">
+                                    <img src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`} alt="" className="w-5 h-5 mr-3 rounded-sm" />
+                                    <span className="relative z-10 flex-1 text-center pr-8">{link.title || 'Link Title'}</span>
+                                </a>
+                            );
+                        })}
                     </div>
                 )}
             </div>

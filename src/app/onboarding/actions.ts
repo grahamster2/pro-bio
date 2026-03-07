@@ -16,10 +16,16 @@ export async function completeOnboarding(formData: {
 
         const supabase = await createClient()
 
-        const slug = formData.business_name
+        let slug = formData.business_name
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/(^-|-$)+/g, '')
+
+        const reservedSlugs = ['dashboard', 'admin', 'privacy', 'tos', 'onboarding', 'api', 'auth', 'builder', 'settings', 'profile']
+
+        if (reservedSlugs.includes(slug)) {
+            slug = `${slug}-${Math.floor(1000 + Math.random() * 9000)}`
+        }
 
         // Use upsert instead of update since the auth trigger was removed
         const { error } = await supabase

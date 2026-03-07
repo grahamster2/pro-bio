@@ -6,7 +6,7 @@ import { auth } from '@clerk/nextjs/server'
 export default async function DashboardPage() {
     const { userId } = await auth()
 
-    if (!userId) redirect('/login')
+    if (!userId) redirect('/sign-in')
 
     const supabase = await createClient()
 

@@ -1,0 +1,29 @@
+.loader {
+    position: relative;
+    display: inline-flex;
+    border-right: 4px solid #f59e0b;
+    white-space: nowrap;
+    animation: blink 0.75s step-end infinite;
+    vertical-align: bottom;
+    padding-right: 6px;
+}
+
+.loader-text {
+    color: #f59e0b;
+    /* brand-amber */
+    white-space: nowrap;
+    line-height: 1.1;
+    padding-bottom: 0.1em;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        border-right-color: transparent;
+    }
+
+    50% {
+        border-right-color: #f59e0b;
+    }
+}

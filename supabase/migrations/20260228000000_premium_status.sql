@@ -1,0 +1,7 @@
+-- Add Stripe and Premium fields to profiles
+ALTER TABLE profiles 
+ADD COLUMN IF NOT EXISTS is_premium BOOLEAN DEFAULT false,
+ADD COLUMN IF NOT EXISTS stripe_customer_id TEXT DEFAULT NULL,
+ADD COLUMN IF NOT EXISTS stripe_subscription_id TEXT DEFAULT NULL,
+ADD COLUMN IF NOT EXISTS stripe_price_id TEXT DEFAULT NULL,
+ADD COLUMN IF NOT EXISTS stripe_current_period_end TIMESTAMP WITH TIME ZONE DEFAULT NULL;

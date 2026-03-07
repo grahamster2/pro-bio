@@ -1,14 +1,14 @@
 import OnboardingForm from '@/components/OnboardingForm'
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import { Wrench } from 'lucide-react'
+import { Logo } from '@/components/Logo'
 import { auth } from '@clerk/nextjs/server'
 
 export default async function OnboardingPage() {
     const { userId } = await auth()
 
     if (!userId) {
-        redirect('/login')
+        redirect('/sign-in')
     }
 
     const supabase = await createClient()
@@ -26,12 +26,7 @@ export default async function OnboardingPage() {
     return (
         <div className="min-h-screen flex flex-col">
             <header className="px-6 py-4 flex items-center border-b border-zinc-800 bg-zinc-950/80">
-                <div className="flex items-center gap-2">
-                    <Wrench className="w-6 h-6 text-brand-amber" />
-                    <span className="text-xl font-heading font-bold text-slate-100 tracking-wider">
-                        PRO<span className="text-brand-amber">BIO</span>
-                    </span>
-                </div>
+                <Logo />
             </header>
 
             <main className="flex-1 flex flex-col items-center justify-center p-6">

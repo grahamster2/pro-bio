@@ -11,7 +11,19 @@ export async function updateProfile(formData: {
     phone_number?: string
     license_number?: string
     is_emergency_available?: boolean
+    is_licensed_insured?: boolean
+    insurance_document_url?: string
+    verification_status?: string
+    accepts_credit_cards?: boolean
+    offers_financing?: boolean
+    free_consultations?: boolean
+    has_seen_tutorial?: boolean
     links?: any
+    profile_image_url?: string
+    photo_library_urls?: string[]
+    service_options?: string[]
+    theme_color?: string
+    background_image_url?: string
 }) {
     const { userId } = await auth()
     if (!userId) throw new Error('Not authenticated')
