@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Oswald, Geist_Mono } from "next/font/google";
 import { ClerkProvider } from '@clerk/nextjs';
 import { Analytics } from "@vercel/analytics/next";
+import AddToHomeScreen from "@/components/AddToHomeScreen";
 import "./globals.css";
 
 const inter = Inter({
@@ -19,6 +20,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#f59e0b',
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://rovult.com'),
   title: {
@@ -29,6 +38,12 @@ export const metadata: Metadata = {
   keywords: ['contractor website', 'tradesman software', 'plumber website', 'electrician website', 'link in bio for contractors', 'Rovult'],
   authors: [{ name: 'Rovult' }],
   creator: 'Rovult',
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Rovult',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -37,7 +52,7 @@ export const metadata: Metadata = {
     description: 'Build a heavy-duty, mobile-first profile ready while sitting in your truck. Earn more high-paying leads.',
     siteName: 'Rovult',
     images: [{
-      url: '/og-image.png', // Fallback global image
+      url: '/og-image.png',
       width: 1200,
       height: 630,
       alt: 'Rovult - Contractor Websites',
@@ -68,6 +83,7 @@ export default function RootLayout({
           className={`${inter.variable} ${oswald.variable} ${geistMono.variable} antialiased font-sans bg-zinc-950 text-slate-100`}
         >
           {children}
+          <AddToHomeScreen />
           <Analytics />
         </body>
       </html>

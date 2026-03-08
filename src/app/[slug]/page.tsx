@@ -346,7 +346,7 @@ export default async function PublicProfilePage(props: Props) {
 
             <div className="mt-12 text-center pb-8 px-8 max-w-sm mx-auto relative z-10">
                 <p className={`text-[10px] mb-6 leading-relaxed ${textColorClass}`}>
-                    Rovult provides a platform for pros to display their credentials. We recommend all users verify licenses and insurance directly with the provider before starting work.
+                    Rovult provides a platform for pros to display their credentials. We do not guarantee the accuracy, completeness, or validity of any badges, licenses, insurance, BBB ratings, or OSHA certifications. It is entirely up to the consumer to decide if this information is true and to independently verify all credentials directly with the provider before starting work.
                 </p>
             </div>
 

@@ -106,6 +106,13 @@ export default function MobilePreview({ profile }: { profile: any }) {
                         })}
                     </div>
                 )}
+
+                {/* Disclaimer */}
+                <div className="px-6 py-8 text-center mt-auto" style={{ backgroundColor: 'color-mix(in srgb, var(--card-bg, #09090b) 80%, transparent)' }}>
+                    <p className="text-[9px] leading-relaxed text-slate-500 opacity-80">
+                        Rovult is a platform for pros to display credentials. We do not guarantee the accuracy or validity of any badges, licenses, insurance, BBB ratings, or OSHA certifications. It is entirely up to the consumer to verify all credentials directly with the provider before starting work.
+                    </p>
+                </div>
             </div>
 
             {/* Fixed Bottom Action */}

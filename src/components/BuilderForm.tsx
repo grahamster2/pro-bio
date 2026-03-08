@@ -124,6 +124,7 @@ export default function BuilderForm({ profile, onChange }: { profile: any, onCha
                         return (
                             <button
                                 key={tab.id}
+                                id={`tutorial-${tab.id}-tab`}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${isActive
                                     ? 'bg-zinc-800 text-brand-amber shadow-sm'

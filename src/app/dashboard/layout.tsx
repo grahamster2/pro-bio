@@ -92,13 +92,13 @@ export default async function DashboardLayout({
             </aside>
 
             {/* Mobile top nav */}
-            <div className="md:hidden border-b border-zinc-800/80 bg-zinc-950 relative">
+            <div className="md:hidden border-b border-zinc-800/80 bg-zinc-950 sticky top-0 z-40 relative">
                 <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-brand-amber/30 to-transparent" />
                 <div className="px-4 pt-3 pb-2 flex justify-between items-center">
                     <Logo />
                     <UserButton />
                 </div>
-                <div className="px-3 pb-3 flex items-center justify-between gap-3">
+                <div className="px-3 pb-3 flex items-center justify-between gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                     <MobileNav />
                     {profile.is_premium ? (
                         <div className="flex items-center gap-1.5 text-brand-amber text-xs font-semibold border border-brand-amber/20 bg-brand-amber/5 px-2.5 py-1 rounded-lg shrink-0">
@@ -110,7 +110,7 @@ export default async function DashboardLayout({
                 </div>
             </div>
 
-            <main className="flex-1 h-screen overflow-hidden">
+            <main className="flex-1 md:h-screen md:overflow-hidden overflow-y-auto">
                 {children}
             </main>
         </div>
