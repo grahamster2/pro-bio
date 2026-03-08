@@ -626,6 +626,53 @@ export default function BuilderForm({ profile, onChange }: { profile: any, onCha
                                     )}
                                 </div>
                             </div>
+
+                            {/* Card Color */}
+                            <div>
+                                <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 pl-1">Card Color</label>
+                                <div className="flex items-center gap-3">
+                                    <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-zinc-700 shrink-0">
+                                        <input
+                                            type="color"
+                                            className="absolute -top-2 -left-2 w-16 h-16 cursor-pointer"
+                                            value={profile.card_color || '#09090b'}
+                                            onChange={(e) => onChange({ card_color: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="flex-1">
+                                        <input
+                                            type="text"
+                                            className="w-full bg-zinc-950 border border-zinc-800 text-slate-100 px-3 py-2 rounded-lg text-sm font-mono focus:outline-none focus:border-brand-amber"
+                                            value={profile.card_color || '#09090b'}
+                                            onChange={(e) => onChange({ card_color: e.target.value })}
+                                            placeholder="#09090b"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Liquid Glass Effect */}
+                            <div>
+                                <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 pl-1">Liquid Glass Effect</label>
+                                <label className="flex items-center justify-between cursor-pointer group bg-zinc-950/50 hover:bg-zinc-950 p-4 rounded-xl border border-zinc-800/80 transition-all">
+                                    <div className="flex flex-col gap-1">
+                                        <span className="text-sm font-bold text-slate-200 group-hover:text-brand-amber transition-colors">
+                                            Glassmorphism
+                                        </span>
+                                        <span className="text-xs text-slate-500">Frosted glass look with blur and glow.</span>
+                                    </div>
+                                    <div className="relative shrink-0">
+                                        <input
+                                            type="checkbox"
+                                            className="sr-only"
+                                            checked={profile.liquid_glass || false}
+                                            onChange={(e) => onChange({ liquid_glass: e.target.checked })}
+                                        />
+                                        <div className={`block w-12 h-7 rounded-full transition-colors duration-300 ${profile.liquid_glass ? 'bg-brand-amber' : 'bg-zinc-800 border border-zinc-700'}`}></div>
+                                        <div className={`absolute left-1 top-1 bg-white w-5 h-5 rounded-full shadow-sm transition-transform duration-300 ${profile.liquid_glass ? 'translate-x-5' : ''}`}></div>
+                                    </div>
+                                </label>
+                            </div>
                         </div>
                     </div>
 

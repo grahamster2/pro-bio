@@ -7,7 +7,10 @@ export default function MobilePreview({ profile }: { profile: any }) {
     const links = Array.isArray(profile.links) ? profile.links : []
 
     return (
-        <div className="w-[320px] h-[650px] bg-zinc-950 rounded-[2.5rem] border-[10px] border-zinc-900 overflow-hidden relative shadow-2xl flex flex-col ring-1 ring-zinc-800">
+        <div
+            className={`w-[320px] h-[650px] rounded-[2.5rem] border-[10px] border-zinc-900 overflow-hidden relative shadow-2xl flex flex-col ring-1 ring-zinc-800 ${profile.liquid_glass ? 'liquid-glass' : 'bg-zinc-950'}`}
+            style={!profile.liquid_glass && profile.card_color ? { backgroundColor: profile.card_color } : undefined}
+        >
             {/* Mobile Status Bar area */}
             <div className="h-6 w-full bg-zinc-950 absolute top-0 z-10 flex justify-center pt-2">
                 <div className="w-20 h-5 bg-zinc-900 rounded-full"></div>

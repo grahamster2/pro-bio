@@ -118,7 +118,10 @@ export default async function PublicProfilePage(props: Props) {
             )}
 
             <ViewTracker profileId={profile.id} />
-            <div className="w-full max-w-[420px] bg-zinc-950 rounded-[2.5rem] overflow-hidden relative shadow-2xl flex flex-col ring-1 ring-zinc-800 pb-24 mx-auto animate-in fade-in slide-in-from-bottom-8 duration-500">
+            <div
+                className={`w-full max-w-[420px] rounded-[2.5rem] overflow-hidden relative shadow-2xl flex flex-col ring-1 ring-zinc-800 pb-24 mx-auto animate-in fade-in slide-in-from-bottom-8 duration-500 ${profile.liquid_glass ? 'liquid-glass' : 'bg-zinc-950'}`}
+                style={!profile.liquid_glass && profile.card_color ? { backgroundColor: profile.card_color } : undefined}
+            >
 
                 {/* Cover Area */}
                 <div className="px-8 pt-10 pb-10 flex flex-col items-center text-center border-b border-zinc-900 bg-gradient-to-b from-zinc-900/50 to-zinc-950 relative">

@@ -24,6 +24,8 @@ export async function updateProfile(formData: {
     service_options?: string[]
     theme_color?: string
     background_image_url?: string
+    card_color?: string
+    liquid_glass?: boolean
 }) {
     const { userId } = await auth()
     if (!userId) throw new Error('Not authenticated')

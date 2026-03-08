@@ -38,6 +38,8 @@ export interface Database {
                     stripe_current_period_end: string | null
                     theme_color: string | null
                     background_image_url: string | null
+                    card_color: string | null
+                    liquid_glass: boolean | null
                     bbb_rating: string | null
                     bbb_profile_url: string | null
                     osha_certified: boolean | null
@@ -70,6 +72,8 @@ export interface Database {
                     stripe_current_period_end?: string | null
                     theme_color?: string | null
                     background_image_url?: string | null
+                    card_color?: string | null
+                    liquid_glass?: boolean | null
                     bbb_rating?: string | null
                     bbb_profile_url?: string | null
                     osha_certified?: boolean | null
@@ -102,6 +106,8 @@ export interface Database {
                     stripe_current_period_end?: string | null
                     theme_color?: string | null
                     background_image_url?: string | null
+                    card_color?: string | null
+                    liquid_glass?: boolean | null
                     bbb_rating?: string | null
                     bbb_profile_url?: string | null
                     osha_certified?: boolean | null

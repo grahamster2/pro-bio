@@ -33,6 +33,8 @@ export default function DashboardClient({ initialProfile }: { initialProfile: an
                 service_options: profile.service_options || [],
                 theme_color: profile.theme_color,
                 background_image_url: profile.background_image_url,
+                card_color: profile.card_color,
+                liquid_glass: profile.liquid_glass,
             })
             setMessage('Profile saved successfully!')
             setTimeout(() => setMessage(''), 3000)
