@@ -39,8 +39,15 @@ export default async function LeadsPage() {
     }, {});
 
     return (
-        <div className="p-6 md:p-8 h-full flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            <h1 className="text-3xl font-heading font-bold text-slate-100 mb-6">Leads & Analytics</h1>
+        <div className="p-5 md:p-7 h-full flex flex-col gap-5 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="shrink-0">
+                <h1 className="text-2xl font-heading font-black text-slate-100 tracking-tight">
+                    Leads & Analytics
+                </h1>
+                <p className="text-sm text-slate-500 mt-0.5">
+                    Track profile visits, link clicks, and manage quote requests.
+                </p>
+            </div>
             <LeadsClient
                 totalViews={totalViews}
                 totalClicks={totalClicks}
