@@ -120,15 +120,18 @@ export default async function PublicProfilePage(props: Props) {
 
             <ViewTracker profileId={profile.id} />
             <div
-                className={`w-full max-w-[420px] rounded-[2.5rem] overflow-hidden relative shadow-2xl flex flex-col ring-1 ring-zinc-800 pb-24 mx-auto animate-in fade-in slide-in-from-bottom-8 duration-500 ${profile.liquid_glass ? '' : 'bg-zinc-950'}`}
-                style={!profile.liquid_glass && profile.card_color ? { backgroundColor: profile.card_color } : undefined}
+                className="w-full max-w-[420px] rounded-[2.5rem] overflow-hidden relative shadow-2xl flex flex-col ring-1 ring-zinc-800 pb-24 mx-auto animate-in fade-in slide-in-from-bottom-8 duration-500"
+                style={{
+                    backgroundColor: profile.liquid_glass ? undefined : (profile.card_color || '#09090b'),
+                    ['--card-bg' as string]: profile.card_color || '#09090b',
+                } as React.CSSProperties}
             >
                 {profile.liquid_glass && (
                     <LiquidGlassOverlay bgColor={profile.theme_color || '#09090b'} />
                 )}
 
                 {/* Cover Area */}
-                <div className="px-8 pt-10 pb-10 flex flex-col items-center text-center border-b border-zinc-900 bg-gradient-to-b from-zinc-900/50 to-zinc-950 relative">
+                <div className="px-8 pt-10 pb-10 flex flex-col items-center text-center border-b border-white/5 relative" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.25), var(--card-bg, #09090b))' }}>
 
                     {profile.is_premium && profile.is_emergency_available && (
                         <div className="absolute top-6 left-6 flex items-center gap-2 bg-red-500/10 border border-red-500/20 px-3 py-1.5 rounded-full backdrop-blur-sm shadow-sm z-20">
@@ -166,7 +169,7 @@ export default async function PublicProfilePage(props: Props) {
                 </div>
 
                 {/* Trust Badges */}
-                <div className="px-8 py-6 bg-zinc-950 flex justify-center gap-4 border-b border-zinc-900">
+                <div className="px-8 py-6 flex justify-center gap-4 border-b border-white/5" style={{ backgroundColor: 'var(--card-bg, #09090b)' }}>
                     <div className={`flex flex-col items-center gap-2 max-w-[100px] ${!profile.is_licensed_insured ? 'opacity-40 grayscale' : ''}`}>
                         <div className={`w-12 h-12 rounded-full border flex items-center justify-center shadow-inner ${(profile.is_premium && profile.is_licensed_insured && profile.verification_status === 'Verified') ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-zinc-900 border-zinc-800'}`}>
                             <ShieldCheck className={`w-6 h-6 ${(profile.is_premium && profile.is_licensed_insured && profile.verification_status === 'Verified') ? 'text-emerald-400' : 'text-brand-amber'}`} />
@@ -223,7 +226,7 @@ export default async function PublicProfilePage(props: Props) {
 
                 {/* Bio */}
                 {profile.bio && (
-                    <div className="px-8 py-8 border-b border-zinc-900 bg-zinc-950/50">
+                    <div className="px-8 py-8 border-b border-white/5" style={{ backgroundColor: 'color-mix(in srgb, var(--card-bg, #09090b) 80%, transparent)' }}>
                         <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">About</h3>
                         <p className="text-base text-slate-300 leading-relaxed font-sans opacity-95">
                             {profile.bio}
@@ -233,7 +236,7 @@ export default async function PublicProfilePage(props: Props) {
 
                 {/* Conversion Badges */}
                 {profile.is_premium && (profile.accepts_credit_cards || profile.offers_financing || profile.free_consultations) && (
-                    <div className="px-8 py-6 border-b border-zinc-900 bg-zinc-950 flex flex-wrap gap-2">
+                    <div className="px-8 py-6 border-b border-white/5 flex flex-wrap gap-2" style={{ backgroundColor: 'var(--card-bg, #09090b)' }}>
                         {profile.accepts_credit_cards && (
                             <span className="text-xs font-bold text-brand-amber bg-brand-amber/10 border border-brand-amber/20 px-3 py-1.5 rounded-md flex items-center gap-1.5 uppercase tracking-wide">
                                 <Zap className="w-3 h-3" /> Accepts Credit Cards
@@ -254,7 +257,7 @@ export default async function PublicProfilePage(props: Props) {
 
                 {/* Photo Gallery */}
                 {profile.is_premium && profile.photo_library_urls && profile.photo_library_urls.length > 0 && (
-                    <div className="px-8 py-8 border-b border-zinc-900 bg-zinc-950">
+                    <div className="px-8 py-8 border-b border-white/5" style={{ backgroundColor: 'var(--card-bg, #09090b)' }}>
                         <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-5">Job Gallery</h3>
                         <div className="grid grid-cols-2 gap-3">
                             {profile.photo_library_urls.map((url: string, i: number) => (
@@ -268,7 +271,7 @@ export default async function PublicProfilePage(props: Props) {
 
                 {/* Services */}
                 {profile.is_premium && profile.service_options && profile.service_options.length > 0 && (
-                    <div className="px-8 py-8 border-b border-zinc-900 bg-zinc-950/50">
+                    <div className="px-8 py-8 border-b border-white/5" style={{ backgroundColor: 'color-mix(in srgb, var(--card-bg, #09090b) 80%, transparent)' }}>
                         <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-5">Our Services</h3>
                         <div className="flex flex-col gap-3">
                             {profile.service_options.map((service: string, i: number) => (
@@ -283,7 +286,7 @@ export default async function PublicProfilePage(props: Props) {
 
                 {/* Links */}
                 {links.length > 0 && (
-                    <div className="px-8 py-8 space-y-4 bg-zinc-950">
+                    <div className="px-8 py-8 space-y-4" style={{ backgroundColor: 'var(--card-bg, #09090b)' }}>
                         <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-5">Verified Links</h3>
                         {links.map((link: any, i: number) => {
                             let domain = link.url;
