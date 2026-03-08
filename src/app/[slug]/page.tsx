@@ -173,20 +173,44 @@ export default async function PublicProfilePage(props: Props) {
                         </span>
                     </div>
                     {profile.bbb_rating && (
-                        <div className="flex flex-col items-center gap-2">
-                            <div className="w-12 h-12 rounded-full border border-blue-500/30 bg-blue-500/10 flex items-center justify-center shadow-inner">
-                                <Award className="w-6 h-6 text-blue-400" />
+                        profile.bbb_profile_url ? (
+                            <a href={profile.bbb_profile_url} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group hover:opacity-90 transition-opacity cursor-pointer">
+                                <div className="w-12 h-12 rounded-full border border-blue-500/30 bg-blue-500/10 flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
+                                    <Award className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors" />
+                                </div>
+                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">
+                                    {profile.bbb_rating} BBB<br />Rating
+                                    <span className="block text-[8px] text-blue-400/80 mt-0.5 group-hover:text-blue-300">Verify ↗</span>
+                                </span>
+                            </a>
+                        ) : (
+                            <div className="flex flex-col items-center gap-2">
+                                <div className="w-12 h-12 rounded-full border border-blue-500/30 bg-blue-500/10 flex items-center justify-center shadow-inner">
+                                    <Award className="w-6 h-6 text-blue-400" />
+                                </div>
+                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">{profile.bbb_rating} BBB<br />Rating</span>
                             </div>
-                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">{profile.bbb_rating} BBB<br />Rating</span>
-                        </div>
+                        )
                     )}
                     {profile.osha_certified && (
-                        <div className="flex flex-col items-center gap-2">
-                            <div className="w-12 h-12 rounded-full border border-yellow-500/30 bg-yellow-500/10 flex items-center justify-center shadow-inner">
-                                <HardHat className="w-6 h-6 text-yellow-500" />
+                        profile.osha_proof_url ? (
+                            <a href={profile.osha_proof_url} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group hover:opacity-90 transition-opacity cursor-pointer">
+                                <div className="w-12 h-12 rounded-full border border-yellow-500/30 bg-yellow-500/10 flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
+                                    <HardHat className="w-6 h-6 text-yellow-500 group-hover:text-yellow-400 transition-colors" />
+                                </div>
+                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">
+                                    OSHA<br />Certified
+                                    <span className="block text-[8px] text-yellow-500/80 mt-0.5 group-hover:text-yellow-400">View ↗</span>
+                                </span>
+                            </a>
+                        ) : (
+                            <div className="flex flex-col items-center gap-2">
+                                <div className="w-12 h-12 rounded-full border border-yellow-500/30 bg-yellow-500/10 flex items-center justify-center shadow-inner">
+                                    <HardHat className="w-6 h-6 text-yellow-500" />
+                                </div>
+                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">OSHA<br />Certified</span>
                             </div>
-                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center leading-tight">OSHA<br />Certified</span>
-                        </div>
+                        )
                     )}
                 </div>
 

@@ -333,6 +333,18 @@ export default function BuilderForm({ profile, onChange }: { profile: any, onCha
                                                 <option value="D-">D-</option>
                                                 <option value="F">F</option>
                                             </select>
+                                            
+                                            {profile.bbb_rating && profile.bbb_rating !== '' && (
+                                                <div className="mt-4 pt-4 border-t border-zinc-800/40 animate-in fade-in slide-in-from-top-2 duration-300">
+                                                    <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 pl-1">BBB Profile Link</label>
+                                                    <input
+                                                        className="w-full rounded-md px-4 py-2 bg-zinc-950/80 border border-zinc-800 text-slate-100 font-medium focus:outline-none focus:border-brand-amber text-sm transition-colors placeholder-slate-600"
+                                                        value={profile.bbb_profile_url || ''}
+                                                        placeholder="https://www.bbb.org/..."
+                                                        onChange={e => onChange({ bbb_profile_url: e.target.value })}
+                                                    />
+                                                </div>
+                                            )}
                                         </div>
 
                                         <div>
@@ -359,6 +371,19 @@ export default function BuilderForm({ profile, onChange }: { profile: any, onCha
                                                 </div>
                                                 <span className="text-sm text-slate-300 font-medium">OSHA Certified</span>
                                             </label>
+
+                                            {profile.osha_certified && (
+                                                <div className="mt-4 pt-4 border-t border-zinc-800/40 animate-in fade-in slide-in-from-top-2 duration-300">
+                                                    <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 pl-1">Upload OSHA Certificate</label>
+                                                    <div className="w-full overflow-hidden border border-zinc-800 rounded-xl bg-zinc-950 p-2">
+                                                        <ImageUploader
+                                                            currentImageUrl={profile.osha_proof_url}
+                                                            onUploadComplete={(url) => onChange({ osha_proof_url: url })}
+                                                            isGallery={true}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

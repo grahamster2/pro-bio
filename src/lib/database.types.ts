@@ -39,7 +39,9 @@ export interface Database {
                     theme_color: string | null
                     background_image_url: string | null
                     bbb_rating: string | null
+                    bbb_profile_url: string | null
                     osha_certified: boolean | null
+                    osha_proof_url: string | null
                     created_at: string
                     updated_at: string | null
                 }
@@ -69,7 +71,9 @@ export interface Database {
                     theme_color?: string | null
                     background_image_url?: string | null
                     bbb_rating?: string | null
+                    bbb_profile_url?: string | null
                     osha_certified?: boolean | null
+                    osha_proof_url?: string | null
                     created_at?: string | null
                     updated_at?: string | null
                 }
@@ -99,7 +103,9 @@ export interface Database {
                     theme_color?: string | null
                     background_image_url?: string | null
                     bbb_rating?: string | null
+                    bbb_profile_url?: string | null
                     osha_certified?: boolean | null
+                    osha_proof_url?: string | null
                     created_at?: string | null
                     updated_at?: string | null
                 }
