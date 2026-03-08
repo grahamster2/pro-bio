@@ -25,7 +25,7 @@ export default function MobilePreview({ profile }: { profile: any }) {
 
             <div className="flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pt-12 pb-24 relative" style={{ backgroundColor: 'var(--card-bg, #09090b)' }}>
                 {/* Cover Area */}
-                <div className="px-6 pt-4 pb-8 flex flex-col items-center text-center border-b border-white/5" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.25), var(--card-bg, #09090b))' }}>
+                <div className="px-6 pt-4 pb-8 flex flex-col items-center text-center border-b border-white/5" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.08), transparent)' }}>
                     <div className="w-24 h-24 rounded-2xl bg-zinc-800 border-2 border-brand-amber flex items-center justify-center text-4xl font-heading font-black text-slate-300 mb-5 shadow-lg shadow-brand-amber/5">
                         {profile.business_name ? profile.business_name.charAt(0).toUpperCase() : '?'}
                     </div>

@@ -131,7 +131,7 @@ export default async function PublicProfilePage(props: Props) {
                 )}
 
                 {/* Cover Area */}
-                <div className="px-8 pt-10 pb-10 flex flex-col items-center text-center border-b border-white/5 relative" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.25), var(--card-bg, #09090b))' }}>
+                <div className="px-8 pt-10 pb-10 flex flex-col items-center text-center border-b border-white/5 relative" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.08), transparent)' }}>
 
                     {profile.is_premium && profile.is_emergency_available && (
                         <div className="absolute top-6 left-6 flex items-center gap-2 bg-red-500/10 border border-red-500/20 px-3 py-1.5 rounded-full backdrop-blur-sm shadow-sm z-20">
