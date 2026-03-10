@@ -67,10 +67,13 @@ function fuzzyMatch(str: string, pattern: string) {
     return patternIdx === pattern.length;
 }
 
-export default function BuilderForm({ profile, onChange }: { profile: any, onChange: (u: any) => void }) {
+export default function BuilderForm({ profile, onChange, activeTab: externalActiveTab, onTabChange }: { profile: any, onChange: (u: any) => void, activeTab?: 'general' | 'services' | 'display' | 'links', onTabChange?: (tab: 'general' | 'services' | 'display' | 'links') => void }) {
     const [serviceInput, setServiceInput] = useState('');
     const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
-    const [activeTab, setActiveTab] = useState<'general' | 'services' | 'display' | 'links'>('general');
+    const [internalActiveTab, setInternalActiveTab] = useState<'general' | 'services' | 'display' | 'links'>('general');
+
+    const activeTab = externalActiveTab || internalActiveTab;
+    const setTab = onTabChange || setInternalActiveTab;
 
     const tabs = [
         { id: 'general', label: 'General', icon: Settings2 },
@@ -115,8 +118,8 @@ export default function BuilderForm({ profile, onChange }: { profile: any, onCha
 
     return (
         <div className="space-y-6">
-            {/* Sticky Tab Navigation */}
-            <div className="sticky top-0 z-40 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/60 pb-4 pt-2 -mx-2 px-2">
+            {/* Sticky Tab Navigation (Desktop Only) */}
+            <div className="hidden md:block sticky top-0 z-40 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/60 pb-4 pt-2 -mx-2 px-2">
                 <div className="flex space-x-2 overflow-x-auto custom-scrollbar pb-2">
                     {tabs.map((tab) => {
                         const Icon = tab.icon;
@@ -125,7 +128,7 @@ export default function BuilderForm({ profile, onChange }: { profile: any, onCha
                             <button
                                 key={tab.id}
                                 id={`tutorial-${tab.id}-tab`}
-                                onClick={() => setActiveTab(tab.id)}
+                                onClick={() => setTab(tab.id)}
                                 className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${isActive
                                     ? 'bg-zinc-800 text-brand-amber shadow-sm'
                                     : 'text-slate-400 hover:text-slate-200 hover:bg-zinc-900/50'
@@ -334,7 +337,7 @@ export default function BuilderForm({ profile, onChange }: { profile: any, onCha
                                                 <option value="D-">D-</option>
                                                 <option value="F">F</option>
                                             </select>
-                                            
+
                                             {profile.bbb_rating && profile.bbb_rating !== '' && (
                                                 <div className="mt-4 pt-4 border-t border-zinc-800/40 animate-in fade-in slide-in-from-top-2 duration-300">
                                                     <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 pl-1">BBB Profile Link</label>
