@@ -118,8 +118,8 @@ export default function BuilderForm({ profile, onChange, activeTab: externalActi
 
     return (
         <div className="space-y-6">
-            {/* Sticky Tab Navigation (Desktop Only) */}
-            <div className="hidden md:block sticky top-0 z-40 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/60 pb-4 pt-2 -mx-2 px-2">
+            {/* Sticky Tab Navigation */}
+            <div className="block sticky top-0 z-40 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/60 pb-4 pt-2 -mx-2 px-2">
                 <div className="flex space-x-2 overflow-x-auto custom-scrollbar pb-2">
                     {tabs.map((tab) => {
                         const Icon = tab.icon;

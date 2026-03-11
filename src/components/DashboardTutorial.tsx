@@ -38,7 +38,7 @@ const steps: TutorialStep[] = [
     {
         targetId: 'tutorial-save-button',
         title: 'Save & Publish',
-        description: 'Don\'t forget to hit Save Changes! Once saved, your probio.app link is live and ready to be shared on your social media.',
+        description: 'Don\'t forget to hit Save Changes! Once saved, your rovult.com link is live and ready to be shared on your social media.',
         placement: 'bottom'
     }
 ]
@@ -56,7 +56,7 @@ export default function DashboardTutorial({ onComplete }: { onComplete: () => vo
             if (el) {
                 // Ensure the element is scrolled into view (smoothly)
                 el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-                
+
                 // Slight delay to allow scrolling to finish
                 setTimeout(() => {
                     setTargetRect(el.getBoundingClientRect());
@@ -72,12 +72,12 @@ export default function DashboardTutorial({ onComplete }: { onComplete: () => vo
     useEffect(() => {
         if (!isOpen) return;
         updateTargetRect();
-        
+
         // Handle window resize
         window.addEventListener('resize', updateTargetRect);
-        
+
         // Use a mutation observer to catch layout shifts if needed, but resize is usually enough for static views
-        
+
         return () => {
             window.removeEventListener('resize', updateTargetRect);
         };
@@ -100,7 +100,7 @@ export default function DashboardTutorial({ onComplete }: { onComplete: () => vo
     if (!isOpen) return null
 
     const currentStep = steps[step];
-    
+
     // Calculate popover positioning
     let popoverStyle: React.CSSProperties = {};
     if (currentStep.placement === 'center' || !targetRect) {
@@ -111,7 +111,7 @@ export default function DashboardTutorial({ onComplete }: { onComplete: () => vo
         };
     } else {
         const padding = 16; // Gap between highlight and popover
-        
+
         switch (currentStep.placement) {
             case 'bottom':
                 popoverStyle = {
@@ -141,7 +141,7 @@ export default function DashboardTutorial({ onComplete }: { onComplete: () => vo
                 };
                 break;
         }
-        
+
         // Basic boundary clamping for smaller screens (prevent overflow)
         // A more advanced solution would check window.innerWidth/innerHeight
     }
@@ -149,7 +149,7 @@ export default function DashboardTutorial({ onComplete }: { onComplete: () => vo
     return (
         <div className="fixed inset-0 z-50 pointer-events-none">
             {/* SVG Overlay Mask for highlighting */}
-            <svg 
+            <svg
                 className="absolute inset-0 w-full h-full animate-in fade-in duration-500 pointer-events-auto"
                 style={{ zIndex: 1 }}
                 onClick={(e) => {
@@ -163,32 +163,32 @@ export default function DashboardTutorial({ onComplete }: { onComplete: () => vo
                         <rect width="100%" height="100%" fill="white" />
                         {/* Cut out the target area (black means transparent mask) */}
                         {targetRect && (
-                            <rect 
-                                x={targetRect.left - 6} 
-                                y={targetRect.top - 6} 
-                                width={targetRect.width + 12} 
-                                height={targetRect.height + 12} 
-                                rx={12} 
-                                fill="black" 
+                            <rect
+                                x={targetRect.left - 6}
+                                y={targetRect.top - 6}
+                                width={targetRect.width + 12}
+                                height={targetRect.height + 12}
+                                rx={12}
+                                fill="black"
                             />
                         )}
                     </mask>
                 </defs>
-                <rect 
-                    width="100%" 
-                    height="100%" 
-                    fill="rgba(0, 0, 0, 0.75)" 
-                    mask="url(#tutorial-mask)" 
+                <rect
+                    width="100%"
+                    height="100%"
+                    fill="rgba(0, 0, 0, 0.75)"
+                    mask="url(#tutorial-mask)"
                 />
-                
+
                 {/* Optional floating ring around target */}
                 {targetRect && (
-                    <rect 
-                        x={targetRect.left - 6} 
-                        y={targetRect.top - 6} 
-                        width={targetRect.width + 12} 
-                        height={targetRect.height + 12} 
-                        rx={12} 
+                    <rect
+                        x={targetRect.left - 6}
+                        y={targetRect.top - 6}
+                        width={targetRect.width + 12}
+                        height={targetRect.height + 12}
+                        rx={12}
                         fill="none"
                         stroke="#f59e0b" // brand-amber
                         strokeWidth="2"
@@ -198,7 +198,7 @@ export default function DashboardTutorial({ onComplete }: { onComplete: () => vo
             </svg>
 
             {/* Popover Dialog */}
-            <div 
+            <div
                 className="absolute w-[320px] bg-zinc-900 border border-zinc-700/80 rounded-2xl shadow-2xl p-6 pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-10"
                 style={popoverStyle}
             >
@@ -224,9 +224,9 @@ export default function DashboardTutorial({ onComplete }: { onComplete: () => vo
                 <div className="flex items-center justify-between mt-6">
                     <div className="flex gap-1.5">
                         {steps.map((_, i) => (
-                            <div 
-                                key={i} 
-                                className={`h-1.5 rounded-full transition-all duration-300 ${i === step ? 'w-4 bg-brand-amber' : 'w-1.5 bg-zinc-700'}`} 
+                            <div
+                                key={i}
+                                className={`h-1.5 rounded-full transition-all duration-300 ${i === step ? 'w-4 bg-brand-amber' : 'w-1.5 bg-zinc-700'}`}
                             />
                         ))}
                     </div>
@@ -240,7 +240,7 @@ export default function DashboardTutorial({ onComplete }: { onComplete: () => vo
                                 <ChevronLeft className="w-4 h-4" />
                             </button>
                         )}
-                        
+
                         {step < steps.length - 1 ? (
                             <button
                                 onClick={() => setStep(s => s + 1)}

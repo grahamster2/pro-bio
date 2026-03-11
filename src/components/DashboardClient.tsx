@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import MobilePreview from './MobilePreview'
 import BuilderForm from './BuilderForm'
 import DashboardTutorial from './DashboardTutorial'
@@ -13,7 +14,13 @@ export default function DashboardClient({ initialProfile }: { initialProfile: an
     const [profile, setProfile] = useState(initialProfile)
     const [saving, setSaving] = useState(false)
     const [message, setMessage] = useState('')
-    const [activeTab, setActiveTab] = useState<TabType>('general')
+
+    const searchParams = useSearchParams()
+    const router = useRouter()
+    const activeTab = (searchParams.get('tab') as TabType) || 'general'
+    const setActiveTab = (tab: TabType) => {
+        router.replace(`?tab=${tab}`, { scroll: false })
+    }
 
     const tabs = [
         { id: 'general', label: 'Profile', icon: Settings2 },
@@ -123,30 +130,6 @@ export default function DashboardClient({ initialProfile }: { initialProfile: an
                 </div>
             </div>
 
-            {/* Mobile Bottom Navigation (Floating Pill) */}
-            <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 md:hidden w-[90%] max-w-[360px]">
-                <div className="bg-zinc-900/90 backdrop-blur-xl border border-zinc-700/80 rounded-full px-2 py-2 flex items-center justify-between shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
-                    {tabs.map((tab) => {
-                        const Icon = tab.icon;
-                        const isActive = activeTab === tab.id;
-                        return (
-                            <button
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.id as TabType)}
-                                className={`flex flex-col items-center justify-center gap-1 w-[4.5rem] py-1.5 rounded-full transition-all ${isActive
-                                        ? 'bg-zinc-800/80 text-brand-amber'
-                                        : 'text-slate-400 hover:text-slate-200'
-                                    }`}
-                            >
-                                <Icon className={`w-5 h-5 ${isActive ? 'text-brand-amber' : ''}`} />
-                                <span className={`text-[10px] font-medium ${isActive ? 'opacity-100' : 'opacity-80'}`}>
-                                    {tab.label}
-                                </span>
-                            </button>
-                        );
-                    })}
-                </div>
-            </div>
         </div>
     )
 }
