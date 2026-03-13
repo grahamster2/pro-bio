@@ -33,23 +33,23 @@ const testimonials = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#09090b] text-slate-100 overflow-hidden">
+    <div className="flex flex-col min-h-screen bg-[#09090b] text-slate-100 overflow-x-hidden">
       {/* Header */}
-      <header className="px-6 py-5 flex items-center justify-between border-b border-zinc-800/80 bg-[#09090b]/90 backdrop-blur-xl sticky top-0 z-50">
+      <header className="px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between border-b border-zinc-800/80 bg-[#09090b]/90 backdrop-blur-xl sticky top-0 z-50">
         <Logo />
         <nav className="flex items-center gap-6">
           <Link href="/sign-in" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors hidden sm:block">Log In</Link>
           <form action="/onboarding" className="flex items-center bg-zinc-900 border border-zinc-700/60 rounded-lg p-1.5 focus-within:border-brand-amber/70 focus-within:ring-2 focus-within:ring-brand-amber/20 focus-within:shadow-[0_0_15px_rgba(245,158,11,0.1)] transition-all shadow-sm">
-            <div className="flex items-center px-3">
-              <span className="text-slate-500 text-sm font-semibold hidden sm:inline mr-1">rovult.com/</span>
+            <div className="flex items-center px-2 sm:px-3">
+              <span className="text-slate-500 text-xs sm:text-sm font-semibold hidden sm:inline mr-1">rovult.com/</span>
               <input
                 type="text"
                 name="slug"
                 placeholder="yourcompany"
-                className="bg-transparent border-none outline-none text-slate-100 placeholder:text-zinc-600 font-bold text-sm w-[110px] sm:w-[140px]"
+                className="bg-transparent border-none outline-none text-slate-100 placeholder:text-zinc-600 font-bold text-xs sm:text-sm w-[90px] sm:w-[110px] md:w-[140px]"
               />
             </div>
-            <button type="submit" className="bg-gradient-to-br from-brand-amber to-amber-600 text-zinc-950 px-4 py-2 rounded-md font-bold text-sm hover:from-amber-400 hover:to-brand-amber hover:shadow-[0_0_15px_rgba(245,158,11,0.4)] transition-all">
+            <button type="submit" className="bg-gradient-to-br from-brand-amber to-amber-600 text-zinc-950 px-3 sm:px-4 py-2 rounded-md font-bold text-xs sm:text-sm hover:from-amber-400 hover:to-brand-amber hover:shadow-[0_0_15px_rgba(245,158,11,0.4)] transition-all">
               Claim Link
             </button>
           </form>
@@ -58,65 +58,130 @@ export default function Home() {
 
       <main className="flex-1 flex flex-col items-center justify-center">
         {/* Hero Section */}
-        <section className="px-6 py-16 md:py-32 w-full max-w-[90rem] mx-auto flex flex-col xl:flex-row items-center justify-between gap-20">
+        <section className="px-4 sm:px-6 py-12 sm:py-16 md:py-24 lg:py-32 w-full max-w-7xl xl:max-w-[90rem] mx-auto flex flex-col xl:flex-row items-center justify-between gap-12 lg:gap-16 xl:gap-20">
           {/* Left Column (Content) */}
-          <div className="flex-1 flex flex-col items-start text-left max-w-3xl relative z-10 w-full">
+          <div className="flex-1 flex flex-col items-start text-left max-w-2xl md:max-w-3xl relative z-10 w-full">
 
             {/* Premium Trust Badge */}
-            <div className="inline-flex items-center gap-4 mb-10 bg-zinc-900/50 p-2 pr-6 rounded-full border border-zinc-800 backdrop-blur-md shadow-lg shadow-black">
-              <div className="flex -space-x-3 rtl:space-x-reverse ml-1">
-                <img className="w-8 h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 1" />
-                <img className="w-8 h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 2" />
-                <img className="w-8 h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 3" />
+            <div className="inline-flex items-center gap-3 sm:gap-4 mb-8 sm:mb-10 bg-zinc-900/50 p-2 pr-4 sm:pr-6 rounded-full border border-zinc-800 backdrop-blur-md shadow-lg shadow-black">
+              <div className="flex -space-x-2 sm:-space-x-3 rtl:space-x-reverse ml-1">
+                <img className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 1" />
+                <img className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 2" />
+                <img className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1527980965255-d3d416303d12?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 3" />
               </div>
               <div className="flex flex-col justify-center">
                 <span className="text-slate-200 text-xs font-bold leading-tight flex items-center gap-1.5 cursor-default">
-                  <span className="text-yellow-500 text-[10px]">★★★★★</span>
+                  <span className="text-yellow-500 text-[8px] sm:text-[10px]">★★★★★</span>
                   "Got my first leads in 24 hrs."
                 </span>
-                <span className="text-slate-500 text-[10px] font-semibold uppercase tracking-wider">Trusted by 2,500+ Top Tradesmen</span>
+                <span className="text-slate-500 text-[8px] sm:text-[10px] font-semibold uppercase tracking-wider">Trusted by 2,500+ Top Tradesmen</span>
               </div>
             </div>
 
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-heading font-black text-slate-50 tracking-tighter leading-[1.05] mb-8 w-full max-w-4xl">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-heading font-black text-slate-50 tracking-tighter leading-[1.05] mb-6 sm:mb-8 w-full max-w-3xl md:max-w-4xl">
               The Website for <br className="hidden md:block" /> Pros who <br className="md:hidden" />
               <TypewriterSlogan />
             </h1>
 
-            <p className="text-xl md:text-2xl text-slate-400 mb-12 font-sans font-medium leading-relaxed max-w-2xl">
+            <p className="text-lg sm:text-xl md:text-2xl text-slate-400 mb-8 sm:mb-12 font-sans font-medium leading-relaxed max-w-xl md:max-w-2xl">
               Stop losing high-paying jobs to guys with better websites. Get a heavy-duty, mobile-first profile ready while sitting in your truck.
             </p>
 
-            <form action="/onboarding" className="flex flex-col sm:flex-row items-stretch w-full max-w-2xl bg-zinc-900/80 border border-zinc-700/60 rounded-2xl p-2 focus-within:border-brand-amber/80 focus-within:ring-4 focus-within:ring-brand-amber/10 transition-all shadow-2xl shadow-black/50">
-              <div className="flex items-center flex-1 px-5 h-16 sm:h-auto">
-                <span className="text-slate-500 text-xl font-bold pr-1">rovult.com/</span>
+            <form action="/onboarding" className="flex flex-col sm:flex-row items-stretch w-full max-w-xl md:max-w-2xl bg-zinc-900/80 border border-zinc-700/60 rounded-2xl p-2 focus-within:border-brand-amber/80 focus-within:ring-4 focus-within:ring-brand-amber/10 transition-all shadow-2xl shadow-black/50">
+              <div className="flex items-center flex-1 px-4 sm:px-5 h-14 sm:h-16">
+                <span className="text-slate-500 text-lg sm:text-xl font-bold pr-1">rovult.com/</span>
                 <input
                   type="text"
                   name="slug"
                   placeholder="yourcompany"
-                  className="bg-transparent border-none outline-none text-slate-50 placeholder:text-zinc-600 font-extrabold text-xl w-full min-w-[150px]"
+                  className="bg-transparent border-none outline-none text-slate-50 placeholder:text-zinc-600 font-extrabold text-lg sm:text-xl w-full min-w-[120px] sm:min-w-[150px]"
                 />
               </div>
-              <button type="submit" className="w-full sm:w-auto mt-3 sm:mt-0 flex items-center justify-center gap-3 bg-gradient-to-br from-brand-amber to-amber-600 text-zinc-950 px-10 h-16 rounded-xl font-black text-xl hover:from-amber-400 hover:to-brand-amber transition-all shadow-[0_0_30px_rgba(245,158,11,0.3)] hover:shadow-[0_0_40px_rgba(245,158,11,0.5)] transform hover:-translate-y-0.5">
-                Build It <ArrowRight className="w-6 h-6 stroke-[3]" />
+              <button type="submit" className="w-full sm:w-auto mt-2 sm:mt-0 flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-br from-brand-amber to-amber-600 text-zinc-950 px-6 sm:px-10 h-12 sm:h-16 rounded-xl font-black text-lg sm:text-xl hover:from-amber-400 hover:to-brand-amber transition-all shadow-[0_0_30px_rgba(245,158,11,0.3)] hover:shadow-[0_0_40px_rgba(245,158,11,0.5)] transform hover:-translate-y-0.5">
+                Build It <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
               </button>
             </form>
 
             {/* Feature Checkmarks */}
-            <div className="mt-10 flex flex-wrap items-center gap-6 text-sm font-semibold text-slate-400">
+            <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4 sm:gap-6 text-xs sm:text-sm font-semibold text-slate-400">
               <span className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-emerald-500" /> Free Forever Plan
+                <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500" /> Free Forever Plan
               </span>
               <span className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-emerald-500" /> No Coding Required
+                <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500" /> No Coding Required
               </span>
               <span className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-emerald-500" /> Optimized for SEO
+                <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500" /> Optimized for SEO
               </span>
             </div>
           </div>
 
-          {/* Right Column (Visual Mockup) */}
+          <div className="hidden md:flex lg:hidden flex-1 w-full max-w-sm relative mt-16 pointer-events-none select-none drop-shadow-2xl justify-end">
+            {/* Background glowing blob */}
+            <div className="absolute top-1/2 right-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[100%] bg-brand-amber/10 blur-[80px] rounded-full z-0 pointer-events-none"></div>
+
+            <div className="relative w-full max-w-[280px] z-10 mx-auto transform rotate-2 hover:rotate-0 transition-transform duration-700 ease-out">
+              {/* Heavy Phone Frame Mockup */}
+              <div className="bg-[#0f0f11] border-[8px] border-zinc-800 rounded-[2.5rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)] relative aspect-[9/19] ring-1 ring-zinc-700/50">
+                {/* Dynamic Island fake */}
+                <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20 shadow-inner"></div>
+
+                {/* Phone screen content */}
+                <div className="h-full w-full bg-[#0a0a0c] flex flex-col pt-16 px-4 pb-4 relative overflow-hidden">
+                  {/* Subtle background gradient for depth */}
+                  <div className="absolute top-0 left-0 w-full h-[40%] bg-gradient-to-b from-zinc-800/20 to-transparent z-0"></div>
+
+                  <div className="relative z-10 flex flex-col items-center flex-1">
+                    <div className="w-16 h-16 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-[1rem] border border-zinc-700/50 shadow-xl flex items-center justify-center mb-4 relative overflow-hidden">
+                      <div className="absolute inset-0 bg-brand-amber/5"></div>
+                      <Wrench className="w-8 h-8 text-brand-amber relative z-10" />
+                    </div>
+
+                    <h3 className="text-lg font-heading font-black text-center text-slate-50 mb-1 leading-none">Apex Plumbing</h3>
+                    <p className="text-[8px] uppercase tracking-widest text-brand-amber text-center font-bold mb-6 bg-brand-amber/10 px-2 py-0.5 rounded-full border border-brand-amber/20 w-fit mx-auto">
+                      Master Plumber
+                    </p>
+
+                    <div className="flex justify-center gap-4 text-[10px] text-slate-400 mb-6 font-semibold w-full border-b border-zinc-800/80 pb-4">
+                      <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-blue-400" /> Dallas, TX</span>
+                      <span className="flex items-center gap-1"><ShieldCheck className="w-3 h-3 text-emerald-400" /> Lic #MP8472</span>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2 w-full mb-6">
+                      <div className="bg-zinc-900/80 rounded-xl py-2.5 text-center text-xs font-bold text-slate-300 border border-zinc-700/50 shadow-md flex flex-col items-center gap-0.5 hover:bg-zinc-800 transition-colors cursor-pointer">
+                        <span className="text-[8px] text-zinc-500 uppercase tracking-wider font-semibold">Email</span>
+                        ✉️ Quote
+                      </div>
+                      <div className="bg-zinc-900/80 rounded-xl py-2.5 text-center text-xs font-bold text-slate-300 border border-zinc-700/50 shadow-md flex flex-col items-center gap-0.5 text-emerald-400 hover:bg-zinc-800 transition-colors cursor-pointer">
+                        <span className="text-[8px] text-zinc-500 uppercase tracking-wider font-semibold">Call Now</span>
+                        📞 Connect
+                      </div>
+                    </div>
+
+                    <div className="bg-zinc-900/40 rounded-xl p-3 border border-zinc-800 w-full mb-4">
+                      <h4 className="text-[9px] font-bold text-slate-400 mb-3 uppercase tracking-widest flex items-center gap-1">Featured Services</h4>
+                      <div className="flex flex-col gap-2">
+                        <div className="bg-zinc-900 border border-zinc-750 text-[10px] px-2.5 py-2 rounded-lg text-slate-200 font-semibold flex items-center gap-2 relative overflow-hidden shadow-sm">
+                          <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-amber"></div>
+                          Water Heater Repair
+                        </div>
+                        <div className="bg-zinc-900 border border-zinc-750 text-[10px] px-2.5 py-2 rounded-lg text-slate-200 font-semibold flex items-center gap-2 relative overflow-hidden shadow-sm">
+                          <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-amber"></div>
+                          Pipe Leak Detection
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-auto w-full bg-gradient-to-br from-brand-amber to-amber-600 shadow-[0_0_20px_rgba(245,158,11,0.2)] text-zinc-950 text-center py-3 rounded-lg font-black text-[10px] uppercase tracking-wide">
+                      Request Estimate
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column (Visual Mockup) - Large Desktop */}
           <div className="hidden lg:flex flex-1 w-full max-w-lg xl:max-w-xl relative mt-20 xl:mt-0 xl:ml-12 pointer-events-none select-none drop-shadow-2xl justify-end">
             {/* Background glowing blob */}
             <div className="absolute top-1/2 right-0 lg:left-1/2 lg:-translate-x-1/2 -translate-y-1/2 w-[140%] h-[120%] bg-brand-amber/10 blur-[120px] rounded-full z-0 pointer-events-none"></div>
@@ -185,31 +250,31 @@ export default function Home() {
         </section>
 
         {/* Transition Header */}
-        <section className="w-full max-w-5xl mx-auto px-6 pt-32 pb-16 text-center border-t border-zinc-900">
-          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-red-500/10 border border-red-500/20 text-xs font-bold text-red-400 mb-8 font-mono tracking-wide uppercase">
-            <span className="text-red-500 text-lg leading-none">⚠</span> Don't Look Like An Amateur
+        <section className="w-full max-w-4xl md:max-w-5xl mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 text-center border-t border-zinc-900">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-5 py-2 rounded-full bg-red-500/10 border border-red-500/20 text-[10px] sm:text-xs font-bold text-red-400 mb-6 sm:mb-8 font-mono tracking-wide uppercase">
+            <span className="text-red-500 text-sm sm:text-lg leading-none">⚠</span> Don't Look Like An Amateur
           </div>
-          <h2 className="text-5xl md:text-6xl font-heading font-black text-slate-50 tracking-tighter leading-tight max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-black text-slate-50 tracking-tighter leading-tight max-w-3xl md:max-w-4xl mx-auto">
             Your website shouldn't cost $3,000. <br className="hidden lg:block" />
             <span className="text-brand-amber">And it shouldn't look cheap either.</span>
           </h2>
         </section>
 
         {/* Testimonials (Real Social Proof) */}
-        <section className="w-full px-6 pb-40 border-b border-zinc-900">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-8 items-stretch">
+        <section className="w-full px-4 sm:px-6 pb-20 sm:pb-32 md:pb-40 border-b border-zinc-900">
+          <div className="max-w-6xl md:max-w-7xl mx-auto">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 items-stretch">
               {testimonials.map((t, i) => (
-                <div key={i} className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 flex flex-col items-start text-left shadow-xl hover:border-zinc-700 transition-colors">
-                  <Quote className="w-10 h-10 text-brand-amber/20 mb-6" />
-                  <p className="text-lg text-slate-300 font-medium leading-relaxed mb-8 flex-1">
+                <div key={i} className="bg-zinc-900/50 border border-zinc-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col items-start text-left shadow-xl hover:border-zinc-700 transition-colors">
+                  <Quote className="w-8 h-8 sm:w-10 sm:h-10 text-brand-amber/20 mb-4 sm:mb-6" />
+                  <p className="text-base sm:text-lg text-slate-300 font-medium leading-relaxed mb-6 sm:mb-8 flex-1">
                     "{t.quote}"
                   </p>
-                  <div className="flex items-center gap-4 w-full pt-6 border-t border-zinc-800/60">
-                    <img src={t.image} alt={t.name} className="w-14 h-14 rounded-full border-2 border-zinc-800 object-cover" />
+                  <div className="flex items-center gap-3 sm:gap-4 w-full pt-4 sm:pt-6 border-t border-zinc-800/60">
+                    <img src={t.image} alt={t.name} className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-zinc-800 object-cover" />
                     <div>
-                      <h4 className="text-slate-100 font-bold font-heading text-lg">{t.name}</h4>
-                      <p className="text-brand-amber font-semibold text-xs tracking-wider uppercase">{t.role}</p>
+                      <h4 className="text-slate-100 font-bold font-heading text-base sm:text-lg">{t.name}</h4>
+                      <p className="text-brand-amber font-semibold text-[10px] sm:text-xs tracking-wider uppercase">{t.role}</p>
                     </div>
                   </div>
                 </div>
@@ -219,131 +284,131 @@ export default function Home() {
         </section>
 
         {/* Logo Cloud - Trust Building (Refined) */}
-        <section className="w-full bg-[#0a0a0c] py-16">
-          <div className="max-w-5xl mx-auto px-6 text-center text-slate-500 font-bold uppercase tracking-widest text-sm flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-60">
+        <section className="w-full bg-[#0a0a0c] py-12 sm:py-16">
+          <div className="max-w-4xl md:max-w-5xl mx-auto px-4 sm:px-6 text-center text-slate-500 font-bold uppercase tracking-widest text-xs sm:text-sm flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-16 opacity-60">
             <span className="hidden md:inline mr-4">Trusted by Pros via:</span>
-            <div className="flex items-center gap-3">
-              <ShieldCheck className="w-6 h-6" /> Licensed & Insured
+            <div className="flex items-center gap-2 sm:gap-3">
+              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" /> Licensed & Insured
             </div>
-            <div className="flex items-center gap-3">
-              <span className="font-heading text-2xl leading-none tracking-normal">BBB</span> A+ Rated
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="font-heading text-lg sm:text-2xl leading-none tracking-normal">BBB</span> A+ Rated
             </div>
-            <div className="flex items-center gap-3">
-              <span className="font-sans font-black text-2xl leading-none tracking-normal">OSHA</span> Compliant
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="font-sans font-black text-lg sm:text-2xl leading-none tracking-normal">OSHA</span> Compliant
             </div>
           </div>
         </section>
 
         {/* Pricing Section */}
-        <section className="w-full bg-zinc-950/50 py-32 border-t border-zinc-900 border-b relative overflow-hidden" id="pricing">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-brand-amber/5 rounded-full blur-[100px] pointer-events-none"></div>
+        <section className="w-full bg-zinc-950/50 py-20 sm:py-24 md:py-32 border-t border-zinc-900 border-b relative overflow-hidden" id="pricing">
+          <div className="absolute top-0 right-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-brand-amber/5 rounded-full blur-[60px sm:blur-[100px] pointer-events-none"></div>
 
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="text-center mb-20">
-              <h2 className="text-5xl md:text-6xl font-heading font-black text-slate-50 tracking-tighter mb-6">
+          <div className="max-w-5xl md:max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+            <div className="text-center mb-12 sm:mb-16 md:mb-20">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-black text-slate-50 tracking-tighter mb-4 sm:mb-6">
                 Simple <span className="text-brand-amber">Pricing</span>, Clear ROI.
               </h2>
-              <p className="text-xl text-slate-400 font-medium max-w-2xl mx-auto">
+              <p className="text-lg sm:text-xl text-slate-400 font-medium max-w-xl md:max-w-2xl mx-auto">
                 Win one job through a Rovult link, and your site pays for itself for years. Start free, upgrade when you're ready to dominate.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl md:max-w-5xl mx-auto">
               {/* Free Tier */}
-              <div className="bg-zinc-900/60 border border-zinc-800 rounded-3xl p-6 sm:p-10 flex flex-col hover:border-zinc-700 transition-colors shadow-2xl">
-                <div className="mb-6 sm:mb-8">
-                  <h3 className="text-2xl sm:text-3xl font-heading font-black text-slate-100 mb-2">Rovult Core</h3>
-                  <div className="flex items-baseline gap-2 mb-3 sm:mb-4">
-                    <span className="text-4xl sm:text-5xl font-black text-slate-50">$0</span>
-                    <span className="text-sm sm:text-base text-slate-400 font-bold">/ forever</span>
+              <div className="bg-zinc-900/60 border border-zinc-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-10 flex flex-col hover:border-zinc-700 transition-colors shadow-2xl">
+                <div className="mb-4 sm:mb-6 md:mb-8">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-black text-slate-100 mb-2">Rovult Core</h3>
+                  <div className="flex items-baseline gap-2 mb-2 sm:mb-3 md:mb-4">
+                    <span className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-50">$0</span>
+                    <span className="text-xs sm:text-sm md:text-base text-slate-400 font-bold">/ forever</span>
                   </div>
-                  <p className="text-sm sm:text-base text-slate-400 font-medium sm:h-12">The perfect starting point to look like a true professional online.</p>
+                  <p className="text-xs sm:text-sm md:text-base text-slate-400 font-medium sm:h-10 md:h-12">The perfect starting point to look like a true professional online.</p>
                 </div>
 
-                <div className="flex-1 flex flex-col gap-3 sm:gap-4 mb-8 sm:mb-10 text-sm sm:text-base">
-                  <div className="flex items-center gap-3 sm:gap-4 text-slate-300 font-medium">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" /></div>
-                    Custom <code>rovult.com/name</code> Link
+                <div className="flex-1 flex flex-col gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-10 text-xs sm:text-sm md:text-base">
+                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-slate-300 font-medium">
+                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
+                    Custom <code className="text-xs sm:text-sm">rovult.com/name</code> Link
                   </div>
-                  <div className="flex items-center gap-3 sm:gap-4 text-slate-300 font-medium">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" /></div>
+                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-slate-300 font-medium">
+                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
                     Mobile-First Profile Builder
                   </div>
-                  <div className="flex items-center gap-3 sm:gap-4 text-slate-300 font-medium">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" /></div>
+                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-slate-300 font-medium">
+                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
                     Business Contact Buttons (Call, Email)
                   </div>
-                  <div className="flex items-center gap-3 sm:gap-4 text-slate-300 font-medium">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" /></div>
+                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-slate-300 font-medium">
+                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
                     Display Core Services
                   </div>
-                  <div className="flex items-center gap-3 sm:gap-4 text-slate-300 font-medium">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" /></div>
+                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-slate-300 font-medium">
+                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
                     Basic SEO Optimization
                   </div>
                 </div>
 
-                <Link href="/onboarding" className="w-full flex items-center justify-center py-3.5 sm:py-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-slate-100 font-bold tracking-wide transition-colors">
+                <Link href="/onboarding" className="w-full flex items-center justify-center py-3 sm:py-3.5 md:py-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-slate-100 font-bold text-sm sm:text-base tracking-wide transition-colors">
                   Start Building Free
                 </Link>
               </div>
 
               {/* Premium Tier */}
-              <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-brand-amber/40 rounded-3xl p-6 sm:p-10 flex flex-col shadow-[0_0_50px_rgba(245,158,11,0.08)] relative overflow-hidden transform md:-translate-y-4">
+              <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-brand-amber/40 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-10 flex flex-col shadow-[0_0_30px_sm:shadow-[0_0_50px_rgba(245,158,11,0.08)] relative overflow-hidden transform md:-translate-y-2 lg:-translate-y-4">
                 <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-amber-400 to-brand-amber"></div>
-                <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand-amber/10 blur-[50px] rounded-full pointer-events-none"></div>
+                <div className="absolute -top-8 sm:-top-10 -right-8 sm:-right-10 w-32 sm:w-40 h-32 sm:h-40 bg-brand-amber/10 blur-[40px sm:blur-[50px] rounded-full pointer-events-none"></div>
 
-                <div className="mb-3 sm:mb-4 inline-flex items-center gap-1.5 bg-brand-amber/10 border border-brand-amber/20 text-brand-amber text-[10px] sm:text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full w-fit">
-                  <Star className="w-3 sm:w-3.5 h-3 sm:h-3.5 fill-brand-amber" /> Most Popular
+                <div className="mb-2 sm:mb-3 md:mb-4 inline-flex items-center gap-1 sm:gap-1.5 bg-brand-amber/10 border border-brand-amber/20 text-brand-amber text-[8px] sm:text-[10px] md:text-xs font-black uppercase tracking-widest px-2 sm:px-3 py-1 rounded-full w-fit">
+                  <Star className="w-2 sm:w-3 h-2 sm:h-3 md:w-3.5 md:h-3.5 fill-brand-amber" /> Most Popular
                 </div>
 
-                <div className="mb-6 sm:mb-8">
-                  <h3 className="text-2xl sm:text-3xl font-heading font-black text-slate-100 mb-2">Rovult Premium</h3>
-                  <div className="flex items-baseline gap-2 mb-3 sm:mb-4">
-                    <span className="text-4xl sm:text-5xl font-black text-slate-50">$14</span>
-                    <span className="text-sm sm:text-base text-slate-400 font-bold">/ month</span>
+                <div className="mb-4 sm:mb-6 md:mb-8">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-black text-slate-100 mb-2">Rovult Premium</h3>
+                  <div className="flex items-baseline gap-2 mb-2 sm:mb-3 md:mb-4">
+                    <span className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-50">$14</span>
+                    <span className="text-xs sm:text-sm md:text-base text-slate-400 font-bold">/ month</span>
                   </div>
-                  <p className="text-sm sm:text-base text-slate-400 font-medium sm:h-12">Heavy-duty conversion features designed to book high-paying leads.</p>
+                  <p className="text-xs sm:text-sm md:text-base text-slate-400 font-medium sm:h-10 md:h-12">Heavy-duty conversion features designed to book high-paying leads.</p>
                 </div>
 
-                <div className="flex-1 flex flex-col gap-3 sm:gap-4 mb-8 sm:mb-10 text-sm sm:text-base">
-                  <div className="flex items-start gap-3 sm:gap-4 text-slate-200 font-bold">
-                    <div className="bg-brand-amber/20 p-1 rounded-full sm:p-1.5 mt-0.5"><Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-amber fill-brand-amber" /></div>
+                <div className="flex-1 flex flex-col gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-10 text-xs sm:text-sm md:text-base">
+                  <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-slate-200 font-bold">
+                    <div className="bg-brand-amber/20 p-1 rounded-full sm:p-1.5 mt-0.5"><Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-brand-amber fill-brand-amber" /></div>
                     <div>
                       Full Leads & Analytics
-                      <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">Unlock caller contact info and track exactly which links are converting.</div>
+                      <div className="text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium mt-0.5">Unlock caller contact info and track exactly which links are converting.</div>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3 sm:gap-4 text-slate-200 font-bold">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5 mt-0.5"><Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" /></div>
+                  <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-slate-200 font-bold">
+                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5 mt-0.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
                     <div>
                       Unlimited Gallery & Links
-                      <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">Showcase your best work with unlimited photos and custom URLs.</div>
+                      <div className="text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium mt-0.5">Showcase your best work with unlimited photos and custom URLs.</div>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3 sm:gap-4 text-slate-200 font-bold">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5 mt-0.5"><Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" /></div>
+                  <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-slate-200 font-bold">
+                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5 mt-0.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
                     <div>
                       24/7 Emergency Pulse
-                      <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">Show a flashing red badge when you are available for urgent, high-paying jobs.</div>
+                      <div className="text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium mt-0.5">Show a flashing red badge when you are available for urgent, high-paying jobs.</div>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3 sm:gap-4 text-slate-200 font-bold">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5 mt-0.5"><Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" /></div>
+                  <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-slate-200 font-bold">
+                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5 mt-0.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
                     <div>
                       Promoted Badges
-                      <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">Show customers you accept cards, offer financing, and give free estimates.</div>
+                      <div className="text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium mt-0.5">Show customers you accept cards, offer financing, and give free estimates.</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 sm:gap-4 text-slate-200 font-bold">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" /></div>
+                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-slate-200 font-bold">
+                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
                     <div>
                       Everything in Core
                     </div>
                   </div>
                 </div>
 
-                <Link href="/onboarding" className="w-full flex items-center justify-center py-3.5 sm:py-4 rounded-xl bg-gradient-to-br from-brand-amber to-amber-600 hover:from-amber-400 hover:to-brand-amber text-zinc-950 font-black text-lg tracking-wide shadow-[0_10px_30px_rgba(245,158,11,0.2)] hover:shadow-[0_10px_40px_rgba(245,158,11,0.4)] transition-all transform hover:-translate-y-0.5">
+                <Link href="/onboarding" className="w-full flex items-center justify-center py-3 sm:py-3.5 md:py-4 rounded-xl bg-gradient-to-br from-brand-amber to-amber-600 hover:from-amber-400 hover:to-brand-amber text-zinc-950 font-black text-base sm:text-lg md:text-xl tracking-wide shadow-[0_5px_20px_sm:shadow-[0_10px_30px_rgba(245,158,11,0.2)] hover:shadow-[0_10px_30px_sm:hover:shadow-[0_10px_40px_rgba(245,158,11,0.4)] transition-all transform hover:-translate-y-0.5">
                   Unlock Premium
                 </Link>
               </div>
@@ -352,19 +417,19 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-zinc-900 py-16 pb-32 md:pb-16 text-center text-slate-500 text-sm relative z-10 flex flex-col items-center gap-6 bg-[#09090b]">
-        <div className="flex gap-8 font-semibold">
-          <Link href="/tos" className="hover:text-slate-300 transition-colors">Terms of Service</Link>
-          <Link href="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
+      <footer className="border-t border-zinc-900 py-12 sm:py-16 pb-20 sm:pb-32 md:pb-16 text-center text-slate-500 text-xs sm:text-sm relative z-10 flex flex-col items-center gap-4 sm:gap-6 bg-[#09090b]">
+        <div className="flex gap-4 sm:gap-6 sm:gap-8 font-semibold">
+          <Link href="/tos" className="hover:text-slate-300 transition-colors text-xs sm:text-sm">Terms of Service</Link>
+          <Link href="/privacy" className="hover:text-slate-300 transition-colors text-xs sm:text-sm">Privacy Policy</Link>
         </div>
-        <p className="font-medium">&copy; {new Date().getFullYear()} Rovult. All rights reserved.</p>
+        <p className="font-medium text-xs sm:text-sm">&copy; {new Date().getFullYear()} Rovult. All rights reserved.</p>
       </footer>
 
       {/* Mobile Sticky CTA */}
-      <div className="fixed bottom-0 left-0 w-full p-6 pb-8 bg-gradient-to-t from-[#09090b] via-[#09090b]/95 to-transparent pt-16 z-50 md:hidden flex justify-center pointer-events-none">
-        <div className="pointer-events-auto w-full max-w-sm">
-          <Link href="/onboarding" className="w-full flex items-center justify-center gap-3 bg-gradient-to-br from-brand-amber to-amber-600 text-zinc-950 h-16 rounded-2xl font-black text-xl shadow-[0_10px_40px_rgba(245,158,11,0.4)] active:scale-95 transition-all">
-            Build It Now <ArrowRight className="w-6 h-6 stroke-[3]" />
+      <div className="fixed bottom-0 left-0 w-full p-4 sm:p-6 pb-6 sm:pb-8 bg-gradient-to-t from-[#09090b] via-[#09090b]/95 to-transparent pt-12 sm:pt-16 z-50 md:hidden flex justify-center pointer-events-none">
+        <div className="pointer-events-auto w-full max-w-xs sm:max-w-sm">
+          <Link href="/onboarding" className="w-full flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-br from-brand-amber to-amber-600 text-zinc-950 h-12 sm:h-16 rounded-xl sm:rounded-2xl font-black text-lg sm:text-xl shadow-[0_5px_20px_sm:shadow-[0_10px_40px_rgba(245,158,11,0.4)] active:scale-95 transition-all">
+            Build It Now <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
           </Link>
         </div>
       </div>
