@@ -1,8 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Logo } from '@/components/Logo';
-import { ArrowRight, Zap, ShieldCheck, Wrench, Quote, Check, Star } from 'lucide-react';
+import { ArrowRight, Zap, ShieldCheck, Wrench, Check, Star } from 'lucide-react';
 import { TypewriterSlogan } from '@/components/TypewriterSlogan';
+import { TestimonialCarousel } from '@/components/TestimonialCarousel';
 
 export const metadata: Metadata = {
   title: 'Rovult | The Link-in-Bio for Blue-Collar Pros',
@@ -15,7 +16,7 @@ const testimonials = [
     name: "Dave Robertson",
     role: "Master Electrician",
     quote: "I used to lose jobs because my website looked like it was from 1999. Since switching to Rovult, I've booked three $10k+ commercial jobs. They said my site made me look like the most professional guy in town.",
-    image: "https://images.unsplash.com/photo-1621905252507-846ce23f8b8a?auto=format&fit=crop&q=80&w=150&h=150"
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150"
   },
   {
     name: "Sarah Jenkins",
@@ -263,23 +264,7 @@ export default function Home() {
         {/* Testimonials (Real Social Proof) */}
         <section className="w-full px-4 sm:px-6 pb-20 sm:pb-32 md:pb-40 border-b border-zinc-900">
           <div className="max-w-6xl md:max-w-7xl mx-auto">
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 items-stretch">
-              {testimonials.map((t, i) => (
-                <div key={i} className="bg-zinc-900/50 border border-zinc-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col items-start text-left shadow-xl hover:border-zinc-700 transition-colors">
-                  <Quote className="w-8 h-8 sm:w-10 sm:h-10 text-brand-amber/20 mb-4 sm:mb-6" />
-                  <p className="text-base sm:text-lg text-slate-300 font-medium leading-relaxed mb-6 sm:mb-8 flex-1">
-                    "{t.quote}"
-                  </p>
-                  <div className="flex items-center gap-3 sm:gap-4 w-full pt-4 sm:pt-6 border-t border-zinc-800/60">
-                    <img src={t.image} alt={t.name} className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-zinc-800 object-cover" />
-                    <div>
-                      <h4 className="text-slate-100 font-bold font-heading text-base sm:text-lg">{t.name}</h4>
-                      <p className="text-brand-amber font-semibold text-[10px] sm:text-xs tracking-wider uppercase">{t.role}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <TestimonialCarousel testimonials={testimonials} />
           </div>
         </section>
 
