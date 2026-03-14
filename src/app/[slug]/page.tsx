@@ -7,6 +7,7 @@ import { QuoteForm } from '@/components/QuoteForm'
 import ViewTracker from '@/components/ViewTracker'
 import TrackedLink from '@/components/TrackedLink'
 import LiquidGlassOverlay from '@/components/LiquidGlassOverlay'
+import { BeforeAfterSlider } from '@/components/BeforeAfterSlider'
 
 function getContrastColor(hexColor: string | null): string {
     if (!hexColor) return 'text-zinc-500';
@@ -104,7 +105,7 @@ export default async function PublicProfilePage(props: Props) {
 
     return (
         <div
-            className={`min-h-screen flex flex-col items-center py-12 px-4 selection:bg-brand-amber selection:text-zinc-950 font-sans relative ${!hasCustomBgColor && !hasCustomBgImage ? 'bg-zinc-950' : ''}`}
+            className={`min-h-screen flex flex-col items-center py-12 px-4 safe-area-pt selection:bg-brand-amber selection:text-zinc-950 font-sans relative ${!hasCustomBgColor && !hasCustomBgImage ? 'bg-zinc-950' : ''}`}
             style={(hasCustomBgColor && !hasCustomBgImage) ? { backgroundColor: profile.theme_color } : undefined}
         >
             {hasCustomBgImage && (
@@ -269,6 +270,17 @@ export default async function PublicProfilePage(props: Props) {
                     </div>
                 )}
 
+                {/* Before/After Slider */}
+                {profile.is_premium && profile.show_before_after && (
+                    <BeforeAfterSlider
+                        isPremium={true}
+                        beforeImage={profile.before_after?.before}
+                        afterImage={profile.before_after?.after}
+                        beforeLabel={profile.before_after?.before_label || 'Before'}
+                        afterLabel={profile.before_after?.after_label || 'After'}
+                    />
+                )}
+
                 {/* Services */}
                 {profile.is_premium && profile.service_options && profile.service_options.length > 0 && (
                     <div className="px-8 py-8 border-b border-white/5" style={{ backgroundColor: 'color-mix(in srgb, var(--card-bg, #09090b) 80%, transparent)' }}>
@@ -320,7 +332,7 @@ export default async function PublicProfilePage(props: Props) {
 
             {/* Floating Action Button */}
             {profile.phone_number && (
-                <div className="fixed bottom-0 left-0 w-full p-4 pb-6 z-50 flex justify-center pointer-events-none">
+                <div className="fixed bottom-0 left-0 w-full p-4 pb-6 safe-area-pb z-50 flex justify-center pointer-events-none">
                     <div className="w-full max-w-[420px] grid grid-cols-2 gap-3 px-4 pointer-events-auto">
                         <TrackedLink
                             href={`tel:${profile.phone_number}`}

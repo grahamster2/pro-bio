@@ -22,6 +22,13 @@ export async function updateProfile(formData: {
     profile_image_url?: string
     photo_library_urls?: string[]
     service_options?: string[]
+    show_before_after?: boolean
+    before_after?: {
+        before?: string | null
+        after?: string | null
+        before_label?: string | null
+        after_label?: string | null
+    } | null
     theme_color?: string
     background_image_url?: string
     card_color?: string

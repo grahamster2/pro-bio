@@ -49,6 +49,8 @@ export default function DashboardClient({ initialProfile }: { initialProfile: an
                 profile_image_url: profile.profile_image_url,
                 photo_library_urls: profile.photo_library_urls || [],
                 service_options: profile.service_options || [],
+                show_before_after: profile.show_before_after || false,
+                before_after: profile.before_after || null,
                 theme_color: profile.theme_color,
                 background_image_url: profile.background_image_url,
                 card_color: profile.card_color,

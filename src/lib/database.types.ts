@@ -21,6 +21,8 @@ export interface Database {
                     bio: string | null
                     profile_image_url: string | null
                     photo_library_urls: string[] | null
+                    show_before_after: boolean | null
+                    before_after: Json | null
                     links: Json | null
                     service_options: string[] | null
                     is_emergency_available: boolean | null

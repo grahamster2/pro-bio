@@ -806,6 +806,7 @@ export default function BuilderForm({ profile, onChange, activeTab: externalActi
                                                         </div>
                                                     ) : (
                                                         <ImageUploader
+                                                            isGallery
                                                             onUploadComplete={(url: string) => onChange({ 
                                                                 before_after: { 
                                                                     ...profile.before_after, 
@@ -859,6 +860,7 @@ export default function BuilderForm({ profile, onChange, activeTab: externalActi
                                                         </div>
                                                     ) : (
                                                         <ImageUploader
+                                                            isGallery
                                                             onUploadComplete={(url: string) => onChange({ 
                                                                 before_after: { 
                                                                     ...profile.before_after, 
