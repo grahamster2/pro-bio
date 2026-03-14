@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-[#09090b] text-slate-100 overflow-x-hidden">
       {/* Header */}
-      <header className="px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between border-b border-zinc-800/80 bg-[#09090b]/90 backdrop-blur-xl sticky top-0 z-50">
+      <header className="px-4 sm:px-6 py-4 sm:py-5 sticky-header-safe flex items-center justify-between border-b border-zinc-800/80 bg-[#09090b]/90 backdrop-blur-xl sticky top-0 z-50">
         <Logo />
         <nav className="flex items-center gap-6">
           <Link href="/sign-in" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors hidden sm:block">Log In</Link>
@@ -402,7 +402,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-zinc-900 py-12 sm:py-16 pb-20 sm:pb-32 md:pb-16 text-center text-slate-500 text-xs sm:text-sm relative z-10 flex flex-col items-center gap-4 sm:gap-6 bg-[#09090b]">
+      <footer className="border-t border-zinc-900 py-12 sm:py-16 safe-area-pb text-center text-slate-500 text-xs sm:text-sm relative z-10 flex flex-col items-center gap-4 sm:gap-6 bg-[#09090b]">
         <div className="flex gap-4 sm:gap-6 sm:gap-8 font-semibold">
           <Link href="/tos" className="hover:text-slate-300 transition-colors text-xs sm:text-sm">Terms of Service</Link>
           <Link href="/privacy" className="hover:text-slate-300 transition-colors text-xs sm:text-sm">Privacy Policy</Link>
@@ -411,7 +411,7 @@ export default function Home() {
       </footer>
 
       {/* Mobile Sticky CTA */}
-      <div className="fixed bottom-0 left-0 w-full p-4 sm:p-6 pb-6 sm:pb-8 bg-gradient-to-t from-[#09090b] via-[#09090b]/95 to-transparent pt-12 sm:pt-16 z-50 md:hidden flex justify-center pointer-events-none">
+      <div className="fixed bottom-0 left-0 w-full p-4 sm:p-6 safe-area-pb bg-gradient-to-t from-[#09090b] via-[#09090b]/95 to-transparent pt-12 sm:pt-16 z-50 md:hidden flex justify-center pointer-events-none">
         <div className="pointer-events-auto w-full max-w-xs sm:max-w-sm">
           <Link href="/onboarding" className="w-full flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-br from-brand-amber to-amber-600 text-zinc-950 h-12 sm:h-16 rounded-xl sm:rounded-2xl font-black text-lg sm:text-xl shadow-[0_5px_20px_sm:shadow-[0_10px_40px_rgba(245,158,11,0.4)] active:scale-95 transition-all">
             Build It Now <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />

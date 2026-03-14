@@ -4,7 +4,7 @@ import { PhoneCall, ShieldCheck, MessageSquare, Award, HardHat } from 'lucide-re
 import { BeforeAfterSlider } from '@/components/BeforeAfterSlider'
 import LiquidGlassOverlay from '@/components/LiquidGlassOverlay'
 
-export default function MobilePreview({ profile }: { profile: any }) {
+export default function MobilePreview({ profile, isPremium = false }: { profile: any; isPremium?: boolean }) {
     const links = Array.isArray(profile.links) ? profile.links : []
 
     return (
@@ -87,7 +87,13 @@ export default function MobilePreview({ profile }: { profile: any }) {
                     </p>
                 </div>
 
-                <BeforeAfterSlider />
+                <BeforeAfterSlider 
+                    isPremium={isPremium}
+                    beforeImage={profile.before_after?.before}
+                    afterImage={profile.before_after?.after}
+                    beforeLabel={profile.before_after?.before_label || "Before"}
+                    afterLabel={profile.before_after?.after_label || "After"}
+                />
 
                 {/* Links */}
                 {links.length > 0 && (

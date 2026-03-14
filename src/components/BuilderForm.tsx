@@ -541,6 +541,148 @@ export default function BuilderForm({ profile, onChange, activeTab: externalActi
                             )}
                         </div>
                     </div>
+
+                    {/* Before/After Gallery - Premium Feature */}
+                    <div className="space-y-4 bg-zinc-900/20 p-6 rounded-3xl border border-zinc-800/40">
+                        <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
+                            <div>
+                                <h3 className="text-lg font-heading font-bold text-slate-100 flex items-center gap-2">
+                                    Before & After Gallery
+                                    <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-brand-amber bg-brand-amber/10 px-2 py-0.5 rounded-full border border-brand-amber/20"><Star className="w-2.5 h-2.5 fill-brand-amber" /> PREMIUM</span>
+                                </h3>
+                                <p className="text-xs text-slate-400 mt-1">Showcase your work with interactive before/after comparisons.</p>
+                            </div>
+                        </div>
+
+                        {!profile.is_premium ? (
+                            <div 
+                                onClick={() => setIsUpgradeModalOpen(true)}
+                                className="w-full h-32 rounded-xl border-2 border-dashed border-zinc-700 bg-zinc-950/50 flex flex-col items-center justify-center cursor-pointer hover:border-brand-amber hover:bg-zinc-800/50 transition-all group"
+                            >
+                                <div className="w-12 h-12 bg-zinc-800 rounded-full flex items-center justify-center mb-3 group-hover:bg-brand-amber/20 transition-colors">
+                                    <ImageIcon className="w-6 h-6 text-zinc-400 group-hover:text-brand-amber transition-colors" />
+                                </div>
+                                <p className="text-sm font-medium text-zinc-400 group-hover:text-slate-300 transition-colors">Before & After Gallery</p>
+                                <p className="text-xs text-zinc-500 mt-1">Upgrade to Premium to add before/after comparisons</p>
+                            </div>
+                        ) : (
+                            <div className="space-y-4">
+                                {/* Before Image Upload */}
+                                <div>
+                                    <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 pl-1">Before Photo</label>
+                                    <div className="flex gap-4">
+                                        <div className="flex-1">
+                                            {profile.before_after?.before ? (
+                                                <div className="relative group">
+                                                    <img 
+                                                        src={profile.before_after.before} 
+                                                        alt="Before" 
+                                                        className="w-full h-32 object-cover rounded-lg border border-zinc-700"
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => onChange({ 
+                                                            before_after: { 
+                                                                ...profile.before_after, 
+                                                                before: null 
+                                                            } 
+                                                        })}
+                                                        className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                                                    >
+                                                        <X className="w-3 h-3" />
+                                                    </button>
+                                                </div>
+                                            ) : (
+                                                <ImageUploader
+                                                    onUploadComplete={(url: string) => onChange({ 
+                                                        before_after: { 
+                                                            ...profile.before_after, 
+                                                            before: url 
+                                                        } 
+                                                    })}
+                                                />
+                                            )}
+                                        </div>
+                                        <div className="flex-1">
+                                            <input
+                                                type="text"
+                                                placeholder="Before label (e.g., 'Overgrown Lawn')"
+                                                value={profile.before_after?.before_label || ''}
+                                                onChange={(e) => onChange({ 
+                                                    before_after: { 
+                                                        ...profile.before_after, 
+                                                        before_label: e.target.value 
+                                                    } 
+                                                })}
+                                                className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-slate-200 placeholder:text-zinc-600 focus:outline-none focus:border-brand-amber/50"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* After Image Upload */}
+                                <div>
+                                    <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 pl-1">After Photo</label>
+                                    <div className="flex gap-4">
+                                        <div className="flex-1">
+                                            {profile.before_after?.after ? (
+                                                <div className="relative group">
+                                                    <img 
+                                                        src={profile.before_after.after} 
+                                                        alt="After" 
+                                                        className="w-full h-32 object-cover rounded-lg border border-zinc-700"
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => onChange({ 
+                                                            before_after: { 
+                                                                ...profile.before_after, 
+                                                                after: null 
+                                                            } 
+                                                        })}
+                                                        className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                                                    >
+                                                        <X className="w-3 h-3" />
+                                                    </button>
+                                                </div>
+                                            ) : (
+                                                <ImageUploader
+                                                    onUploadComplete={(url: string) => onChange({ 
+                                                        before_after: { 
+                                                            ...profile.before_after, 
+                                                            after: url 
+                                                        } 
+                                                    })}
+                                                />
+                                            )}
+                                        </div>
+                                        <div className="flex-1">
+                                            <input
+                                                type="text"
+                                                placeholder="After label (e.g., 'Perfectly Manicured')"
+                                                value={profile.before_after?.after_label || ''}
+                                                onChange={(e) => onChange({ 
+                                                    before_after: { 
+                                                        ...profile.before_after, 
+                                                        after_label: e.target.value 
+                                                    } 
+                                                })}
+                                                className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-slate-200 placeholder:text-zinc-600 focus:outline-none focus:border-brand-amber/50"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {profile.before_after?.before && profile.before_after?.after && (
+                                    <div className="p-3 bg-zinc-800/50 rounded-lg border border-zinc-700">
+                                        <p className="text-xs text-slate-400 text-center">
+                                            ✓ Before & After comparison ready! Preview it in the Preview tab.
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
                 </div>
             )}
 

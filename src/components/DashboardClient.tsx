@@ -126,7 +126,7 @@ export default function DashboardClient({ initialProfile }: { initialProfile: an
 
                 {/* Scaled up phone container */}
                 <div className="z-10 w-full max-w-[360px] transform transition-transform duration-500 hover:scale-[1.05] drop-shadow-[0_0_30px_rgba(245,158,11,0.15)] group-hover:drop-shadow-[0_0_50px_rgba(245,158,11,0.25)] flex items-center justify-center h-full">
-                    <MobilePreview profile={profile} />
+                    <MobilePreview profile={profile} isPremium={profile.is_premium || false} />
                 </div>
             </div>
 
