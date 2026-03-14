@@ -87,13 +87,16 @@ export default function MobilePreview({ profile, isPremium = false }: { profile:
                     </p>
                 </div>
 
-                <BeforeAfterSlider 
-                    isPremium={isPremium}
-                    beforeImage={profile.before_after?.before}
-                    afterImage={profile.before_after?.after}
-                    beforeLabel={profile.before_after?.before_label || "Before"}
-                    afterLabel={profile.before_after?.after_label || "After"}
-                />
+                {/* Before/After Slider - Only show if enabled */}
+                {profile.show_before_after && (
+                    <BeforeAfterSlider 
+                        isPremium={isPremium}
+                        beforeImage={profile.before_after?.before}
+                        afterImage={profile.before_after?.after}
+                        beforeLabel={profile.before_after?.before_label || "Before"}
+                        afterLabel={profile.before_after?.after_label || "After"}
+                    />
+                )}
 
                 {/* Links */}
                 {links.length > 0 && (
