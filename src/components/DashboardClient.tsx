@@ -92,6 +92,7 @@ export default function DashboardClient({ initialProfile }: { initialProfile: an
                     </div>
                     <button
                         id="tutorial-save-button"
+                        data-save-button
                         onClick={handleSave}
                         disabled={saving}
                         className="bg-brand-amber text-zinc-950 px-5 py-2 rounded-xl font-black text-sm hover:bg-amber-400 transition-all shadow-[0_0_15px_rgba(245,158,11,0.15)] hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] flex items-center gap-2 disabled:opacity-50 disabled:shadow-none ml-auto"
@@ -105,6 +106,7 @@ export default function DashboardClient({ initialProfile }: { initialProfile: an
                         <Sparkles className="w-4 h-4 text-brand-amber" /> Builder
                     </h2>
                     <button
+                        data-save-button
                         onClick={handleSave}
                         disabled={saving}
                         className="bg-brand-amber text-zinc-950 px-4 py-1.5 rounded-lg font-bold text-xs hover:bg-amber-400 transition-all ml-auto disabled:opacity-50"

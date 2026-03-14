@@ -143,10 +143,10 @@ export function ImageUploader({
 
                     <div className="text-center sm:text-left flex-1 pb-2 sm:pb-0">
                         <h4 className="text-base font-bold text-slate-200 mb-1 group-hover:text-brand-amber transition-colors">
-                            {isUploading ? 'Uploading...' : 'Upload Profile Photo'}
+                            {isUploading ? 'Uploading...' : 'Upload Photo'}
                         </h4>
                         <p className="text-xs text-slate-500 leading-relaxed max-w-xs">
-                            Customers trust pros they can see. Use a clear photo of yourself or your company logo.
+                            Add a photo to showcase your work or business.
                         </p>
                         <p className="text-[10px] text-slate-600 font-medium mt-3 uppercase tracking-wider">
                             JPG, PNG or GIF. Max 2MB.

@@ -158,7 +158,16 @@ export default function BuilderForm({ profile, onChange, activeTab: externalActi
                         <div>
                             <ImageUploader
                                 currentImageUrl={profile.profile_image_url}
-                                onUploadComplete={(url) => onChange({ profile_image_url: url })}
+                                onUploadComplete={(url) => {
+                                    onChange({ profile_image_url: url });
+                                    // Auto-save after image upload
+                                    setTimeout(() => {
+                                        const saveButton = document.querySelector('[data-save-button]');
+                                        if (saveButton) {
+                                            (saveButton as HTMLButtonElement).click();
+                                        }
+                                    }, 500);
+                                }}
                             />
                         </div>
 
