@@ -3,8 +3,8 @@ import { redirect } from 'next/navigation'
 import SettingsClient from '@/components/SettingsClient'
 import { auth } from '@clerk/nextjs/server'
 import { PortalButton } from '@/components/PortalButton'
-import { ServiceAreaMap } from '@/components/ServiceAreaMap'
-import { ProjectGallery } from '@/components/ProjectGallery'
+// import { ServiceAreaMap } from '@/components/ServiceAreaMap'
+// import { ProjectGallery } from '@/components/ProjectGallery'
 
 export default async function SettingsPage() {
     const { userId } = await auth()
@@ -51,7 +51,7 @@ export default async function SettingsPage() {
                 </div>
 
                 {/* Service Areas - Premium Feature */}
-                <ServiceAreaMap
+                {/* <ServiceAreaMap
                     serviceAreas={[]} // TODO: Fetch from database
                     onAddArea={async (zipCode, city, state) => {
                         // TODO: Implement service area addition
@@ -66,10 +66,10 @@ export default async function SettingsPage() {
                         console.log('Set primary service area:', id)
                     }}
                     isPremium={!!profile.is_premium}
-                />
+                /> */}
 
                 {/* Project Gallery - Premium Feature */}
-                <ProjectGallery
+                {/* <ProjectGallery
                     projects={[]} // TODO: Fetch from database
                     onAddProject={async (project) => {
                         // TODO: Implement project addition
@@ -88,7 +88,7 @@ export default async function SettingsPage() {
                         console.log('Reorder projects:', projectIds)
                     }}
                     isPremium={!!profile.is_premium}
-                />
+                /> */}
 
                 {profile.is_premium && (
                     <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl overflow-hidden">
