@@ -6,8 +6,55 @@ import { TypewriterSlogan } from '@/components/TypewriterSlogan';
 import { TestimonialCarousel } from '@/components/TestimonialCarousel';
 
 export const metadata: Metadata = {
-  title: 'Rovult | The Link-in-Bio for Blue-Collar Pros',
-  description: 'Stop losing jobs to guys with better websites. Build a high-converting, mobile-first profile in 3 minutes. The ultimate website builder for plumbers, electricians, and contractors.',
+  title: 'Rovult | Website Builder for Plumbers, Electricians & Contractors',
+  description: 'Build a professional website for your contracting business in 3 minutes. The #1 website builder for plumbers, electricians, HVAC technicians, and tradesmen. Get more leads, rank higher in local searches, and win bigger jobs.',
+  keywords: [
+    'contractor website builder',
+    'plumber website',
+    'electrician website',
+    'HVAC website builder',
+    'tradesman website',
+    'general contractor website',
+    'handyman website',
+    'roofer website',
+    'mechanic website',
+    'landscaping website',
+    'local SEO for contractors',
+    'mobile website for trades',
+    'contractor marketing',
+    'tradesman digital presence',
+    'link in bio for contractors',
+    'professional contractor website',
+    'small business website builder',
+    'service business website',
+    'trade professional website',
+    'contractor online presence'
+  ],
+  openGraph: {
+    title: 'Rovult | Website Builder for Plumbers, Electricians & Contractors',
+    description: 'Build a professional website for your contracting business in 3 minutes. The #1 website builder for tradesmen and service professionals.',
+    url: 'https://rovult.com',
+    siteName: 'Rovult',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Rovult - Website Builder for Contractors',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Rovult | Website Builder for Plumbers, Electricians & Contractors',
+    description: 'Build a professional website for your contracting business in 3 minutes. Get more leads and bigger jobs.',
+    images: ['/og-image.png'],
+  },
+  alternates: {
+    canonical: 'https://rovult.com',
+  },
 };
 
 
@@ -33,8 +80,56 @@ const testimonials = [
 ];
 
 export default function Home() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Rovult",
+    "description": "Build a professional website for your contracting business in 3 minutes. The #1 website builder for plumbers, electricians, HVAC technicians, and tradesmen.",
+    "url": "https://rovult.com",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Free website builder for contractors with premium features available"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "2500",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "Rovult",
+      "url": "https://rovult.com"
+    },
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Plumbers, Electricians, HVAC Technicians, General Contractors, Tradesmen"
+    },
+    "featureList": [
+      "Mobile-first website design",
+      "Local SEO optimization",
+      "Lead generation tools",
+      "Emergency service availability",
+      "Customer testimonials",
+      "Contact forms",
+      "Service area management",
+      "Project gallery",
+      "QR code sharing"
+    ]
+  };
+
   return (
-    <div className="flex flex-col min-h-screen bg-[#09090b] text-slate-100 overflow-x-hidden">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <div className="flex flex-col min-h-screen bg-[#09090b] text-slate-100 overflow-x-hidden">
       {/* Header */}
       <header className="px-4 sm:px-6 py-4 sm:py-5 sticky-header-safe flex items-center justify-between border-b border-zinc-800/80 bg-[#09090b]/90 backdrop-blur-xl sticky top-0 z-50">
         <Logo />
@@ -419,5 +514,6 @@ export default function Home() {
         </div>
       </div>
     </div>
+      </>
   );
 }
