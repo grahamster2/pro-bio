@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Logo } from '@/components/Logo';
-import { ArrowRight, Zap, ShieldCheck, Wrench, Check, Star } from 'lucide-react';
+import { ArrowRight, Zap, ShieldCheck, Wrench, Check, Star, HelpCircle } from 'lucide-react';
 import { TypewriterSlogan } from '@/components/TypewriterSlogan';
 import { TestimonialCarousel } from '@/components/TestimonialCarousel';
 
@@ -135,6 +135,14 @@ export default function Home() {
         <Logo />
         <nav className="flex items-center gap-6">
           <Link href="/sign-in" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors hidden sm:block">Log In</Link>
+          <a 
+            href="mailto:help@rovult.com" 
+            className="text-sm font-semibold text-slate-400 hover:text-brand-amber transition-colors hidden sm:flex items-center gap-1.5"
+            title="Get Help"
+          >
+            <HelpCircle className="w-4 h-4" />
+            Help
+          </a>
           <form action="/onboarding" className="flex items-center bg-zinc-900 border border-zinc-700/60 rounded-lg p-1.5 focus-within:border-brand-amber/70 focus-within:ring-2 focus-within:ring-brand-amber/20 focus-within:shadow-[0_0_15px_rgba(245,158,11,0.1)] transition-all shadow-sm">
             <div className="flex items-center px-2 sm:px-3">
               <span className="text-slate-500 text-xs sm:text-sm font-semibold hidden sm:inline mr-1">rovult.com/</span>
@@ -507,10 +515,17 @@ export default function Home() {
 
       {/* Mobile Sticky CTA */}
       <div className="fixed bottom-0 left-0 w-full p-4 sm:p-6 safe-area-pb bg-gradient-to-t from-[#09090b] via-[#09090b]/95 to-transparent pt-12 sm:pt-16 z-50 md:hidden flex justify-center pointer-events-none">
-        <div className="pointer-events-auto w-full max-w-xs sm:max-w-sm">
+        <div className="pointer-events-auto w-full max-w-xs sm:max-w-sm flex flex-col gap-3">
           <Link href="/onboarding" className="w-full flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-br from-brand-amber to-amber-600 text-zinc-950 h-12 sm:h-16 rounded-xl sm:rounded-2xl font-black text-lg sm:text-xl shadow-[0_5px_20px_sm:shadow-[0_10px_40px_rgba(245,158,11,0.4)] active:scale-95 transition-all">
             Build It Now <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
           </Link>
+          <a 
+            href="mailto:help@rovult.com" 
+            className="w-full flex items-center justify-center gap-2 bg-zinc-800/80 border border-zinc-700 text-slate-300 h-10 rounded-lg font-medium text-sm hover:bg-zinc-700 transition-colors"
+          >
+            <HelpCircle className="w-4 h-4" />
+            Get Help
+          </a>
         </div>
       </div>
     </div>

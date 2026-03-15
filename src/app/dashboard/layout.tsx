@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { Logo } from '@/components/Logo'
-import { Star } from 'lucide-react'
+import { Star, HelpCircle } from 'lucide-react'
 import { auth } from '@clerk/nextjs/server'
 import { UserButton } from '@clerk/nextjs'
 import { UpgradeTrigger } from '@/components/UpgradeTrigger'
@@ -60,6 +60,16 @@ export default async function DashboardLayout({
                         ) : (
                             <UpgradeTrigger variant="desktop" />
                         )}
+
+                        {/* Help Button */}
+                        <a 
+                            href="mailto:help@rovult.com" 
+                            className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-zinc-900/60 border border-zinc-800/60 text-slate-400 hover:text-brand-amber hover:border-brand-amber/20 font-medium text-sm transition-colors"
+                            title="Get Help"
+                        >
+                            <HelpCircle className="w-4 h-4" />
+                            Get Help
+                        </a>
 
                         {/* User card */}
                         <div className="flex items-center gap-3 p-3 rounded-xl bg-zinc-900/60 border border-zinc-800/60">

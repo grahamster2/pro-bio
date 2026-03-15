@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { LayoutDashboard, BarChart2, Settings, Eye, PenLine, Search } from 'lucide-react'
+import { LayoutDashboard, BarChart2, Settings, Eye, PenLine, Search, HelpCircle } from 'lucide-react'
 import { UserButton } from '@clerk/nextjs'
 
 export function MobileGlobalNav() {
@@ -62,6 +62,15 @@ export function MobileGlobalNav() {
                     <span className="text-[10px] font-medium text-slate-400 opacity-80">Profile</span>
                 </div>
             </div>
+            
+            {/* Floating Help Button for Mobile */}
+            <a 
+                href="mailto:help@rovult.com" 
+                className="fixed -top-16 -right-16 w-12 h-12 bg-brand-amber/90 backdrop-blur-sm border border-brand-amber/20 rounded-full flex items-center justify-center text-zinc-950 shadow-lg hover:bg-brand-amber transition-all"
+                title="Get Help"
+            >
+                <HelpCircle className="w-5 h-5" />
+            </a>
         </div>
     )
 }
