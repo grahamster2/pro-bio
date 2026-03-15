@@ -49,6 +49,9 @@ export async function generateMetadata(
     let serviceAreas: any[] = []
     let projects: any[] = []
 
+    // Skip database queries for now until tables are created
+    // TODO: Uncomment these lines after running the SQL migration
+    /*
     try {
         const { data: areas } = await supabase
             .from('service_areas')
@@ -72,6 +75,7 @@ export async function generateMetadata(
         // Table doesn't exist yet, continue without projects
         console.log('Project gallery table not found:', error)
     }
+    */
 
     const title = profile.business_name || 'Professional Services'
     
