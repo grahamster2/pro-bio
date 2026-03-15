@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation'
 import SettingsClient from '@/components/SettingsClient'
 import { auth } from '@clerk/nextjs/server'
 import { PortalButton } from '@/components/PortalButton'
-import { SettingsLocalSEO } from '@/components/SettingsLocalSEO'
 
 export default async function SettingsPage() {
     const { userId } = await auth()
@@ -48,9 +47,6 @@ export default async function SettingsPage() {
                         />
                     </div>
                 </div>
-
-                {/* Local SEO Features */}
-                <SettingsLocalSEO isPremium={!!profile.is_premium} />
 
                 {profile.is_premium && (
                     <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl overflow-hidden">

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { LayoutDashboard, BarChart2, Settings, Eye, PenLine } from 'lucide-react'
+import { LayoutDashboard, BarChart2, Settings, Eye, PenLine, Search } from 'lucide-react'
 import { UserButton } from '@clerk/nextjs'
 
 export function MobileGlobalNav() {
@@ -18,7 +18,7 @@ export function MobileGlobalNav() {
         { id: 'builder', label: 'Builder', icon: PenLine, href: '/dashboard' },
         { id: 'preview', label: 'Preview', icon: Eye, href: '/dashboard?tab=preview' },
         { id: 'leads', label: 'Leads', icon: BarChart2, href: '/dashboard/leads' },
-        { id: 'settings', label: 'Settings', icon: Settings, href: '/dashboard/settings' },
+        { id: 'seo', label: 'SEO', icon: Search, href: '/dashboard/local-seo' },
     ]
 
     return (

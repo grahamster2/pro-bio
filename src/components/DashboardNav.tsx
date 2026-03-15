@@ -2,11 +2,12 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Settings, BarChart2 } from 'lucide-react'
+import { LayoutDashboard, Settings, BarChart2, Search } from 'lucide-react'
 
 const navItems = [
     { href: '/dashboard', label: 'Builder', icon: LayoutDashboard, exact: true },
     { href: '/dashboard/leads', label: 'Leads & Analytics', icon: BarChart2, exact: false },
+    { href: '/dashboard/local-seo', label: 'Local SEO', icon: Search, exact: false },
     { href: '/dashboard/settings', label: 'Settings', icon: Settings, exact: false },
 ] as const
 
