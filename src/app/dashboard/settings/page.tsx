@@ -3,8 +3,8 @@ import { redirect } from 'next/navigation'
 import SettingsClient from '@/components/SettingsClient'
 import { auth } from '@clerk/nextjs/server'
 import { PortalButton } from '@/components/PortalButton'
-// import { ServiceAreaMap } from '@/components/ServiceAreaMap'
-// import { ProjectGallery } from '@/components/ProjectGallery'
+import { ServiceAreaMap } from '@/components/ServiceAreaMap'
+import { ProjectGallery } from '@/components/ProjectGallery'
 
 export default async function SettingsPage() {
     const { userId } = await auth()
@@ -51,44 +51,44 @@ export default async function SettingsPage() {
                 </div>
 
                 {/* Service Areas - Premium Feature */}
-                {/* <ServiceAreaMap
+                <ServiceAreaMap
                     serviceAreas={[]} // TODO: Fetch from database
-                    onAddArea={async (zipCode, city, state) => {
+                    onAddArea={async (zipCode: string, city?: string, state?: string) => {
                         // TODO: Implement service area addition
                         console.log('Add service area:', { zipCode, city, state })
                     }}
-                    onRemoveArea={async (id) => {
+                    onRemoveArea={async (id: string) => {
                         // TODO: Implement service area removal
                         console.log('Remove service area:', id)
                     }}
-                    onSetPrimary={async (id) => {
+                    onSetPrimary={async (id: string) => {
                         // TODO: Implement primary service area setting
                         console.log('Set primary service area:', id)
                     }}
                     isPremium={!!profile.is_premium}
-                /> */}
+                />
 
                 {/* Project Gallery - Premium Feature */}
-                {/* <ProjectGallery
+                <ProjectGallery
                     projects={[]} // TODO: Fetch from database
-                    onAddProject={async (project) => {
+                    onAddProject={async (project: any) => {
                         // TODO: Implement project addition
                         console.log('Add project:', project)
                     }}
-                    onUpdateProject={async (id, updates) => {
+                    onUpdateProject={async (id: string, updates: any) => {
                         // TODO: Implement project update
                         console.log('Update project:', id, updates)
                     }}
-                    onDeleteProject={async (id) => {
+                    onDeleteProject={async (id: string) => {
                         // TODO: Implement project deletion
                         console.log('Delete project:', id)
                     }}
-                    onReorderProjects={async (projectIds) => {
+                    onReorderProjects={async (projectIds: string[]) => {
                         // TODO: Implement project reordering
                         console.log('Reorder projects:', projectIds)
                     }}
                     isPremium={!!profile.is_premium}
-                /> */}
+                />
 
                 {profile.is_premium && (
                     <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl overflow-hidden">
