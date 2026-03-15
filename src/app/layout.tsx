@@ -122,7 +122,7 @@ export const metadata: Metadata = {
     'business:contact_data:region': '',
     'business:contact_data:postal_code': '',
     'business:contact_data:country_name': 'United States',
-    'business:contact_data:email': 'support@rovult.com',
+    'business:contact_data:email': 'help@rovult.com',
     'business:contact_data:phone_number': '',
     'business:contact_data:website': 'https://rovult.com',
     'business:type': 'ProfessionalService',
