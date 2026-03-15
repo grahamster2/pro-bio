@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation'
 import SettingsClient from '@/components/SettingsClient'
 import { auth } from '@clerk/nextjs/server'
 import { PortalButton } from '@/components/PortalButton'
+import { ServiceAreaMap } from '@/components/ServiceAreaMap'
+import { ProjectGallery } from '@/components/ProjectGallery'
 
 export default async function SettingsPage() {
     const { userId } = await auth()
@@ -26,7 +28,7 @@ export default async function SettingsPage() {
                     Settings
                 </h1>
                 <p className="text-sm text-slate-500 mt-0.5">
-                    Manage your profile features and subscription.
+                    Manage your profile features, service areas, and project gallery.
                 </p>
             </div>
 
@@ -47,6 +49,46 @@ export default async function SettingsPage() {
                         />
                     </div>
                 </div>
+
+                {/* Service Areas - Premium Feature */}
+                <ServiceAreaMap
+                    serviceAreas={[]} // TODO: Fetch from database
+                    onAddArea={async (zipCode, city, state) => {
+                        // TODO: Implement service area addition
+                        console.log('Add service area:', { zipCode, city, state })
+                    }}
+                    onRemoveArea={async (id) => {
+                        // TODO: Implement service area removal
+                        console.log('Remove service area:', id)
+                    }}
+                    onSetPrimary={async (id) => {
+                        // TODO: Implement primary service area setting
+                        console.log('Set primary service area:', id)
+                    }}
+                    isPremium={!!profile.is_premium}
+                />
+
+                {/* Project Gallery - Premium Feature */}
+                <ProjectGallery
+                    projects={[]} // TODO: Fetch from database
+                    onAddProject={async (project) => {
+                        // TODO: Implement project addition
+                        console.log('Add project:', project)
+                    }}
+                    onUpdateProject={async (id, updates) => {
+                        // TODO: Implement project update
+                        console.log('Update project:', id, updates)
+                    }}
+                    onDeleteProject={async (id) => {
+                        // TODO: Implement project deletion
+                        console.log('Delete project:', id)
+                    }}
+                    onReorderProjects={async (projectIds) => {
+                        // TODO: Implement project reordering
+                        console.log('Reorder projects:', projectIds)
+                    }}
+                    isPremium={!!profile.is_premium}
+                />
 
                 {profile.is_premium && (
                     <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl overflow-hidden">

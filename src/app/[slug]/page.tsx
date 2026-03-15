@@ -32,13 +32,12 @@ export async function generateMetadata(
     const slug = (await params).slug
     const supabase = await createClient()
 
-    const { data } = await supabase
+    // Get basic profile first
+    const { data: profile } = await supabase
         .from('profiles')
         .select('*')
         .eq('slug', slug)
         .single()
-
-    const profile = data as any;
 
     if (!profile) {
         return {
@@ -46,19 +45,84 @@ export async function generateMetadata(
         }
     }
 
+    // Try to get service areas and projects (may not exist yet)
+    let serviceAreas: any[] = []
+    let projects: any[] = []
+
+    try {
+        const { data: areas } = await supabase
+            .from('service_areas')
+            .select('zip_code, city, state, is_primary')
+            .eq('profile_id', profile.id)
+        
+        serviceAreas = areas || []
+    } catch (error) {
+        // Table doesn't exist yet, continue without service areas
+        console.log('Service areas table not found:', error)
+    }
+
+    try {
+        const { data: projectData } = await supabase
+            .from('project_gallery')
+            .select('city, state, is_featured')
+            .eq('profile_id', profile.id)
+        
+        projects = projectData || []
+    } catch (error) {
+        // Table doesn't exist yet, continue without projects
+        console.log('Project gallery table not found:', error)
+    }
+
     const title = profile.business_name || 'Professional Services'
-    const description = profile.bio
-        ? profile.bio.substring(0, 155) + (profile.bio.length > 155 ? '...' : '')
-        : `Check out ${title} on Rovult.`
+    
+    // Extract unique locations for SEO
+    const locations = new Set<string>()
+    serviceAreas.forEach((area: any) => {
+        if (area.city && area.state) {
+            locations.add(`${area.city}, ${area.state}`)
+        } else if (area.city) {
+            locations.add(area.city)
+        }
+    })
+    
+    projects.forEach((project: any) => {
+        if (project.city && project.state) {
+            locations.add(`${project.city}, ${project.state}`)
+        } else if (project.city) {
+            locations.add(project.city)
+        }
+    })
+
+    const locationList = Array.from(locations).slice(0, 5) // Limit to top 5 locations
+    const locationString = locationList.length > 0 ? ` serving ${locationList.join(', ')}` : ''
+    
+    // Enhanced description with locations
+    const baseDescription = profile.bio
+        ? profile.bio.substring(0, 120) + (profile.bio.length > 120 ? '...' : '')
+        : `Professional ${profile.trade_category || 'services'}`
+    
+    const description = `${baseDescription}${locationString}. Licensed, insured, and trusted local professional.`
+
+    // Generate keywords based on trade category and locations
+    const keywords = [
+        profile.trade_category || 'contractor',
+        'professional services',
+        'licensed',
+        'insured',
+        ...locationList.flatMap(loc => [
+            loc.toLowerCase(),
+            `${loc} ${profile.trade_category?.toLowerCase() || 'contractor'}`,
+            `${profile.trade_category?.toLowerCase() || 'contractor'} ${loc}`
+        ])
+    ]
 
     const previousImages = (await parent).openGraph?.images || []
-
-    // Use their profile picture if they have one, otherwise fallback to the global OG image
     const ogImage = profile.profile_image_url ? profile.profile_image_url : '/og-image.png'
 
     return {
         title: title,
         description: description,
+        keywords: keywords,
         openGraph: {
             title: title,
             description: description,
@@ -72,12 +136,20 @@ export async function generateMetadata(
                 },
                 ...previousImages,
             ],
+            locale: 'en_US',
+            type: 'website',
         },
         twitter: {
             card: 'summary_large_image',
             title: title,
             description: description,
             images: [ogImage],
+        },
+        // Additional SEO meta tags
+        other: {
+            'service-area': locationList.join(';'),
+            'trade-category': profile.trade_category || 'general contractor',
+            'locations-served': locationList.join(', '),
         },
     }
 }
