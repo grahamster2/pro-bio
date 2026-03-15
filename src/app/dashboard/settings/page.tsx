@@ -20,7 +20,7 @@ export default async function SettingsPage() {
     if (!profile) redirect('/onboarding')
 
     return (
-        <div className="p-5 md:p-7 h-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="p-5 md:p-7 h-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] safe-area-pt">
             <div className="mb-7">
                 <h1 className="text-2xl font-heading font-black text-slate-100 tracking-tight">
                     Settings
@@ -30,7 +30,7 @@ export default async function SettingsPage() {
                 </p>
             </div>
 
-            <div className="max-w-2xl flex flex-col gap-4">
+            <div className="max-w-2xl flex flex-col gap-4 pb-32 md:pb-8">
                 {/* Preferences card */}
                 <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl overflow-hidden">
                     <div className="px-5 py-4 border-b border-zinc-800/60 bg-zinc-950/40 flex items-center gap-2.5">

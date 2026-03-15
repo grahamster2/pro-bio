@@ -95,7 +95,7 @@ export default async function DashboardLayout({
             {/* Mobile Global Bottom Nav */}
             <MobileGlobalNav />
 
-            <main className="flex-1 md:h-screen md:overflow-hidden overflow-y-auto">
+            <main className="flex-1 md:h-screen md:overflow-hidden overflow-y-auto safe-area-pt md:safe-area-pt-0">
                 {children}
             </main>
         </div>

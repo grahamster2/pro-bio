@@ -22,7 +22,7 @@ export function MobileGlobalNav() {
     ]
 
     return (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] md:hidden w-[95%] max-w-[400px]">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] md:hidden w-[95%] max-w-[400px] safe-area-pb">
             <div className="bg-zinc-900/95 backdrop-blur-xl border border-zinc-700/80 rounded-full px-2 py-2 flex items-center justify-between shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
                 {tabs.map((tab) => {
                     // Determine if active
