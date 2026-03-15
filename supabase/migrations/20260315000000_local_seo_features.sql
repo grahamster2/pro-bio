@@ -43,32 +43,32 @@ ALTER TABLE project_gallery ENABLE ROW LEVEL SECURITY;
 
 -- Service areas policies
 CREATE POLICY "Users can view their own service areas" ON service_areas
-  FOR SELECT USING (auth.uid() = (SELECT user_id FROM profiles WHERE id = profile_id));
+  FOR SELECT USING (auth.uid()::text = (SELECT user_id FROM profiles WHERE id = profile_id));
 
 CREATE POLICY "Users can insert their own service areas" ON service_areas
-  FOR INSERT WITH CHECK (auth.uid() = (SELECT user_id FROM profiles WHERE id = profile_id));
+  FOR INSERT WITH CHECK (auth.uid()::text = (SELECT user_id FROM profiles WHERE id = profile_id));
 
 CREATE POLICY "Users can update their own service areas" ON service_areas
-  FOR UPDATE USING (auth.uid() = (SELECT user_id FROM profiles WHERE id = profile_id));
+  FOR UPDATE USING (auth.uid()::text = (SELECT user_id FROM profiles WHERE id = profile_id));
 
 CREATE POLICY "Users can delete their own service areas" ON service_areas
-  FOR DELETE USING (auth.uid() = (SELECT user_id FROM profiles WHERE id = profile_id));
+  FOR DELETE USING (auth.uid()::text = (SELECT user_id FROM profiles WHERE id = profile_id));
 
 -- Project gallery policies
 CREATE POLICY "Users can view their own projects" ON project_gallery
-  FOR SELECT USING (auth.uid() = (SELECT user_id FROM profiles WHERE id = profile_id));
+  FOR SELECT USING (auth.uid()::text = (SELECT user_id FROM profiles WHERE id = profile_id));
 
 CREATE POLICY "Public can view featured projects" ON project_gallery
   FOR SELECT USING (is_featured = true);
 
 CREATE POLICY "Users can insert their own projects" ON project_gallery
-  FOR INSERT WITH CHECK (auth.uid() = (SELECT user_id FROM profiles WHERE id = profile_id));
+  FOR INSERT WITH CHECK (auth.uid()::text = (SELECT user_id FROM profiles WHERE id = profile_id));
 
 CREATE POLICY "Users can update their own projects" ON project_gallery
-  FOR UPDATE USING (auth.uid() = (SELECT user_id FROM profiles WHERE id = profile_id));
+  FOR UPDATE USING (auth.uid()::text = (SELECT user_id FROM profiles WHERE id = profile_id));
 
 CREATE POLICY "Users can delete their own projects" ON project_gallery
-  FOR DELETE USING (auth.uid() = (SELECT user_id FROM profiles WHERE id = profile_id));
+  FOR DELETE USING (auth.uid()::text = (SELECT user_id FROM profiles WHERE id = profile_id));
 
 -- Add service area count to profiles for quick lookup
 ALTER TABLE profiles ADD COLUMN service_area_count INTEGER DEFAULT 0;
