@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { Image as ImageIcon, MapPin, Plus, X, Star, Calendar, Edit2, Trash2 } from 'lucide-react'
+import { useState, useRef } from 'react'
+import { Image as ImageIcon, MapPin, Plus, X, Star, Calendar, Edit2, Trash2, Upload, Loader2 } from 'lucide-react'
 
 interface Project {
   id: string
@@ -35,6 +35,9 @@ export function ProjectGallery({
 }: ProjectGalleryProps) {
   const [showAddForm, setShowAddForm] = useState(false)
   const [editingProject, setEditingProject] = useState<string | null>(null)
+  const [uploadMethod, setUploadMethod] = useState<'url' | 'upload'>('url')
+  const [isUploading, setIsUploading] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const [newProject, setNewProject] = useState({
     image_url: '',
     title: '',
@@ -46,9 +49,41 @@ export function ProjectGallery({
     is_featured: false
   })
 
+  const handleFileUpload = async (file: File) => {
+    if (!file) return
+
+    // Check file type and size
+    if (!file.type.startsWith('image/')) {
+      alert('Please select an image file')
+      return
+    }
+
+    if (file.size > 5 * 1024 * 1024) { // 5MB limit
+      alert('Image size must be less than 5MB')
+      return
+    }
+
+    setIsUploading(true)
+
+    try {
+      // For now, create a local preview URL
+      // In production, you'd upload to a service like Supabase Storage, Vercel Blob, or Cloudinary
+      const previewUrl = URL.createObjectURL(file)
+      setNewProject(prev => ({ ...prev, image_url: previewUrl }))
+      
+      // TODO: Implement actual file upload to storage service
+      console.log('File uploaded:', file.name)
+    } catch (error) {
+      console.error('Upload failed:', error)
+      alert('Upload failed. Please try again.')
+    } finally {
+      setIsUploading(false)
+    }
+  }
+
   const handleAddProject = async () => {
     if (!newProject.image_url.trim()) {
-      alert('Please add an image URL')
+      alert('Please add an image URL or upload a photo')
       return
     }
 
@@ -75,6 +110,7 @@ export function ProjectGallery({
       project_date: '',
       is_featured: false
     })
+    setUploadMethod('url')
     setShowAddForm(false)
   }
 
@@ -181,15 +217,97 @@ export function ProjectGallery({
             <div className="space-y-3">
               <div>
                 <label className="text-xs font-medium text-slate-400 block mb-1">
-                  Image URL *
+                  Project Image *
                 </label>
-                <input
-                  type="url"
-                  value={newProject.image_url}
-                  onChange={(e) => setNewProject(prev => ({ ...prev, image_url: e.target.value }))}
-                  placeholder="https://example.com/image.jpg"
-                  className="w-full px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-amber/20 focus:border-brand-amber/50"
-                />
+                
+                {/* Upload Method Toggle */}
+                <div className="flex gap-2 mb-3">
+                  <button
+                    onClick={() => setUploadMethod('upload')}
+                    className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-medium transition-all ${
+                      uploadMethod === 'upload'
+                        ? 'bg-brand-amber text-zinc-950'
+                        : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
+                    }`}
+                  >
+                    <Upload className="w-3 h-3 inline mr-1" />
+                    Upload
+                  </button>
+                  <button
+                    onClick={() => setUploadMethod('url')}
+                    className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-medium transition-all ${
+                      uploadMethod === 'url'
+                        ? 'bg-brand-amber text-zinc-950'
+                        : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
+                    }`}
+                  >
+                    <ImageIcon className="w-3 h-3 inline mr-1" />
+                    URL
+                  </button>
+                </div>
+
+                {/* Upload Option */}
+                {uploadMethod === 'upload' && (
+                  <div>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0]
+                        if (file) handleFileUpload(file)
+                      }}
+                      className="hidden"
+                    />
+                    
+                    <button
+                      onClick={() => fileInputRef.current?.click()}
+                      disabled={isUploading}
+                      className="w-full py-8 bg-zinc-900 border-2 border-dashed border-zinc-700 rounded-lg text-white hover:border-brand-amber/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex flex-col items-center justify-center gap-2"
+                    >
+                      {isUploading ? (
+                        <>
+                          <Loader2 className="w-6 h-6 animate-spin text-brand-amber" />
+                          <span className="text-sm">Uploading...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Upload className="w-6 h-6 text-zinc-400" />
+                          <span className="text-sm text-zinc-400">Click to upload photo</span>
+                          <span className="text-xs text-zinc-500">PNG, JPG up to 5MB</span>
+                        </>
+                      )}
+                    </button>
+
+                    {/* Preview */}
+                    {newProject.image_url && uploadMethod === 'upload' && (
+                      <div className="mt-3">
+                        <img
+                          src={newProject.image_url}
+                          alt="Preview"
+                          className="w-full h-32 object-cover rounded-lg border border-zinc-700"
+                        />
+                        <button
+                          onClick={() => setNewProject(prev => ({ ...prev, image_url: '' }))}
+                          className="mt-2 text-xs text-red-400 hover:text-red-300"
+                        >
+                          Remove image
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* URL Option */}
+                {uploadMethod === 'url' && (
+                  <input
+                    type="url"
+                    value={newProject.image_url}
+                    onChange={(e) => setNewProject(prev => ({ ...prev, image_url: e.target.value }))}
+                    placeholder="https://example.com/image.jpg"
+                    className="w-full px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-amber/20 focus:border-brand-amber/50"
+                  />
+                )}
               </div>
 
               <div>
