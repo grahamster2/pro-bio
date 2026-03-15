@@ -8,6 +8,7 @@ import ViewTracker from '@/components/ViewTracker'
 import TrackedLink from '@/components/TrackedLink'
 import LiquidGlassOverlay from '@/components/LiquidGlassOverlay'
 import { BeforeAfterSlider } from '@/components/BeforeAfterSlider'
+import { ProfileQRButton } from '@/components/ProfileQRButton'
 
 function getContrastColor(hexColor: string | null): string {
     if (!hexColor) return 'text-zinc-500';
@@ -364,7 +365,7 @@ export default async function PublicProfilePage(props: Props) {
 
             {/* "Powered by Rovult" Viral Loop - Only shown to Free Users */}
             {!profile.is_premium && (
-                <div className="text-center pb-24 px-8 mx-auto w-full max-w-[420px] -mt-4">
+                <div className="text-center pb-24 px-8 mx-auto w-full max-w-[420px] -mt-4 space-y-3">
                     <Link href="/" className="inline-flex items-center gap-2.5 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-800 px-5 py-2.5 rounded-full transition-all group shadow-sm">
                         <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5 opacity-80 group-hover:opacity-100">
                             Powered by <span className="text-xs font-black font-heading text-brand-amber tracking-wider">ROVULT</span>
@@ -372,6 +373,22 @@ export default async function PublicProfilePage(props: Props) {
                         <span className="w-1 h-1 rounded-full bg-zinc-700"></span>
                         <span className="text-[11px] font-bold text-slate-300 underline underline-offset-2 decoration-zinc-600 group-hover:decoration-slate-400">Create yours for free</span>
                     </Link>
+                    <ProfileQRButton 
+                        slug={params.slug} 
+                        businessName={profile.business_name || undefined}
+                        className="w-full"
+                    />
+                </div>
+            )}
+
+            {/* QR Code Button for Premium Users */}
+            {profile.is_premium && (
+                <div className="text-center pb-24 px-8 mx-auto w-full max-w-[420px] -mt-4">
+                    <ProfileQRButton 
+                        slug={params.slug} 
+                        businessName={profile.business_name || undefined}
+                        className="w-full"
+                    />
                 </div>
             )}
         </div>

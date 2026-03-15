@@ -84,14 +84,14 @@ export default function AddToHomeScreen() {
         <>
             {/* Backdrop */}
             <div
-                className="fixed inset-0 z-[9998] bg-black/60 backdrop-blur-sm animate-in fade-in duration-300"
+                className="fixed inset-0 z-[99] bg-black/60 backdrop-blur-sm animate-in fade-in duration-300"
                 onClick={handleDismiss}
             />
 
             {/* Popup - slides up from bottom on mobile */}
-            <div className="fixed bottom-0 left-0 right-0 z-[9999] animate-in slide-in-from-bottom duration-500 ease-out">
+            <div className="fixed bottom-0 left-0 right-0 z-[100] animate-in slide-in-from-bottom duration-500 ease-out safe-area-inset-bottom">
                 <div className="mx-auto max-w-lg">
-                    <div className="bg-zinc-900 border border-zinc-700/80 rounded-t-3xl shadow-[0_-10px_60px_rgba(0,0,0,0.5)] overflow-hidden">
+                    <div className="bg-zinc-900 border border-zinc-700/80 rounded-t-3xl shadow-[0_-10px_60px_rgba(0,0,0,0.5)] overflow-hidden mb-[env(safe-area-inset-bottom)]">
                         {/* Grab handle */}
                         <div className="flex justify-center pt-3 pb-1">
                             <div className="w-10 h-1 rounded-full bg-zinc-600" />
@@ -106,7 +106,7 @@ export default function AddToHomeScreen() {
                             <X className="w-4 h-4" />
                         </button>
 
-                        <div className="px-6 pb-8 pt-2">
+                        <div className="px-6 pb-8 pt-2 max-h-[70vh] overflow-y-auto">
                             {step === 'safari-check' ? (
                                 /* Step: User is on iOS but NOT in Safari */
                                 <SafariRedirectContent />
@@ -124,7 +124,7 @@ export default function AddToHomeScreen() {
 
 function SafariRedirectContent() {
     return (
-        <div className="text-center">
+        <div className="text-center py-4">
             {/* Icon */}
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-blue-500/20">
                 <svg viewBox="0 0 24 24" className="w-8 h-8 text-white fill-white">
@@ -155,7 +155,7 @@ function SafariRedirectContent() {
 
 function AddInstructions({ isIOS }: { isIOS: boolean }) {
     return (
-        <div className="text-center">
+        <div className="text-center py-4">
             {/* App Icon */}
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-amber to-amber-600 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-brand-amber/30 ring-2 ring-brand-amber/20 ring-offset-2 ring-offset-zinc-900">
                 <Smartphone className="w-8 h-8 text-zinc-900" />
