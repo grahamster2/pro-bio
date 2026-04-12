@@ -1,534 +1,241 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Logo } from '@/components/Logo';
-import { ArrowRight, Zap, ShieldCheck, Wrench, Check, Star, HelpCircle } from 'lucide-react';
-import { TypewriterSlogan } from '@/components/TypewriterSlogan';
-import { TestimonialCarousel } from '@/components/TestimonialCarousel';
+import { Terminal, Monitor, Globe, Server, Warehouse, ArrowRight, ScanLine } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Rovult | Website Builder for Plumbers, Electricians & Contractors',
-  description: 'Build a professional website for your contracting business in 3 minutes. The #1 website builder for plumbers, electricians, HVAC technicians, and tradesmen. Get more leads, rank higher in local searches, and win bigger jobs.',
-  keywords: [
-    'contractor website builder',
-    'plumber website',
-    'electrician website',
-    'HVAC website builder',
-    'tradesman website',
-    'general contractor website',
-    'handyman website',
-    'roofer website',
-    'mechanic website',
-    'landscaping website',
-    'local SEO for contractors',
-    'mobile website for trades',
-    'contractor marketing',
-    'tradesman digital presence',
-    'link in bio for contractors',
-    'professional contractor website',
-    'small business website builder',
-    'service business website',
-    'trade professional website',
-    'contractor online presence'
-  ],
-  openGraph: {
-    title: 'Rovult | Website Builder for Plumbers, Electricians & Contractors',
-    description: 'Build a professional website for your contracting business in 3 minutes. The #1 website builder for tradesmen and service professionals.',
-    url: 'https://rovult.com',
-    siteName: 'Rovult',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Rovult - Website Builder for Contractors',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Rovult | Website Builder for Plumbers, Electricians & Contractors',
-    description: 'Build a professional website for your contracting business in 3 minutes. Get more leads and bigger jobs.',
-    images: ['/og-image.png'],
-  },
-  alternates: {
-    canonical: 'https://rovult.com',
-  },
+  title: 'Rovult | Precision Engineered Web Experiences',
+  description: 'We build high-performance digital infrastructure for brands that refuse to settle for the standard web.',
 };
 
-
-const testimonials = [
-  {
-    name: "Dave Robertson",
-    role: "Master Electrician",
-    quote: "I used to lose jobs because my website looked like it was from 1999. Since switching to Rovult, I've booked three $10k+ commercial jobs. They said my site made me look like the most professional guy in town.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150"
-  },
-  {
-    name: "Sarah Jenkins",
-    role: "HVAC Specialist",
-    quote: "The emergency pulse feature paid for this thing ten times over in my first week. A property manager hit me up at 2 AM for a busted AC because my site showed I was available right then.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150&h=150"
-  },
-  {
-    name: "Marcus Thorne",
-    role: "General Contractor",
-    quote: "Building a website felt like a distraction from the actual work. With Rovult, I had a custom, beautiful profile up while sitting in my truck eating lunch. Best tool in my truck right now.",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150&h=150"
-  }
-];
-
-export default function Home() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Rovult",
-    "description": "Build a professional website for your contracting business in 3 minutes. The #1 website builder for plumbers, electricians, HVAC technicians, and tradesmen.",
-    "url": "https://rovult.com",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web Browser",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD",
-      "description": "Free website builder for contractors with premium features available"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "2500",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "creator": {
-      "@type": "Organization",
-      "name": "Rovult",
-      "url": "https://rovult.com"
-    },
-    "audience": {
-      "@type": "Audience",
-      "audienceType": "Plumbers, Electricians, HVAC Technicians, General Contractors, Tradesmen"
-    },
-    "featureList": [
-      "Mobile-first website design",
-      "Local SEO optimization",
-      "Lead generation tools",
-      "Emergency service availability",
-      "Customer testimonials",
-      "Contact forms",
-      "Service area management",
-      "Project gallery",
-      "QR code sharing"
-    ]
-  };
-
+export default function AgencyLandingPage() {
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-      <div className="flex flex-col min-h-screen bg-[#09090b] text-slate-100 overflow-x-hidden">
-      {/* Header */}
-      <header className="px-4 sm:px-6 py-4 sm:py-5 sticky-header-safe flex items-center justify-between border-b border-zinc-800/80 bg-[#09090b]/90 backdrop-blur-xl sticky top-0 z-50">
-        <Logo />
-        <nav className="flex items-center gap-6">
-          <Link href="/sign-in" className="text-sm font-semibold text-slate-400 hover:text-white transition-colors hidden sm:block">Log In</Link>
-          <a 
-            href="mailto:help@rovult.com" 
-            className="text-sm font-semibold text-slate-400 hover:text-brand-amber transition-colors hidden sm:flex items-center gap-1.5"
-            title="Get Help"
-          >
-            <HelpCircle className="w-4 h-4" />
-            Help
-          </a>
-          <form action="/onboarding" className="flex items-center bg-zinc-900 border border-zinc-700/60 rounded-lg p-1.5 focus-within:border-brand-amber/70 focus-within:ring-2 focus-within:ring-brand-amber/20 focus-within:shadow-[0_0_15px_rgba(245,158,11,0.1)] transition-all shadow-sm">
-            <div className="flex items-center px-2 sm:px-3">
-              <span className="text-slate-500 text-xs sm:text-sm font-semibold hidden sm:inline mr-1">rovult.com/</span>
-              <input
-                type="text"
-                name="slug"
-                placeholder="yourcompany"
-                className="bg-transparent border-none outline-none text-slate-100 placeholder:text-zinc-600 font-bold text-xs sm:text-sm w-[90px] sm:w-[110px] md:w-[140px]"
-              />
-            </div>
-            <button type="submit" className="bg-gradient-to-br from-brand-amber to-amber-600 text-zinc-950 px-3 sm:px-4 py-2 rounded-md font-bold text-xs sm:text-sm hover:from-amber-400 hover:to-brand-amber hover:shadow-[0_0_15px_rgba(245,158,11,0.4)] transition-all">
-              Claim Link
-            </button>
-          </form>
-        </nav>
-      </header>
+    <div className="flex flex-col min-h-screen bg-[#131313] text-[#e5e2e1] overflow-x-hidden selection:bg-[#0070f3] selection:text-white pb-32 md:pb-0">
+      
+      {/* Top Navigation Bar */}
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-2xl border border-white/10 bg-neutral-900/15 backdrop-blur-xl flex justify-between items-center px-4 md:px-6 py-3 z-50 shadow-[0_0_60px_-15px_rgba(0,112,243,0.08)]">
+        <div className="flex items-center gap-2">
+          <Terminal className="text-[#0070f3] w-5 h-5 md:w-6 md:h-6" />
+          <span className="text-xl md:text-2xl font-black tracking-tighter text-[#e5e2e1] font-sans">ROVULT</span>
+        </div>
+        <Link 
+          href="#contact"
+          className="font-sans tracking-tighter text-xs md:text-sm uppercase font-bold text-[#0070f3] active:scale-95 transition-transform hover:text-white hover:bg-white/5 md:px-3 py-1 rounded-lg"
+        >
+          Launch Project
+        </Link>
+      </nav>
 
-      <main className="flex-1 flex flex-col items-center justify-center">
-        {/* Hero Section */}
-        <section className="px-4 sm:px-6 py-12 sm:py-16 md:py-24 lg:py-32 w-full max-w-7xl xl:max-w-[90rem] mx-auto flex flex-col xl:flex-row items-center justify-between gap-12 lg:gap-16 xl:gap-20">
-          {/* Left Column (Content) */}
-          <div className="flex-1 flex flex-col items-start text-left max-w-2xl md:max-w-3xl relative z-10 w-full">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-12 overflow-hidden"
+               style={{ background: 'radial-gradient(at 0% 0%, rgba(0, 112, 243, 0.15) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(104, 7, 186, 0.15) 0, transparent 50%)' }}>
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+             style={{ backgroundImage: 'url(https://lh3.googleusercontent.com/aida-public/AB6AXuAiX9v2J4aIeBedd8YQVdkNAbvP2kEhpSf2vQ8RTHBYfhLeo-asfTUBS9EEPL3IwxbjrlwsJcsRFLSaDESns7rslWoKpDsMi__AT71g_18MrSEZ8Ls_lNeHDe8vZUT5CM3EQTItvkOs_YZmdv_oJy31xbh1MgcvK8Wsan58pPTA75jVBtl9ba5_YXO4NWHgeTj43rG891-d60kuk9aYU8pz0a8cdBVtKCcP0uIgnN3LtUbw9-DJFCyms36_-_3mef9HhV8IDsKSiHlX)' }}></div>
+        
+        <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center text-center mt-10 md:mt-0">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2a2a2a] border border-[#414754]/20 mb-8 shadow-lg">
+            <span className="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse"></span>
+            <span className="text-[10px] md:text-xs font-bold tracking-[0.1em] text-[#c1c6d7] uppercase">Operational Systems Ready</span>
+          </div>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.05] text-[#e5e2e1] mb-8">
+            Precision <br className="hidden md:block"/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0070f3] to-[#6807ba]">Engineered</span> <br className="hidden md:block"/>
+            Web Experiences
+          </h1>
+          <p className="text-lg md:text-xl text-[#c1c6d7] font-medium leading-relaxed mb-10 max-w-xl mx-auto">
+            We build high-performance digital infrastructure for brands that refuse to settle for the standard web.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 w-full justify-center max-w-sm sm:max-w-none mx-auto">
+            <Link href="#contact" className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#0070f3] to-[#6807ba] rounded-xl font-bold text-white tracking-tight transition-all active:scale-[0.98] shadow-[0_0_40px_-10px_rgba(0,112,243,0.5)] hover:shadow-[0_0_60px_-10px_rgba(0,112,243,0.7)] flex justify-center items-center gap-2">
+              Start Your Project <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link href="#services" className="w-full sm:w-auto px-8 py-4 bg-[#2a2a2a] border border-[#414754]/30 rounded-xl font-bold text-[#e5e2e1] tracking-tight transition-all hover:bg-[#3a3939] active:scale-[0.98] flex justify-center items-center gap-2 shadow-lg">
+              View the Arsenal <ScanLine className="w-4 h-4 text-[#c1c6d7]" />
+            </Link>
+          </div>
+        </div>
 
-            {/* Premium Trust Badge */}
-            <div className="inline-flex items-center gap-3 sm:gap-4 mb-8 sm:mb-10 bg-zinc-900/50 p-2 pr-4 sm:pr-6 rounded-full border border-zinc-800 backdrop-blur-md shadow-lg shadow-black">
-              <div className="flex -space-x-2 sm:-space-x-3 rtl:space-x-reverse ml-1">
-                <img className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 1" />
-                <img className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 2" />
-                <img className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1527980965255-d3d416303d12?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 3" />
+        {/* Ambient background blur blobs */}
+        <div className="absolute -left-32 top-1/2 w-96 h-96 bg-[#0070f3] rounded-full blur-[120px] opacity-10 pointer-events-none"></div>
+        <div className="absolute -right-20 bottom-20 w-64 h-96 bg-[#2a2a2a] border border-white/5 rounded-3xl rotate-12 blur-3xl opacity-30 pointer-events-none"></div>
+      </section>
+
+      {/* Services Bento Grid */}
+      <section id="services" className="px-6 py-24 md:py-32 bg-[#0e0e0e] relative z-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-16 md:text-center">
+            <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-[#0070f3] uppercase block mb-3">Capabilities</span>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter text-[#e5e2e1]">Core Infrastructure</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            
+            {/* Large Card: Web Design */}
+            <div className="lg:col-span-2 p-8 md:p-12 rounded-[2rem] bg-[#2a2a2a]/60 backdrop-blur-md shadow-[inset_0_0_0_0.5px_rgba(255,255,255,0.08)] relative overflow-hidden group hover:bg-[#2a2a2a] transition-all duration-500">
+              <div className="absolute top-0 right-0 p-8 md:p-12 opacity-5 scale-150 group-hover:scale-110 group-hover:opacity-10 transition-all duration-700 pointer-events-none text-[#aec6ff]">
+                <Monitor className="w-64 h-64" />
               </div>
-              <div className="flex flex-col justify-center">
-                <span className="text-slate-200 text-xs font-bold leading-tight flex items-center gap-1.5 cursor-default">
-                  <span className="text-yellow-500 text-[8px] sm:text-[10px]">★★★★★</span>
-                  "Got my first leads in 24 hrs."
-                </span>
-                <span className="text-slate-500 text-[8px] sm:text-[10px] font-semibold uppercase tracking-wider">Trusted by 2,500+ Top Tradesmen</span>
+              <div className="relative z-10 h-full flex flex-col justify-end">
+                <span className="w-fit text-[10px] md:text-xs font-bold tracking-widest text-[#0070f3] uppercase mb-4 block bg-[#0070f3]/10 px-3 py-1 rounded-full border border-[#0070f3]/20">Design-First</span>
+                <h3 className="text-3xl md:text-4xl font-black tracking-tight text-[#e5e2e1] mb-4">Bespoke Web Systems</h3>
+                <p className="text-sm md:text-base text-[#c1c6d7] leading-relaxed max-w-md font-medium">
+                  Custom digital architectures built with React and Tailwind for surgical precision and lightning speed. No templates, strictly tailored engineering.
+                </p>
               </div>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-heading font-black text-slate-50 tracking-tighter leading-[1.05] mb-6 sm:mb-8 w-full max-w-3xl md:max-w-4xl">
-              The Website for <br className="hidden md:block" /> Pros who <br className="md:hidden" />
-              <TypewriterSlogan />
-            </h1>
+            {/* Sub column for mobile stack or right side on desktop */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4 md:gap-6 flex-1">
+              {/* Half Card: SEO */}
+              <div className="p-8 rounded-[2rem] bg-[#2a2a2a]/60 backdrop-blur-md shadow-[inset_0_0_0_0.5px_rgba(255,255,255,0.08)] hover:bg-[#2a2a2a] transition-colors duration-300">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0070f3] to-blue-900 flex items-center justify-center mb-6 shadow-lg shadow-[#0070f3]/20">
+                  <Globe className="text-white w-6 h-6" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold tracking-tight text-[#e5e2e1] mb-2">Local SEO</h3>
+                <p className="text-xs md:text-sm text-[#c1c6d7] leading-relaxed font-medium">
+                  Dominating regional search clusters. Ensuring your brand captures high-intent traffic accurately.
+                </p>
+              </div>
+              
+              {/* Half Card: Hosting */}
+              <div className="p-8 rounded-[2rem] bg-[#2a2a2a]/60 backdrop-blur-md shadow-[inset_0_0_0_0.5px_rgba(255,255,255,0.08)] hover:bg-[#2a2a2a] transition-colors duration-300">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6807ba] to-purple-900 flex items-center justify-center mb-6 shadow-lg shadow-[#6807ba]/20">
+                  <Server className="text-white w-6 h-6" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold tracking-tight text-[#e5e2e1] mb-2">Managed Hosting</h3>
+                <p className="text-xs md:text-sm text-[#c1c6d7] leading-relaxed font-medium">
+                  99.9% Uptime Protocol guaranteed via Vercel edge networks. Scalable and secure.
+                </p>
+              </div>
+            </div>
 
-            <p className="text-lg sm:text-xl md:text-2xl text-slate-400 mb-8 sm:mb-12 font-sans font-medium leading-relaxed max-w-xl md:max-w-2xl">
-              Stop losing high-paying jobs to guys with better websites. Get a heavy-duty, mobile-first profile ready while sitting in your truck.
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof Case Study */}
+      <section className="py-24 md:py-32 relative overflow-hidden bg-[#131313]">
+        <div className="max-w-5xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+          
+          {/* Content */}
+          <div className="flex-1 w-full order-2 lg:order-1">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-14 h-14 rounded-xl bg-[#0e0e0e] flex items-center justify-center border border-white/10 shadow-lg">
+                <Warehouse className="text-[#0070f3] w-7 h-7" />
+              </div>
+              <div>
+                <h4 className="text-2xl md:text-3xl text-[#e5e2e1] font-black tracking-tight mb-1">Lexington Overstock</h4>
+                <p className="text-[10px] md:text-xs font-bold text-[#c1c6d7] uppercase tracking-widest">Case Protocol 082</p>
+              </div>
+            </div>
+            
+            <p className="text-lg md:text-xl text-[#c1c6d7] font-medium leading-relaxed mb-10">
+              We rebuilt their digital storefront to align with their massive warehouse inventory. The result was an immediate surge in local visibility and measurable foot traffic.
             </p>
 
-            <form action="/onboarding" className="flex flex-col sm:flex-row items-stretch w-full max-w-xl md:max-w-2xl bg-zinc-900/80 border border-zinc-700/60 rounded-2xl p-2 focus-within:border-brand-amber/80 focus-within:ring-4 focus-within:ring-brand-amber/10 transition-all shadow-2xl shadow-black/50">
-              <div className="flex items-center flex-1 px-4 sm:px-5 h-14 sm:h-16">
-                <span className="text-slate-500 text-lg sm:text-xl font-bold pr-1">rovult.com/</span>
-                <input
-                  type="text"
-                  name="slug"
-                  placeholder="yourcompany"
-                  className="bg-transparent border-none outline-none text-slate-50 placeholder:text-zinc-600 font-extrabold text-lg sm:text-xl w-full min-w-[120px] sm:min-w-[150px]"
+            <div className="space-y-8 mb-8 border-l-2 border-[#2a2a2a] pl-6">
+              <div className="flex flex-col gap-1">
+                <span className="text-5xl md:text-6xl font-black text-[#0070f3] tracking-tighter">40%</span>
+                <span className="text-xs font-bold text-[#c1c6d7] uppercase tracking-wider">Foot Traffic Increase</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-5xl md:text-6xl font-black text-[#6807ba] tracking-tighter">200+</span>
+                <span className="text-xs font-bold text-[#c1c6d7] uppercase tracking-wider">Monthly Leads Generated</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Image Node */}
+          <div className="flex-1 w-full order-1 lg:order-2">
+            <div className="bg-[#2a2a2a]/30 rounded-3xl p-3 border border-[#414754]/30 shadow-2xl relative">
+              <div className="absolute top-0 right-1/4 w-32 h-32 bg-[#0070f3] rounded-full blur-[80px] -z-10 opacity-30"></div>
+              <div className="rounded-[1.5rem] overflow-hidden aspect-[4/3] relative group">
+                <img 
+                  alt="Modern high-tech workflow" 
+                  className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-700 hover:scale-105" 
+                  src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1200&h=800"
                 />
-              </div>
-              <button type="submit" className="w-full sm:w-auto mt-2 sm:mt-0 flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-br from-brand-amber to-amber-600 text-zinc-950 px-6 sm:px-10 h-12 sm:h-16 rounded-xl font-black text-lg sm:text-xl hover:from-amber-400 hover:to-brand-amber transition-all shadow-[0_0_30px_rgba(245,158,11,0.3)] hover:shadow-[0_0_40px_rgba(245,158,11,0.5)] transform hover:-translate-y-0.5">
-                Build It <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
-              </button>
-            </form>
-
-            {/* Feature Checkmarks */}
-            <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4 sm:gap-6 text-xs sm:text-sm font-semibold text-slate-400">
-              <span className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500" /> Free Forever Plan
-              </span>
-              <span className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500" /> No Coding Required
-              </span>
-              <span className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500" /> Optimized for SEO
-              </span>
-            </div>
-          </div>
-
-          <div className="hidden md:flex lg:hidden flex-1 w-full max-w-sm relative mt-16 pointer-events-none select-none drop-shadow-2xl justify-end">
-            {/* Background glowing blob */}
-            <div className="absolute top-1/2 right-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[100%] bg-brand-amber/10 blur-[80px] rounded-full z-0 pointer-events-none"></div>
-
-            <div className="relative w-full max-w-[280px] z-10 mx-auto transform rotate-2 hover:rotate-0 transition-transform duration-700 ease-out">
-              {/* Heavy Phone Frame Mockup */}
-              <div className="bg-[#0f0f11] border-[8px] border-zinc-800 rounded-[2.5rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)] relative aspect-[9/19] ring-1 ring-zinc-700/50">
-                {/* Dynamic Island fake */}
-                <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20 shadow-inner"></div>
-
-                {/* Phone screen content */}
-                <div className="h-full w-full bg-[#0a0a0c] flex flex-col pt-16 px-4 pb-4 relative overflow-hidden">
-                  {/* Subtle background gradient for depth */}
-                  <div className="absolute top-0 left-0 w-full h-[40%] bg-gradient-to-b from-zinc-800/20 to-transparent z-0"></div>
-
-                  <div className="relative z-10 flex flex-col items-center flex-1">
-                    <div className="w-16 h-16 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-[1rem] border border-zinc-700/50 shadow-xl flex items-center justify-center mb-4 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-brand-amber/5"></div>
-                      <Wrench className="w-8 h-8 text-brand-amber relative z-10" />
-                    </div>
-
-                    <h3 className="text-lg font-heading font-black text-center text-slate-50 mb-1 leading-none">Apex Plumbing</h3>
-                    <p className="text-[8px] uppercase tracking-widest text-brand-amber text-center font-bold mb-6 bg-brand-amber/10 px-2 py-0.5 rounded-full border border-brand-amber/20 w-fit mx-auto">
-                      Master Plumber
-                    </p>
-
-                    <div className="flex justify-center gap-4 text-[10px] text-slate-400 mb-6 font-semibold w-full border-b border-zinc-800/80 pb-4">
-                      <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-blue-400" /> Dallas, TX</span>
-                      <span className="flex items-center gap-1"><ShieldCheck className="w-3 h-3 text-emerald-400" /> Lic #MP8472</span>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-2 w-full mb-6">
-                      <div className="bg-zinc-900/80 rounded-xl py-2.5 text-center text-xs font-bold text-slate-300 border border-zinc-700/50 shadow-md flex flex-col items-center gap-0.5 hover:bg-zinc-800 transition-colors cursor-pointer">
-                        <span className="text-[8px] text-zinc-500 uppercase tracking-wider font-semibold">Email</span>
-                        ✉️ Quote
-                      </div>
-                      <div className="bg-zinc-900/80 rounded-xl py-2.5 text-center text-xs font-bold text-slate-300 border border-zinc-700/50 shadow-md flex flex-col items-center gap-0.5 text-emerald-400 hover:bg-zinc-800 transition-colors cursor-pointer">
-                        <span className="text-[8px] text-zinc-500 uppercase tracking-wider font-semibold">Call Now</span>
-                        📞 Connect
-                      </div>
-                    </div>
-
-                    <div className="bg-zinc-900/40 rounded-xl p-3 border border-zinc-800 w-full mb-4">
-                      <h4 className="text-[9px] font-bold text-slate-400 mb-3 uppercase tracking-widest flex items-center gap-1">Featured Services</h4>
-                      <div className="flex flex-col gap-2">
-                        <div className="bg-zinc-900 border border-zinc-750 text-[10px] px-2.5 py-2 rounded-lg text-slate-200 font-semibold flex items-center gap-2 relative overflow-hidden shadow-sm">
-                          <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-amber"></div>
-                          Water Heater Repair
-                        </div>
-                        <div className="bg-zinc-900 border border-zinc-750 text-[10px] px-2.5 py-2 rounded-lg text-slate-200 font-semibold flex items-center gap-2 relative overflow-hidden shadow-sm">
-                          <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-amber"></div>
-                          Pipe Leak Detection
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="mt-auto w-full bg-gradient-to-br from-brand-amber to-amber-600 shadow-[0_0_20px_rgba(245,158,11,0.2)] text-zinc-950 text-center py-3 rounded-lg font-black text-[10px] uppercase tracking-wide">
-                      Request Estimate
-                    </div>
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e]/90 via-[#0e0e0e]/20 to-transparent"></div>
+                <div className="absolute bottom-6 left-6">
+                  <span className="text-[10px] font-bold text-white bg-[#0070f3] px-3 py-1.5 rounded-full uppercase shadow-[0_0_15px_rgba(0,112,243,0.5)]">Verified Result</span>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* Right Column (Visual Mockup) - Large Desktop */}
-          <div className="hidden lg:flex flex-1 w-full max-w-lg xl:max-w-xl relative mt-20 xl:mt-0 xl:ml-12 pointer-events-none select-none drop-shadow-2xl justify-end">
-            {/* Background glowing blob */}
-            <div className="absolute top-1/2 right-0 lg:left-1/2 lg:-translate-x-1/2 -translate-y-1/2 w-[140%] h-[120%] bg-brand-amber/10 blur-[120px] rounded-full z-0 pointer-events-none"></div>
-
-            <div className="relative w-full max-w-[360px] lg:max-w-[400px] z-10 mx-auto xl:mx-0 xl:mr-8 transform rotate-2 hover:rotate-0 transition-transform duration-700 ease-out">
-
-              {/* Heavy Phone Frame Mockup */}
-              <div className="bg-[#0f0f11] border-[10px] border-zinc-800 rounded-[3.5rem] overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.8)] relative aspect-[9/19] ring-1 ring-zinc-700/50">
-                {/* Dynamic Island fake */}
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-32 h-8 bg-black rounded-full z-20 shadow-inner"></div>
-
-                {/* Phone screen content */}
-                <div className="h-full w-full bg-[#0a0a0c] flex flex-col pt-20 px-6 pb-6 relative overflow-hidden">
-                  {/* Subtle background gradient for depth */}
-                  <div className="absolute top-0 left-0 w-full h-[40%] bg-gradient-to-b from-zinc-800/20 to-transparent z-0"></div>
-
-                  <div className="relative z-10 flex flex-col items-center flex-1">
-                    <div className="w-20 h-20 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-[1.5rem] border border-zinc-700/50 shadow-xl flex items-center justify-center mb-5 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-brand-amber/5"></div>
-                      <Wrench className="w-10 h-10 text-brand-amber relative z-10" />
-                    </div>
-
-                    <h3 className="text-2xl font-heading font-black text-center text-slate-50 mb-1.5 leading-none">Apex Plumbing</h3>
-                    <p className="text-[10px] uppercase tracking-widest text-brand-amber text-center font-bold mb-8 bg-brand-amber/10 px-3 py-1 rounded-full border border-brand-amber/20 w-fit mx-auto">
-                      Master Plumber
-                    </p>
-
-                    <div className="flex justify-center gap-5 text-xs text-slate-400 mb-8 font-semibold w-full border-b border-zinc-800/80 pb-6">
-                      <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-blue-400" /> Dallas, TX</span>
-                      <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Lic #MP8472</span>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-3 w-full mb-8">
-                      <div className="bg-zinc-900/80 rounded-2xl py-3.5 text-center text-sm font-bold text-slate-300 border border-zinc-700/50 shadow-md flex flex-col items-center gap-1 hover:bg-zinc-800 transition-colors cursor-pointer">
-                        <span className="text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">Email</span>
-                        ✉️ Quote
-                      </div>
-                      <div className="bg-zinc-900/80 rounded-2xl py-3.5 text-center text-sm font-bold text-slate-300 border border-zinc-700/50 shadow-md flex flex-col items-center gap-1 text-emerald-400 hover:bg-zinc-800 transition-colors cursor-pointer">
-                        <span className="text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">Call Now</span>
-                        📞 Connect
-                      </div>
-                    </div>
-
-                    <div className="bg-zinc-900/40 rounded-2xl p-5 border border-zinc-800 w-full mb-6">
-                      <h4 className="text-[11px] font-bold text-slate-400 mb-4 uppercase tracking-widest flex items-center gap-2">Featured Services</h4>
-                      <div className="flex flex-col gap-2.5">
-                        <div className="bg-zinc-900 border border-zinc-750 text-xs px-3.5 py-2.5 rounded-xl text-slate-200 font-semibold flex items-center gap-3 relative overflow-hidden shadow-sm">
-                          <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-brand-amber"></div>
-                          Water Heater Repair
-                        </div>
-                        <div className="bg-zinc-900 border border-zinc-750 text-xs px-3.5 py-2.5 rounded-xl text-slate-200 font-semibold flex items-center gap-3 relative overflow-hidden shadow-sm">
-                          <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-brand-amber"></div>
-                          Pipe Leak Detection
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="mt-auto w-full bg-gradient-to-br from-brand-amber to-amber-600 shadow-[0_0_20px_rgba(245,158,11,0.2)] text-zinc-950 text-center py-4 rounded-[1rem] font-black text-sm uppercase tracking-wide">
-                      Request Estimate
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Transition Header */}
-        <section className="w-full max-w-4xl md:max-w-5xl mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 text-center border-t border-zinc-900">
-          <div className="inline-flex items-center gap-2 px-3 sm:px-5 py-2 rounded-full bg-red-500/10 border border-red-500/20 text-[10px] sm:text-xs font-bold text-red-400 mb-6 sm:mb-8 font-mono tracking-wide uppercase">
-            <span className="text-red-500 text-sm sm:text-lg leading-none">⚠</span> Don't Look Like An Amateur
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-black text-slate-50 tracking-tighter leading-tight max-w-3xl md:max-w-4xl mx-auto">
-            Your website shouldn't cost $3,000. <br className="hidden lg:block" />
-            <span className="text-brand-amber">And it shouldn't look cheap either.</span>
-          </h2>
-        </section>
-
-        {/* Testimonials (Real Social Proof) */}
-        <section className="w-full px-4 sm:px-6 pb-20 sm:pb-32 md:pb-40 border-b border-zinc-900">
-          <div className="max-w-6xl md:max-w-7xl mx-auto">
-            <TestimonialCarousel testimonials={testimonials} />
-          </div>
-        </section>
-
-        {/* Logo Cloud - Trust Building (Refined) */}
-        <section className="w-full bg-[#0a0a0c] py-12 sm:py-16">
-          <div className="max-w-4xl md:max-w-5xl mx-auto px-4 sm:px-6 text-center text-slate-500 font-bold uppercase tracking-widest text-xs sm:text-sm flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-16 opacity-60">
-            <span className="hidden md:inline mr-4">Trusted by Pros via:</span>
-            <div className="flex items-center gap-2 sm:gap-3">
-              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" /> Licensed & Insured
-            </div>
-            <div className="flex items-center gap-2 sm:gap-3">
-              <span className="font-heading text-lg sm:text-2xl leading-none tracking-normal">BBB</span> A+ Rated
-            </div>
-            <div className="flex items-center gap-2 sm:gap-3">
-              <span className="font-sans font-black text-lg sm:text-2xl leading-none tracking-normal">OSHA</span> Compliant
-            </div>
-          </div>
-        </section>
-
-        {/* Pricing Section */}
-        <section className="w-full bg-zinc-950/50 py-20 sm:py-24 md:py-32 border-t border-zinc-900 border-b relative overflow-hidden" id="pricing">
-          <div className="absolute top-0 right-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-brand-amber/5 rounded-full blur-[60px sm:blur-[100px] pointer-events-none"></div>
-
-          <div className="max-w-5xl md:max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-            <div className="text-center mb-12 sm:mb-16 md:mb-20">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-black text-slate-50 tracking-tighter mb-4 sm:mb-6">
-                Simple <span className="text-brand-amber">Pricing</span>, Clear ROI.
-              </h2>
-              <p className="text-lg sm:text-xl text-slate-400 font-medium max-w-xl md:max-w-2xl mx-auto">
-                Win one job through a Rovult link, and your site pays for itself for years. Start free, upgrade when you're ready to dominate.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl md:max-w-5xl mx-auto">
-              {/* Free Tier */}
-              <div className="bg-zinc-900/60 border border-zinc-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-10 flex flex-col hover:border-zinc-700 transition-colors shadow-2xl">
-                <div className="mb-4 sm:mb-6 md:mb-8">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-black text-slate-100 mb-2">Rovult Core</h3>
-                  <div className="flex items-baseline gap-2 mb-2 sm:mb-3 md:mb-4">
-                    <span className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-50">$0</span>
-                    <span className="text-xs sm:text-sm md:text-base text-slate-400 font-bold">/ forever</span>
-                  </div>
-                  <p className="text-xs sm:text-sm md:text-base text-slate-400 font-medium sm:h-10 md:h-12">The perfect starting point to look like a true professional online.</p>
-                </div>
-
-                <div className="flex-1 flex flex-col gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-10 text-xs sm:text-sm md:text-base">
-                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-slate-300 font-medium">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
-                    Custom <code className="text-xs sm:text-sm">rovult.com/name</code> Link
-                  </div>
-                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-slate-300 font-medium">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
-                    Mobile-First Profile Builder
-                  </div>
-                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-slate-300 font-medium">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
-                    Business Contact Buttons (Call, Email)
-                  </div>
-                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-slate-300 font-medium">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
-                    Display Core Services
-                  </div>
-                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-slate-300 font-medium">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
-                    Basic SEO Optimization
-                  </div>
-                </div>
-
-                <Link href="/onboarding" className="w-full flex items-center justify-center py-3 sm:py-3.5 md:py-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-slate-100 font-bold text-sm sm:text-base tracking-wide transition-colors">
-                  Start Building Free
-                </Link>
-              </div>
-
-              {/* Premium Tier */}
-              <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-brand-amber/40 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-10 flex flex-col shadow-[0_0_30px_sm:shadow-[0_0_50px_rgba(245,158,11,0.08)] relative overflow-hidden transform md:-translate-y-2 lg:-translate-y-4">
-                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-amber-400 to-brand-amber"></div>
-                <div className="absolute -top-8 sm:-top-10 -right-8 sm:-right-10 w-32 sm:w-40 h-32 sm:h-40 bg-brand-amber/10 blur-[40px sm:blur-[50px] rounded-full pointer-events-none"></div>
-
-                <div className="mb-2 sm:mb-3 md:mb-4 inline-flex items-center gap-1 sm:gap-1.5 bg-brand-amber/10 border border-brand-amber/20 text-brand-amber text-[8px] sm:text-[10px] md:text-xs font-black uppercase tracking-widest px-2 sm:px-3 py-1 rounded-full w-fit">
-                  <Star className="w-2 sm:w-3 h-2 sm:h-3 md:w-3.5 md:h-3.5 fill-brand-amber" /> Most Popular
-                </div>
-
-                <div className="mb-4 sm:mb-6 md:mb-8">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-black text-slate-100 mb-2">Rovult Premium</h3>
-                  <div className="flex items-baseline gap-2 mb-2 sm:mb-3 md:mb-4">
-                    <span className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-50">$14</span>
-                    <span className="text-xs sm:text-sm md:text-base text-slate-400 font-bold">/ month</span>
-                  </div>
-                  <p className="text-xs sm:text-sm md:text-base text-slate-400 font-medium sm:h-10 md:h-12">Heavy-duty conversion features designed to book high-paying leads.</p>
-                </div>
-
-                <div className="flex-1 flex flex-col gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-10 text-xs sm:text-sm md:text-base">
-                  <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-slate-200 font-bold">
-                    <div className="bg-brand-amber/20 p-1 rounded-full sm:p-1.5 mt-0.5"><Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-brand-amber fill-brand-amber" /></div>
-                    <div>
-                      Full Leads & Analytics
-                      <div className="text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium mt-0.5">Unlock caller contact info and track exactly which links are converting.</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-slate-200 font-bold">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5 mt-0.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
-                    <div>
-                      Unlimited Gallery & Links
-                      <div className="text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium mt-0.5">Showcase your best work with unlimited photos and custom URLs.</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-slate-200 font-bold">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5 mt-0.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
-                    <div>
-                      24/7 Emergency Pulse
-                      <div className="text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium mt-0.5">Show a flashing red badge when you are available for urgent, high-paying jobs.</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-slate-200 font-bold">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5 mt-0.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
-                    <div>
-                      Promoted Badges
-                      <div className="text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium mt-0.5">Show customers you accept cards, offer financing, and give free estimates.</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 text-slate-200 font-bold">
-                    <div className="bg-zinc-800 p-1 rounded-full sm:p-1.5"><Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400" /></div>
-                    <div>
-                      Everything in Core
-                    </div>
-                  </div>
-                </div>
-
-                <Link href="/onboarding" className="w-full flex items-center justify-center py-3 sm:py-3.5 md:py-4 rounded-xl bg-gradient-to-br from-brand-amber to-amber-600 hover:from-amber-400 hover:to-brand-amber text-zinc-950 font-black text-base sm:text-lg md:text-xl tracking-wide shadow-[0_5px_20px_sm:shadow-[0_10px_30px_rgba(245,158,11,0.2)] hover:shadow-[0_10px_30px_sm:hover:shadow-[0_10px_40px_rgba(245,158,11,0.4)] transition-all transform hover:-translate-y-0.5">
-                  Unlock Premium
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <footer className="border-t border-zinc-900 py-12 sm:py-16 safe-area-pb text-center text-slate-500 text-xs sm:text-sm relative z-10 flex flex-col items-center gap-4 sm:gap-6 bg-[#09090b]">
-        <div className="flex gap-4 sm:gap-6 sm:gap-8 font-semibold">
-          <Link href="/tos" className="hover:text-slate-300 transition-colors text-xs sm:text-sm">Terms of Service</Link>
-          <Link href="/privacy" className="hover:text-slate-300 transition-colors text-xs sm:text-sm">Privacy Policy</Link>
+          
         </div>
-        <p className="font-medium text-xs sm:text-sm">&copy; {new Date().getFullYear()} Rovult. All rights reserved.</p>
+      </section>
+
+      {/* Contact Form Section */}
+      <section id="contact" className="px-6 py-24 md:py-32 bg-[#1c1b1b] relative">
+        <div className="max-w-xl mx-auto relative z-10 bg-[#0e0e0e] p-8 md:p-12 rounded-3xl border border-[#2a2a2a] shadow-2xl">
+          <div className="mb-10 text-center">
+            <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-[#e5e2e1] mb-3">Initialize Contact</h2>
+            <p className="text-[#c1c6d7] text-sm md:text-base leading-relaxed font-medium">
+                Ready to upgrade your digital footprint? Secure your position in the queue.
+            </p>
+          </div>
+          
+          <form className="space-y-6">
+            <div className="group">
+              <label className="block text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-[#8b90a0] mb-2 px-1 transition-colors group-focus-within:text-[#0070f3]">Identity</label>
+              <input 
+                className="w-full bg-[#1c1b1b] border border-[#414754]/50 rounded-xl px-5 py-4 text-[#e5e2e1] placeholder:text-neutral-600 focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3]/50 transition-all text-sm font-medium tracking-tight shadow-inner" 
+                placeholder="FULL NAME" 
+                type="text"
+                required
+              />
+            </div>
+            
+            <div className="group">
+              <label className="block text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-[#8b90a0] mb-2 px-1 transition-colors group-focus-within:text-[#0070f3]">Frequency</label>
+              <input 
+                className="w-full bg-[#1c1b1b] border border-[#414754]/50 rounded-xl px-5 py-4 text-[#e5e2e1] placeholder:text-neutral-600 focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3]/50 transition-all text-sm font-medium tracking-tight shadow-inner" 
+                placeholder="EMAIL ADDRESS" 
+                type="email"
+                required
+              />
+            </div>
+            
+            <div className="group">
+              <label className="block text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-[#8b90a0] mb-2 px-1 transition-colors group-focus-within:text-[#0070f3]">Transmission Details</label>
+              <textarea 
+                className="w-full bg-[#1c1b1b] border border-[#414754]/50 rounded-xl px-5 py-4 text-[#e5e2e1] placeholder:text-neutral-600 focus:outline-none focus:border-[#0070f3] focus:ring-1 focus:ring-[#0070f3]/50 transition-all text-sm font-medium tracking-tight resize-none shadow-inner" 
+                placeholder="PROJECT SCOPE & OBJECTIVES" 
+                rows={4}
+                required
+              ></textarea>
+            </div>
+            
+            <button 
+              className="mt-4 w-full py-5 bg-gradient-to-r hover:bg-gradient-to-l from-[#3a3939] to-[#2a2a2a] text-[#e5e2e1] font-black uppercase tracking-[0.15em] text-xs md:text-sm rounded-xl border border-[#414754] shadow-[0_0_20px_-5px_rgba(255,255,255,0.05)] hover:shadow-[0_0_30px_-5px_rgba(0,112,243,0.3)] hover:border-[#0070f3]/50 active:scale-95 transition-all duration-300" 
+              type="submit">
+                Submit Protocol
+            </button>
+          </form>
+        </div>
+        
+        <div className="absolute inset-0 bg-[#0070f3]/5 blur-[150px] pointer-events-none mix-blend-screen"></div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#0e0e0e] w-full border-t border-[#2a2a2a]">
+        <div className="flex flex-col md:flex-row justify-between items-center px-6 py-12 md:py-16 max-w-7xl mx-auto gap-8">
+          <div className="flex flex-col items-center md:items-start gap-4">
+            <div className="flex items-center gap-3">
+              <Terminal className="text-[#0070f3] w-6 h-6" />
+              <span className="text-xl font-bold text-neutral-100 font-sans tracking-tighter">ROVULT <span className="opacity-50 font-medium">OS</span></span>
+            </div>
+            <p className="font-mono text-[10px] tracking-[0.1em] uppercase font-bold text-[#8b90a0]">
+                © {new Date().getFullYear()} ROVULT OS. ALL SYSTEMS OPERATIONAL.
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-6">
+            <Link className="font-mono text-[10px] tracking-[0.05em] uppercase font-bold text-[#8b90a0] hover:text-[#0070f3] transition-colors duration-200" href="#services">Capabilities</Link>
+            <Link className="font-mono text-[10px] tracking-[0.05em] uppercase font-bold text-[#8b90a0] hover:text-[#0070f3] transition-colors duration-200" href="#">Archives</Link>
+            <Link className="font-mono text-[10px] tracking-[0.05em] uppercase font-bold text-[#0070f3] hover:text-white transition-colors duration-200" href="#contact">Terminal</Link>
+          </div>
+        </div>
       </footer>
-
-      {/* Mobile Sticky CTA */}
-      <div className="fixed bottom-0 left-0 w-full p-4 sm:p-6 safe-area-pb bg-gradient-to-t from-[#09090b] via-[#09090b]/95 to-transparent pt-12 sm:pt-16 z-50 md:hidden flex justify-center pointer-events-none">
-        <div className="pointer-events-auto w-full max-w-xs sm:max-w-sm flex flex-col gap-3">
-          <Link href="/onboarding" className="w-full flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-br from-brand-amber to-amber-600 text-zinc-950 h-12 sm:h-16 rounded-xl sm:rounded-2xl font-black text-lg sm:text-xl shadow-[0_5px_20px_sm:shadow-[0_10px_40px_rgba(245,158,11,0.4)] active:scale-95 transition-all">
-            Build It Now <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
-          </Link>
-          <a 
-            href="mailto:help@rovult.com" 
-            className="w-full flex items-center justify-center gap-2 bg-zinc-800/80 border border-zinc-700 text-slate-300 h-10 rounded-lg font-medium text-sm hover:bg-zinc-700 transition-colors"
-          >
-            <HelpCircle className="w-4 h-4" />
-            Get Help
-          </a>
-        </div>
-      </div>
     </div>
-      </>
   );
 }

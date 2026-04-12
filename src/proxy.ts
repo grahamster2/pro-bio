@@ -4,11 +4,24 @@ import { NextResponse } from "next/server";
 const isProtectedRoute = createRouteMatcher(["/dashboard(.*)", "/onboarding(.*)", "/admin(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
-    // Redirect signed-in users from home page to dashboard
     const { userId } = await auth();
     // if (req.nextUrl.pathname === "/" && userId) {
     //     return NextResponse.redirect(new URL("/dashboard", req.url));
     // }
+
+    const hostname = req.headers.get('host') || '';
+    const isBioSubdomain = hostname.startsWith('bio.');
+
+    if (isBioSubdomain) {
+        const url = req.nextUrl.clone();
+        url.pathname = `/bio${url.pathname}`;
+        
+        if (isProtectedRoute(req)) {
+            await auth.protect();
+        }
+        
+        return NextResponse.rewrite(url);
+    }
 
     if (isProtectedRoute(req)) {
         await auth.protect();

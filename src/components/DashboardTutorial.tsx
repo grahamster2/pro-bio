@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { CheckCircle2, Layout, Settings, Share2, X, ChevronRight, ChevronLeft, Hand } from 'lucide-react'
-import { updateProfile } from '@/app/dashboard/actions'
+import { updateProfile } from '@/app/bio/dashboard/actions'
 
 interface TutorialStep {
     targetId?: string;

@@ -2,7 +2,7 @@
 
 import { BarChart, MousePointerClick, Users, Calendar, Phone, MapPin, Mail, Navigation2, CheckCircle2, Lock } from 'lucide-react';
 import { useState, useTransition } from 'react';
-import { markLeadAsContacted } from '@/app/dashboard/leads/actions';
+import { markLeadAsContacted } from '@/app/bio/dashboard/leads/actions';
 import { LinkClicksChart } from '@/components/LinkClicksChart';
 import Link from 'next/link';
 

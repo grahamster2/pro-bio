@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { completeOnboarding } from '@/app/onboarding/actions'
+import { completeOnboarding } from '@/app/bio/onboarding/actions'
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
 
 export default function OnboardingForm() {

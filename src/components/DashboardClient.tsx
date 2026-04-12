@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import MobilePreview from './MobilePreview'
 import BuilderForm from './BuilderForm'
 import DashboardTutorial from './DashboardTutorial'
-import { updateProfile } from '@/app/dashboard/actions'
+import { updateProfile } from '@/app/bio/dashboard/actions'
 import { Save, Sparkles, Settings2, Wrench, ImageIcon, Link2, Eye } from 'lucide-react'
 
 export type TabType = 'general' | 'services' | 'display' | 'links' | 'preview';

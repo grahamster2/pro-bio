@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { updateProfile } from '@/app/dashboard/actions'
+import { updateProfile } from '@/app/bio/dashboard/actions'
 import { Star } from 'lucide-react'
 import { UpgradeModal } from './UpgradeModal'
 
