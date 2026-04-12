@@ -1,9 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Oswald, Geist_Mono } from "next/font/google";
+import { Inter, Oswald, Geist_Mono, Geist } from "next/font/google";
 import { ClerkProvider } from '@clerk/nextjs';
 import { Analytics } from "@vercel/analytics/next";
 import AddToHomeScreen from "@/components/AddToHomeScreen";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -138,7 +141,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" className="dark">
+      <html lang="en" className={cn("dark", "font-sans", geist.variable)}>
         <body
           className={`${inter.variable} ${oswald.variable} ${geistMono.variable} antialiased font-sans bg-zinc-950 text-slate-100`}
         >
