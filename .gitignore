@@ -45,3 +45,8 @@ next-env.d.ts
 
 # clerk configuration (can include secrets)
 /.clerk/
+
+/src/generated/prisma
+
+# Ignore large video files exceeding GitHub limits
+public/hero-bg.mp4

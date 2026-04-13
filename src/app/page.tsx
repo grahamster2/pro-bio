@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Play, CheckCircle2, Layout, Search, Server, Code2 } from 'lucide-react';
+import { Navigation } from '@/components/Navigation';
+import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Rovult | precision digital craft',
@@ -11,31 +13,22 @@ export default function AgencyLandingPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-[#f4f4f5] overflow-x-hidden selection:bg-[#38bdf8] selection:text-white font-sans">
       
-      {/* Top Navigation Bar */}
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl rounded-full border border-white/5 bg-[#0a0a0a]/80 backdrop-blur-xl flex justify-between items-center px-6 py-3 z-50 shadow-2xl">
-        <div className="flex items-center gap-2">
-          <span className="text-xl font-bold tracking-tight text-white">Rovult</span>
-        </div>
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-400">
-          <Link href="#work" className="hover:text-white transition-colors">Work</Link>
-          <Link href="#services" className="hover:text-white transition-colors">Services</Link>
-          <Link href="#process" className="hover:text-white transition-colors">Process</Link>
-          <Link href="#contact" className="hover:text-white transition-colors">Contact</Link>
-        </div>
-        <Link 
-          href="#contact"
-          className="text-sm font-semibold text-black bg-white rounded-full px-5 py-2 hover:bg-neutral-200 transition-colors"
-        >
-          Start Project
-        </Link>
-      </nav>
+      <Navigation />
 
       {/* Hero Section */}
-      <section className="relative pt-40 pb-20 flex flex-col items-center text-center px-4">
+      <section className="relative pt-40 pb-32 flex flex-col items-center text-center px-4 overflow-hidden min-h-[80vh] justify-center -mt-24">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0 opacity-40 mix-blend-screen">
+           <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
+               <source src="/hero-bg.mp4" type="video/mp4" />
+           </video>
+           <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#050505]/40 to-[#050505] pointer-events-none"></div>
+        </div>
+
         {/* Subtle glow behind hero */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#38bdf8] rounded-[100%] opacity-15 blur-[120px] pointer-events-none mix-blend-screen"></div>
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#38bdf8] rounded-[100%] opacity-15 blur-[120px] pointer-events-none mix-blend-screen z-0"></div>
         
-        <h1 className="relative z-10 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-6 max-w-4xl leading-[1.05]">
+        <h1 className="relative z-10 mt-12 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-6 max-w-4xl leading-[1.05]">
           Websites that work as hard as you do.
         </h1>
         <p className="relative z-10 text-lg md:text-xl text-neutral-400 font-medium mb-10 max-w-2xl">
@@ -43,10 +36,10 @@ export default function AgencyLandingPage() {
         </p>
         
         <div className="relative z-10 flex flex-col sm:flex-row gap-4 w-full justify-center max-w-sm sm:max-w-none mx-auto">
-          <Link href="#contact" className="w-full sm:w-auto px-8 py-3.5 bg-white rounded-full font-semibold text-black transition-all hover:scale-105 active:scale-95 flex justify-center items-center">
+          <Link href="/contact" className="w-full sm:w-auto px-8 py-3.5 bg-white rounded-full font-semibold text-black transition-all hover:scale-105 active:scale-95 flex justify-center items-center">
             Get Started
           </Link>
-          <Link href="#showreel" className="w-full sm:w-auto px-8 py-3.5 bg-[#121212] border border-white/10 rounded-full font-semibold text-white transition-all hover:bg-[#1a1a1a] active:scale-95 flex justify-center items-center gap-2">
+          <Link href="/work" className="w-full sm:w-auto px-8 py-3.5 bg-[#121212] border border-white/10 rounded-full font-semibold text-white transition-all hover:bg-[#1a1a1a] active:scale-95 flex justify-center items-center gap-2">
             View Showreel
           </Link>
         </div>
@@ -110,7 +103,7 @@ export default function AgencyLandingPage() {
               We don&apos;t just build sites; we architect digital conversion machines designed to capture intent and drive action.
             </p>
             <div className="mt-auto">
-              <Link href="#methodology" className="inline-flex items-center gap-2 text-sm font-semibold text-white group-hover:text-[#38bdf8] transition-colors">
+              <Link href="/process" className="inline-flex items-center gap-2 text-sm font-semibold text-white group-hover:text-[#38bdf8] transition-colors">
                 Explore Methodology <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
@@ -223,27 +216,13 @@ export default function AgencyLandingPage() {
            <p className="text-neutral-400 max-w-lg mx-auto mb-10 text-sm md:text-base font-medium leading-relaxed relative z-10">
              Join the local leaders who have already scaled their digital impact with Rovult.
            </p>
-           <Link href="#contact" className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-neutral-200 hover:scale-105 active:scale-95 transition-all relative z-10">
+           <Link href="/contact" className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-neutral-200 hover:scale-105 active:scale-95 transition-all relative z-10">
              Start a Conversation
            </Link>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="w-full border-t border-white/5 py-12 px-6 bg-[#050505]">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex flex-col items-center md:items-start gap-2">
-            <span className="text-lg font-bold text-white tracking-tight">Rovult</span>
-            <span className="text-xs text-neutral-500">© {new Date().getFullYear()} Rovult, Precision Makers.</span>
-          </div>
-          <div className="flex gap-6 mt-4 md:mt-0">
-             <Link href="#" className="text-xs font-semibold uppercase tracking-wider text-neutral-500 hover:text-white transition-colors">Privacy</Link>
-             <Link href="#" className="text-xs font-semibold uppercase tracking-wider text-neutral-500 hover:text-white transition-colors">Terms</Link>
-             <Link href="#" className="text-xs font-semibold uppercase tracking-wider text-neutral-500 hover:text-white transition-colors">Twitter</Link>
-             <Link href="#" className="text-xs font-semibold uppercase tracking-wider text-neutral-500 hover:text-white transition-colors">Instagram</Link>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
     </div>
   );
