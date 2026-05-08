@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 
@@ -20,17 +21,19 @@ export default function WorkPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
            <div className="group relative aspect-video bg-[#0a0a0e] rounded-2xl border border-[#1f1f22] overflow-hidden cursor-pointer">
-              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1600" alt="Case Study Alpha" className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700 mix-blend-luminosity" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent"></div>
-              <div className="absolute bottom-6 left-6 z-10 w-[calc(100%-3rem)]">
+              {/* ⚡ Bolt: Optimized image loading using Next.js Image component for automatic WebP conversion and caching */}
+              <Image src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1600" alt="Case Study Alpha" fill className="object-cover opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700 mix-blend-luminosity" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent z-10"></div>
+              <div className="absolute bottom-6 left-6 z-20 w-[calc(100%-3rem)]">
                  <span className="text-[#38bdf8] font-bold text-xl tracking-tight flex items-center gap-2">Case Study Alpha <span className="opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0 duration-300">→</span></span>
                  <p className="text-neutral-300 text-sm mt-2 line-clamp-2">Complete digital transformation for a leading tech logistics firm. Scaled their pipeline by 400% using a headless architecture.</p>
               </div>
            </div>
            <div className="group relative aspect-video bg-[#0a0a0e] rounded-2xl border border-[#1f1f22] overflow-hidden cursor-pointer">
-              <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1600" alt="Case Study Beta" className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700 mix-blend-luminosity hover:mix-blend-normal" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent"></div>
-              <div className="absolute bottom-6 left-6 z-10 w-[calc(100%-3rem)]">
+              {/* ⚡ Bolt: Optimized image loading using Next.js Image component for automatic WebP conversion and caching */}
+              <Image src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1600" alt="Case Study Beta" fill className="object-cover opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700 mix-blend-luminosity hover:mix-blend-normal" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent z-10"></div>
+              <div className="absolute bottom-6 left-6 z-20 w-[calc(100%-3rem)]">
                  <span className="text-[#38bdf8] font-bold text-xl tracking-tight flex items-center gap-2">Case Study Beta <span className="opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0 duration-300">→</span></span>
                  <p className="text-neutral-300 text-sm mt-2 line-clamp-2">SaaS marketing platform redefined. Increased user onboarding completion rates through streamlined onboarding workflows.</p>
               </div>

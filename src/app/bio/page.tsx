@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Logo } from '@/components/Logo';
 import { ArrowRight, Zap, ShieldCheck, Wrench, Check, Star, HelpCircle } from 'lucide-react';
 import { TypewriterSlogan } from '@/components/TypewriterSlogan';
@@ -169,9 +170,10 @@ export default function Home() {
             {/* Premium Trust Badge */}
             <div className="inline-flex items-center gap-3 sm:gap-4 mb-8 sm:mb-10 bg-zinc-900/50 p-2 pr-4 sm:pr-6 rounded-full border border-zinc-800 backdrop-blur-md shadow-lg shadow-black">
               <div className="flex -space-x-2 sm:-space-x-3 rtl:space-x-reverse ml-1">
-                <img className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 1" />
-                <img className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 2" />
-                <img className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1527980965255-d3d416303d12?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 3" />
+                {/* ⚡ Bolt: Optimized image loading using Next.js Image component for automatic WebP conversion and caching */}
+                <Image className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 1" width={32} height={32} />
+                <Image className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 2" width={32} height={32} />
+                <Image className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-zinc-900" src="https://images.unsplash.com/photo-1527980965255-d3d416303d12?auto=format&fit=crop&q=80&w=100&h=100" alt="Pro 3" width={32} height={32} />
               </div>
               <div className="flex flex-col justify-center">
                 <span className="text-slate-200 text-xs font-bold leading-tight flex items-center gap-1.5 cursor-default">

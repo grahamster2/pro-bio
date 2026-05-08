@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
 interface Testimonial {
@@ -76,9 +77,11 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
                   "{testimonial.quote}"
                 </p>
                 <div className="flex items-center gap-3 w-full pt-4 border-t border-zinc-800/60">
-                  <img 
+                  <Image
                     src={testimonial.image} 
                     alt={testimonial.name} 
+                    width={48}
+                    height={48}
                     className="w-12 h-12 rounded-full border-2 border-zinc-800 object-cover" 
                   />
                   <div>
@@ -133,9 +136,11 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
               "{testimonial.quote}"
             </p>
             <div className="flex items-center gap-3 sm:gap-4 w-full pt-4 sm:pt-6 border-t border-zinc-800/60">
-              <img 
+              <Image
                 src={testimonial.image} 
                 alt={testimonial.name} 
+                width={56}
+                height={56}
                 className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-zinc-800 object-cover" 
               />
               <div>
