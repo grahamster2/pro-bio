@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Play, CheckCircle2, Layout, Search, Server, Code2 } from 'lucide-react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
@@ -194,12 +195,14 @@ export default function AgencyLandingPage() {
           <div className="flex-1 w-full relative">
              <div className="aspect-[4/5] bg-[#0a0a0a] rounded-3xl overflow-hidden border border-white/5 relative">
                 {/* Person pointing mockup */}
-                <img 
+                {/* ⚡ Bolt: Optimized image loading using Next.js Image component for automatic WebP conversion and caching */}
+                <Image
                   src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800&h=1000" 
                   alt="Precision engineering" 
-                  className="w-full h-full object-cover grayscale opacity-60 mix-blend-luminosity brightness-75 transition-all duration-700 hover:grayscale-0 hover:opacity-100"
+                  fill
+                  className="object-cover grayscale opacity-60 mix-blend-luminosity brightness-75 transition-all duration-700 hover:grayscale-0 hover:opacity-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent z-10"></div>
              </div>
           </div>
         </div>

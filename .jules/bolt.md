@@ -1,0 +1,3 @@
+## 2026-05-08 - Next.js Image Optimization
+**Learning:** Raw `<img>` tags referencing massive external images (like from Unsplash) bypass Next.js automatic image optimization and cause heavy bandwidth usage and layout shifts, representing a significant frontend bottleneck. Using `<Image fill />` with the `object-cover` class correctly optimizes this without breaking existing absolute layouts.
+**Action:** Next time, always check for raw `<img>` tags when working in a Next.js application, especially in marketing or index pages loaded with large assets, and optimize them using the `next/image` component.
