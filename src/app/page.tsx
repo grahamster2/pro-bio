@@ -1,166 +1,136 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Play, CheckCircle2, Layout, Search, Server, Code2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Star, TrendingUp, Zap } from 'lucide-react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Rovult | precision digital craft',
-  description: 'Websites that work as hard as you do.',
+  title: 'Rovult | Websites that get more customers',
+  description: 'We build fast, professional websites for local service businesses.',
 };
 
 export default function AgencyLandingPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#050505] text-[#f4f4f5] overflow-x-hidden selection:bg-[#38bdf8] selection:text-white font-sans">
+    <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-zinc-100 selection:bg-white selection:text-black">
       
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative pt-40 pb-32 flex flex-col items-center text-center px-4 overflow-hidden min-h-[80vh] justify-center -mt-24">
-        {/* Background Video */}
-        <div className="absolute inset-0 z-0 opacity-40 mix-blend-screen">
-           <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
-               <source src="/hero-bg.mp4" type="video/mp4" />
-           </video>
-           <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#050505]/40 to-[#050505] pointer-events-none"></div>
-        </div>
-
-        {/* Subtle glow behind hero */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#38bdf8] rounded-[100%] opacity-15 blur-[120px] pointer-events-none mix-blend-screen z-0"></div>
-        
-        <h1 className="relative z-10 mt-12 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-6 max-w-4xl leading-[1.05]">
+      <section className="pt-32 pb-32 px-6 flex flex-col items-center text-center justify-center min-h-[70vh]">
+        <span className="text-sm font-semibold tracking-wide text-white uppercase mb-4">Websites for local business</span>
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6 max-w-4xl leading-tight">
           Websites that work as hard as you do.
         </h1>
-        <p className="relative z-10 text-lg md:text-xl text-neutral-400 font-medium mb-10 max-w-2xl">
-          Driving local business growth through precision digital craft and high-velocity performance.
+        <p className="text-lg md:text-xl text-zinc-400 mb-10 max-w-2xl leading-relaxed">
+          Running a business is hard enough. Your website should be the easiest part. We build fast, reliable sites that turn visitors into customers.
         </p>
         
-        <div className="relative z-10 flex flex-col sm:flex-row gap-4 w-full justify-center max-w-sm sm:max-w-none mx-auto">
-          <Link href="/contact" className="w-full sm:w-auto px-8 py-3.5 bg-white rounded-full font-semibold text-black transition-all hover:scale-105 active:scale-95 flex justify-center items-center">
-            Get Started
+        <div className="flex flex-col sm:flex-row gap-4 w-full justify-center max-w-sm sm:max-w-none">
+          <Link href="/contact" className="px-8 py-4 bg-white rounded-full font-bold text-black hover:bg-zinc-200 transition-all text-center">
+            Get a Free Quote
           </Link>
-          <Link href="/work" className="w-full sm:w-auto px-8 py-3.5 bg-[#121212] border border-white/10 rounded-full font-semibold text-white transition-all hover:bg-[#1a1a1a] active:scale-95 flex justify-center items-center gap-2">
-            View Showreel
+          <Link href="/work" className="px-8 py-4 bg-zinc-900 border border-zinc-800 rounded-full font-bold text-white hover:bg-zinc-800 transition-all text-center">
+            See Our Work
           </Link>
         </div>
       </section>
 
-      {/* Hero Image / Dashboard Mockup */}
-      <section className="relative px-4 pb-24 md:pb-32 -mt-4 z-20">
-        <div className="max-w-6xl mx-auto rounded-xl border border-white/5 bg-[#0a0a0a] p-2 md:p-4 shadow-2xl relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#050505] z-10 pointer-events-none rounded-xl"></div>
-          {/* Mockup Frame */}
-          <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-[#0f0f11] rounded-lg border border-[#1f1f22] overflow-hidden relative shadow-inner">
-             {/* Fake UI Header */}
-             <div className="h-10 border-b border-[#1f1f22] flex items-center px-4 gap-2">
-                <div className="flex gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#ef4444]"></div>
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#eab308]"></div>
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#22c55e]"></div>
-                </div>
-                <div className="mx-auto w-48 h-5 bg-[#1a1a1c] rounded-md border border-[#27272a] hidden md:block"></div>
-             </div>
-             {/* Fake UI Content */}
-             <div className="p-6 md:p-10 flex flex-col gap-6 opacity-60">
-                <div className="flex justify-between items-center">
-                  <div className="w-1/3 h-8 bg-[#1f1f22] rounded-md"></div>
-                  <div className="flex gap-3">
-                    <div className="w-24 h-8 bg-[#1f1f22] rounded-full"></div>
-                    <div className="w-24 h-8 bg-[#38bdf8] rounded-full opacity-20"></div>
+      {/* Proof Section (Replacing Three-Feature-Cards and Dashboard) */}
+      <section className="py-32 px-6 border-t border-zinc-900">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                Real results for real businesses.
+              </h2>
+              <p className="text-zinc-400 text-lg mb-8 leading-relaxed">
+                We don't do generic templates. We build custom sites that actually help you scale. Last month, we helped a local logistics firm grow their pipeline by 400%.
+              </p>
+              
+              <div className="space-y-6">
+                <div className="flex gap-4 items-start">
+                  <div className="w-12 h-12 rounded bg-zinc-900 flex items-center justify-center shrink-0 border border-zinc-800">
+                    <TrendingUp className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white">400% Pipeline Growth</h4>
+                    <p className="text-zinc-400 text-sm">After moving to our custom headless architecture, leads started flowing immediately.</p>
                   </div>
                 </div>
-                <div className="grid grid-cols-3 gap-6">
-                  <div className="h-32 bg-[#1f1f22] border border-[#27272a] rounded-xl"></div>
-                  <div className="h-32 bg-[#1f1f22] border border-[#27272a] rounded-xl"></div>
-                  <div className="h-32 bg-[#1f1f22] border border-[#27272a] rounded-xl"></div>
+                
+                <div className="flex gap-4 items-start">
+                  <div className="w-12 h-12 rounded bg-zinc-900 flex items-center justify-center shrink-0 border border-zinc-800">
+                    <Zap className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white">Lighthouse Scores over 95</h4>
+                    <p className="text-zinc-400 text-sm">Our sites load in milliseconds, and they're optimized for Google search results from day one.</p>
+                  </div>
                 </div>
-                <div className="space-y-3 mt-4">
-                  <div className="h-12 bg-[#1f1f22] rounded-md flex items-center px-4"><div className="w-3/4 h-2 bg-[#27272a] rounded-full"></div></div>
-                  <div className="h-12 bg-[#1f1f22] rounded-md flex items-center px-4"><div className="w-1/2 h-2 bg-[#27272a] rounded-full"></div></div>
-                  <div className="h-12 bg-[#1f1f22] rounded-md flex items-center px-4"><div className="w-5/6 h-2 bg-[#27272a] rounded-full"></div></div>
+
+                <div className="flex gap-4 items-start">
+                  <div className="w-12 h-12 rounded bg-zinc-900 flex items-center justify-center shrink-0 border border-zinc-800">
+                    <CheckCircle2 className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white">Built-in Local SEO</h4>
+                    <p className="text-zinc-400 text-sm">We make sure people in your neighborhood can find your business when they need individual services.</p>
+                  </div>
                 </div>
-             </div>
+              </div>
+            </div>
+
+            <div className="bg-zinc-900 rounded-2xl border border-zinc-800 p-8">
+               <div className="flex items-center gap-2 mb-6">
+                  {[1,2,3,4,5].map(i => <Star key={i} className="w-5 h-5 fill-white text-white" />)}
+               </div>
+               <p className="text-xl text-white font-medium italic mb-6 leading-relaxed">
+                 "Rovult handled everything. They understood exactly what we needed to grow our local presence. Within two weeks of launch, our leads doubled."
+               </p>
+               <div className="flex items-center gap-3">
+                 <div className="w-10 h-10 rounded-full bg-zinc-800" />
+                 <div>
+                    <p className="font-bold text-white text-sm">John D.</p>
+                    <p className="text-zinc-500 text-xs">Owner, Alpha Logistics</p>
+                 </div>
+               </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Expertise Section */}
-      <section className="px-6 py-20 max-w-6xl mx-auto w-full" id="services">
-        <div className="mb-12">
-          <span className="text-[11px] font-bold tracking-[0.15em] text-[#38bdf8] uppercase block mb-3">Expertise</span>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-8">Engineered for Impact</h2>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-          
-          {/* Web Design & Strategy */}
-          <div className="md:col-span-2 p-8 md:p-10 rounded-2xl bg-[#0a0a0e] border border-[#1f1f22] group relative overflow-hidden transition-all hover:bg-[#0f0f13]">
-            <div className="w-10 h-10 rounded-full bg-[#1e293b] flex items-center justify-center mb-6 text-[#38bdf8]">
-              <Layout className="w-5 h-5" />
-            </div>
-            <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Web Design & Strategy</h3>
-            <p className="text-neutral-400 text-sm md:text-base mb-12 max-w-md leading-relaxed font-medium">
-              We don&apos;t just build sites; we architect digital conversion machines designed to capture intent and drive action.
+      <section className="py-32 px-6 bg-zinc-950 border-t border-zinc-900" id="services">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">What we do.</h2>
+            <p className="text-zinc-400 text-lg max-w-xl">
+              We handle the tech so you can focus on your work. From design to hosting, we've got you covered.
             </p>
-            <div className="mt-auto">
-              <Link href="/process" className="inline-flex items-center gap-2 text-sm font-semibold text-white group-hover:text-[#38bdf8] transition-colors">
-                Explore Methodology <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="p-10 rounded-2xl bg-[#0a0a0a] border border-zinc-800 hover:border-zinc-700 transition-colors">
+              <h3 className="text-2xl font-bold text-white mb-4">Web Design that sells</h3>
+              <p className="text-zinc-400 mb-6 leading-relaxed">
+                Your website shouldn't just look good—it should work. we design every page to make it as easy as possible for your customers to contact you.
+              </p>
+              <Link href="/process" className="inline-flex items-center gap-2 text-sm font-bold text-white hover:underline underline-offset-4">
+                How we work <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-          </div>
 
-          {/* SEO Dominance */}
-          <div className="p-8 md:p-10 rounded-2xl bg-[#0a0a0e] border border-[#1f1f22] relative overflow-hidden group hover:bg-[#0f0f13] transition-all">
-            <div className="absolute inset-0 z-0 flex items-center justify-center opacity-10 blur-sm pointer-events-none">
-               <span className="text-8xl font-black text-[#38bdf8]">SEO</span>
-            </div>
-            <div className="relative z-10 h-full flex flex-col">
-              <div className="w-10 h-10 rounded-full bg-[#1e293b] flex items-center justify-center mb-6 text-[#38bdf8]">
-                <Search className="w-5 h-5" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">SEO Dominance</h3>
-              <p className="text-neutral-400 text-sm leading-relaxed mt-auto font-medium">
-                Visibility is the new currency. We put your business where your customers are looking.
+            <div className="p-10 rounded-2xl bg-[#0a0a0a] border border-zinc-800 hover:border-zinc-700 transition-colors">
+              <h3 className="text-2xl font-bold text-white mb-4">Fast, Secure Hosting</h3>
+              <p className="text-zinc-400 mb-6 leading-relaxed">
+                We use global edge computing to make your site load instantly for every user, anywhere in the world. No maintenance required from your side.
               </p>
-            </div>
-          </div>
-
-          {/* Edge Hosting */}
-          <div className="p-8 md:p-10 rounded-2xl bg-[#0a0a0e] border border-[#1f1f22] group hover:bg-[#0f0f13] transition-all flex flex-col justify-end">
-            <div className="w-10 h-10 rounded-full bg-[#1e293b] flex items-center justify-center mb-6 text-[#38bdf8]">
-              <Server className="w-5 h-5" />
-            </div>
-            <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Edge Hosting</h3>
-            <p className="text-neutral-400 text-sm leading-relaxed font-medium max-w-[250px]">
-              Sub-millisecond performance. Global distribution. Security that never sleeps.
-            </p>
-          </div>
-
-          {/* Precision Digital Craft */}
-          <div className="md:col-span-2 p-8 md:p-10 rounded-2xl bg-[#0a0a0e] border border-[#1f1f22] group hover:bg-[#0f0f13] transition-all flex flex-col md:flex-row md:items-center gap-8 relative overflow-hidden">
-            {/* Visual Blob */}
-            <div className="w-40 h-40 rounded-full bg-gradient-to-tr from-[#0ea5e9] to-[#020617] blur-2xl opacity-20 absolute top-1/2 left-1/4 -translate-y-1/2"></div>
-            
-            <div className="relative z-10 flex-1">
-               <div className="w-32 h-32 rounded-full border border-white/5 bg-[#121212] flex items-center justify-center shadow-2xl relative">
-                  <div className="absolute inset-0 rounded-full bg-[#38bdf8] blur-xl opacity-10"></div>
-                  <div className="text-center">
-                    <span className="block text-xl font-bold text-white">poly</span>
-                    <span className="block text-xs text-neutral-500 font-medium tracking-widest mt-1">SAFE ZONE</span>
-                  </div>
-               </div>
-            </div>
-
-            <div className="relative z-10 flex-[1.5] flex flex-col justify-center">
-              <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Precision Digital Craft</h3>
-              <p className="text-neutral-400 text-sm md:text-base leading-relaxed mb-6 font-medium">
-                Every pixel is intentional. Every line of code is optimized. We treat digital assets with the same mindset as physical architecture.
-              </p>
-              <div className="flex gap-2">
-                 <span className="px-3 py-1 bg-[#1a1a1c] rounded border border-[#27272a] text-[10px] uppercase font-bold tracking-wider text-neutral-300">Advanced</span>
-                 <span className="px-3 py-1 bg-[#1a1a1c] rounded border border-[#27272a] text-[10px] uppercase font-bold tracking-wider text-neutral-300">Foundation</span>
-              </div>
+              <ul className="space-y-2 text-sm text-zinc-500">
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white" /> Auto-scaling servers</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white" /> Daily backups</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white" /> DDoS protection</li>
+              </ul>
             </div>
           </div>
 
@@ -194,11 +164,9 @@ export default function AgencyLandingPage() {
           </div>
           <div className="flex-1 w-full relative">
              <div className="aspect-[4/5] bg-[#0a0a0a] rounded-3xl overflow-hidden border border-white/5 relative">
-                {/* Person pointing mockup */}
-                {/* ⚡ Bolt: Optimized image loading using Next.js Image component for automatic WebP conversion and caching */}
                 <Image
-                  src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800&h=1000" 
-                  alt="Precision engineering" 
+                  src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800&h=1000"
+                  alt="Precision engineering"
                   fill
                   className="object-cover grayscale opacity-60 mix-blend-luminosity brightness-75 transition-all duration-700 hover:grayscale-0 hover:opacity-100"
                 />
@@ -208,19 +176,17 @@ export default function AgencyLandingPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="px-4 py-20 pb-32 max-w-4xl mx-auto w-full">
-        <div className="bg-[#0a0a0c] border border-white/5 rounded-3xl p-12 md:p-20 text-center relative overflow-hidden flex flex-col items-center shadow-2xl">
-           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#38bdf8] rounded-full blur-[100px] opacity-10 pointer-events-none"></div>
-           
-           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight relative z-10">
-             Ready to build the future?
+      {/* Simplified CTA Section */}
+      <section className="py-32 px-6">
+        <div className="max-w-4xl mx-auto bg-white rounded-3xl p-12 md:p-20 text-center">
+           <h2 className="text-3xl md:text-5xl font-bold text-black mb-6 tracking-tight">
+             Ready to grow?
            </h2>
-           <p className="text-neutral-400 max-w-lg mx-auto mb-10 text-sm md:text-base font-medium leading-relaxed relative z-10">
-             Join the local leaders who have already scaled their digital impact with Rovult.
+           <p className="text-zinc-600 max-w-lg mx-auto mb-10 text-lg leading-relaxed">
+             Join the dozens of local business owners who have upgraded their digital presence with us.
            </p>
-           <Link href="/contact" className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-neutral-200 hover:scale-105 active:scale-95 transition-all relative z-10">
-             Start a Conversation
+           <Link href="/contact" className="px-10 py-5 bg-black text-white font-bold rounded-full hover:bg-zinc-800 transition-all inline-block">
+             Let's Chat
            </Link>
         </div>
       </section>

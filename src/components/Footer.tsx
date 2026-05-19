@@ -2,18 +2,17 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className="w-full border-t border-white/5 py-12 px-6 bg-[#050505]">
+    <footer className="w-full border-t border-zinc-900 py-12 px-6 bg-[#0a0a0a]">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="flex flex-col items-center md:items-start gap-2">
-          <Link href="/" className="text-lg font-bold text-white tracking-tight hover:text-[#38bdf8] transition-colors">Rovult</Link>
-          <span className="text-xs text-neutral-500">© {new Date().getFullYear()} Rovult, Precision Makers.</span>
+        <div className="flex flex-col items-center md:items-start gap-1">
+          <Link href="/" className="text-lg font-bold text-white tracking-tight hover:text-zinc-400 transition-colors">Rovult</Link>
+          <span className="text-xs text-zinc-500">© {new Date().getFullYear()} Rovult.</span>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-6 mt-4 md:mt-0">
-           <Link href="/bio" className="text-xs font-bold uppercase tracking-wider text-[#38bdf8] hover:text-white transition-colors bg-[#38bdf8]/10 px-3 py-1.5 rounded-full border border-[#38bdf8]/20">Link-In-Bio Platform</Link>
-           <Link href="/privacy" className="text-xs font-semibold uppercase tracking-wider text-neutral-500 hover:text-white transition-colors">Privacy</Link>
-           <Link href="/tos" className="text-xs font-semibold uppercase tracking-wider text-neutral-500 hover:text-white transition-colors">Terms</Link>
-           <Link href="#" className="text-xs font-semibold uppercase tracking-wider text-neutral-500 hover:text-white transition-colors">Twitter</Link>
-           <Link href="#" className="text-xs font-semibold uppercase tracking-wider text-neutral-500 hover:text-white transition-colors">Instagram</Link>
+        <div className="flex flex-wrap items-center justify-center gap-6 text-sm font-medium">
+           <Link href="/bio" className="text-zinc-400 hover:text-white transition-colors">Digital Business Card</Link>
+           <Link href="/privacy" className="text-zinc-400 hover:text-white transition-colors">Privacy</Link>
+           <Link href="/tos" className="text-zinc-400 hover:text-white transition-colors">Terms</Link>
+           <Link href="#" className="text-zinc-400 hover:text-white transition-colors">Twitter</Link>
         </div>
       </div>
     </footer>
