@@ -27,7 +27,7 @@ export default function AgencyLandingPage() {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 w-full justify-center max-w-sm sm:max-w-none">
-          <Link href="/contact" className="px-8 py-4 bg-white rounded-full font-bold text-black hover:bg-zinc-200 transition-all text-center">
+          <Link href="/start" className="px-8 py-4 bg-white rounded-full font-bold text-black hover:bg-zinc-200 transition-all text-center">
             Get a Free Quote
           </Link>
           <Link href="/work" className="px-8 py-4 bg-zinc-900 border border-zinc-800 rounded-full font-bold text-white hover:bg-zinc-800 transition-all text-center">
@@ -185,7 +185,7 @@ export default function AgencyLandingPage() {
            <p className="text-zinc-600 max-w-lg mx-auto mb-10 text-lg leading-relaxed">
              No contracts, no confusing packages. Just tell us about your business and we'll take it from there.
            </p>
-           <Link href="/contact" className="px-10 py-5 bg-black text-white font-bold rounded-full hover:bg-zinc-800 transition-all inline-block">
+           <Link href="/start" className="px-10 py-5 bg-black text-white font-bold rounded-full hover:bg-zinc-800 transition-all inline-block">
              Let's Chat
            </Link>
         </div>

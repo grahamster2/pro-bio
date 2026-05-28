@@ -12,8 +12,8 @@ export function Navigation() {
         <Link href="/process" className="hover:text-white transition-colors">Process</Link>
         <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
       </div>
-      <Link 
-        href="/contact"
+      <Link
+        href="/start"
         className="text-sm font-semibold text-black bg-white rounded-full px-5 py-2 hover:bg-neutral-200 transition-colors"
       >
         Start Project
