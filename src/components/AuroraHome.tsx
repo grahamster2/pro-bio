@@ -62,6 +62,7 @@ export default function AuroraHome() {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [leadSubmittedOnly, setLeadSubmittedOnly] = useState(false);
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -112,7 +113,18 @@ export default function AuroraHome() {
         }),
       });
       if (!res.ok) throw new Error('Something went wrong. Please try again or email us directly.');
+      
+      // Store in sessionStorage to seamlessly pre-populate /start
+      sessionStorage.setItem('rovult_lead_data', JSON.stringify({
+        fullName: `${form.firstName} ${form.lastName}`.trim(),
+        email: form.email,
+        phone: form.phone,
+        businessName: form.business,
+        description: form.message,
+      }));
+      
       setSuccess(true);
+      setLeadSubmittedOnly(false);
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : 'Something went wrong.');
     } finally {
@@ -443,13 +455,38 @@ export default function AuroraHome() {
                     </button>
                   </div>
                 </div>
-              ) : (
+              ) : leadSubmittedOnly ? (
                 <div className="form-success show">
                   <div className="form-success-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} width="28" height="28"><path d="M5 12l5 5L20 7" /></svg>
                   </div>
                   <h4>Brief <span className="italic">received.</span></h4>
                   <p>Thanks — we&apos;ll review and reply within 24 hours. Keep an eye on your inbox.</p>
+                </div>
+              ) : (
+                <div className="form-success show flex flex-col items-center text-center">
+                  <div className="form-success-icon mb-4">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} width="28" height="28"><path d="M5 12l5 5L20 7" /></svg>
+                  </div>
+                  <h4 className="text-xl font-bold text-white mb-2">Brief <span className="italic">received.</span></h4>
+                  <p className="text-zinc-400 text-sm mb-6 leading-relaxed">
+                    Thanks! We&apos;ve received your initial details. Would you like to customize your site features and design preferences now? (Takes ~5 mins)
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3 w-full justify-center">
+                    <Link
+                      href="/start?from=home"
+                      className="bg-white text-black font-bold rounded-full px-6 py-3 hover:bg-neutral-200 text-sm transition-all font-semibold animate-pulse"
+                    >
+                      Customize my site now
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setLeadSubmittedOnly(true)}
+                      className="bg-zinc-950 border border-zinc-800 text-white rounded-full px-6 py-3 hover:bg-zinc-900 text-sm transition-all font-semibold"
+                    >
+                      No thanks, just email me
+                    </button>
+                  </div>
                 </div>
               )}
             </form>

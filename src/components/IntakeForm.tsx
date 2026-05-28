@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   ArrowLeft,
@@ -266,6 +266,39 @@ export function IntakeForm() {
   const [stage, setStage] = useState<'lead' | 'choice' | 'intake'>('lead');
   const [leadMessage, setLeadMessage] = useState('');
   const [leadErrors, setLeadErrors] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const stored = sessionStorage.getItem('rovult_lead_data');
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          setData((prev) => ({
+            ...prev,
+            contact: {
+              ...prev.contact,
+              fullName: parsed.fullName || '',
+              email: parsed.email || '',
+              phone: parsed.phone || '',
+              businessName: parsed.businessName || '',
+            },
+            business: {
+              ...prev.business,
+              description: parsed.description || '',
+            }
+          }));
+
+          const params = new URLSearchParams(window.location.search);
+          if (params.get('from') === 'home') {
+            setStage('intake');
+            setStep(2);
+          }
+        } catch (e) {
+          console.error('Error parsing stored lead data:', e);
+        }
+      }
+    }
+  }, []);
 
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
