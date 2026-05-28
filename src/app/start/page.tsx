@@ -17,28 +17,30 @@ export default function StartPage() {
 
       <Navigation />
 
-      <main className="flex-1 pt-40 pb-24 relative z-10 narrow w-full">
-        <div className="contact-glow" />
-        <div className="text-center mb-16 relative z-10">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6" style={{ fontFamily: 'var(--display)', letterSpacing: '-0.04em' }}>
-            Let&apos;s build your <span style={{
-              fontWeight: 300,
-              fontStyle: 'normal',
-              background: 'linear-gradient(180deg, var(--blue-300) 0%, var(--blue-500) 60%, var(--blue-700) 100%)',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-              color: 'transparent',
-              letterSpacing: '-0.045em'
-            }} className="italic font-light">website.</span>
-          </h1>
-          <p className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-2xl mx-auto">
-            Tell us about your business. It only takes a minute to get started,
-            and we&apos;ll design the rest together.
-          </p>
-        </div>
+      <main className="flex-1 pt-48 pb-24 relative z-10 w-full">
+        <div className="narrow">
+          <div className="contact-glow" />
+          <div className="text-center mb-16 relative z-10">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6" style={{ fontFamily: 'var(--display)', letterSpacing: '-0.04em' }}>
+              Let&apos;s build your <span style={{
+                fontWeight: 300,
+                fontStyle: 'normal',
+                background: 'linear-gradient(180deg, var(--blue-300) 0%, var(--blue-500) 60%, var(--blue-700) 100%)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+                letterSpacing: '-0.045em'
+              }} className="italic font-light">website.</span>
+            </h1>
+            <p className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-2xl mx-auto">
+              Tell us about your business. It only takes a minute to get started,
+              and we&apos;ll design the rest together.
+            </p>
+          </div>
 
-        <div className="relative z-10">
-          <IntakeForm />
+          <div className="relative z-10">
+            <IntakeForm />
+          </div>
         </div>
       </main>
 
