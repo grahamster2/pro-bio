@@ -9,12 +9,17 @@ export const metadata: Metadata = {
 
 export default function StartPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-zinc-100 selection:bg-white selection:text-black">
+    <div className="aurora-page min-h-screen flex flex-col bg-[#050505] text-[#f4f4f5] font-sans selection:bg-white selection:text-black">
+      <div className="aurora">
+        <div className="aurora-grain" />
+        <div className="aurora-vignette" />
+      </div>
+
       <Navigation />
 
-      <main className="flex-1 pt-32 px-6 max-w-3xl mx-auto w-full pb-20">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
+      <main className="flex-1 pt-40 pb-24 relative z-10 narrow w-full">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6" style={{ fontFamily: 'var(--display)' }}>
             Let&apos;s build your website
           </h1>
           <p className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-2xl mx-auto">

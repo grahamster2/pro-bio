@@ -61,14 +61,17 @@ const PLANS = [
 
 export default function PlansPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#050505] text-[#f4f4f5] font-sans selection:bg-white selection:text-black">
+    <div className="aurora-page min-h-screen flex flex-col bg-[#050505] text-[#f4f4f5] font-sans selection:bg-white selection:text-black">
+      <div className="aurora">
+        <div className="aurora-grain" />
+        <div className="aurora-vignette" />
+      </div>
+
       <Navigation />
 
-      <main className="flex-1 pt-32 px-6 pb-24 max-w-6xl mx-auto w-full relative">
-        <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#38bdf8] rounded-full blur-[150px] opacity-[0.06] pointer-events-none" />
-
-        <div className="text-center mb-16 relative z-10">
-          <span className="text-xs font-bold tracking-widest text-[#38bdf8] uppercase bg-[#38bdf8]/10 border border-[#38bdf8]/20 px-3 py-1.5 rounded-full inline-block mb-4">
+      <main className="flex-1 pt-40 pb-24 relative z-10 container w-full">
+        <div className="text-center mb-16 relative z-10 flex flex-col items-center">
+          <span className="eyebrow mb-4">
             Subscription Plans
           </span>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
@@ -98,15 +101,15 @@ export default function PlansPage() {
               key={plan.name}
               className={`flex flex-col justify-between rounded-3xl p-8 bg-[#0a0a0c] border transition-all ${
                 plan.popular
-                  ? 'border-[#38bdf8] shadow-[0_0_30px_rgba(56,189,248,0.15)] scale-[1.02] lg:translate-y-[-8px]'
-                  : 'border-white/5 hover:border-white/10'
+                  ? 'border-[var(--blue-500)] shadow-[0_0_32px_var(--blue-glow)] scale-[1.02] lg:translate-y-[-8px] bg-white/[0.02]'
+                  : 'border-white/10 hover:border-white/20 bg-white/[0.01]'
               }`}
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-xl font-bold text-white">{plan.name}</h3>
                   {plan.popular && (
-                    <span className="text-xs font-bold text-[#38bdf8] bg-[#38bdf8]/10 px-2.5 py-1 rounded-full">
+                    <span className="text-xs font-bold text-[var(--blue-300)] bg-[var(--blue-500)]/15 border border-[var(--blue-500)]/20 px-2.5 py-1 rounded-full">
                       Most Popular
                     </span>
                   )}
@@ -122,7 +125,7 @@ export default function PlansPage() {
                 <ul className="space-y-4 mb-8">
                   {plan.features.map((feat) => (
                     <li key={feat} className="flex gap-3 text-sm text-zinc-300">
-                      <Check className="w-4 h-4 text-[#38bdf8] shrink-0 mt-0.5" />
+                      <Check className="w-4 h-4 text-[var(--blue-300)] shrink-0 mt-0.5" />
                       <span>{feat}</span>
                     </li>
                   ))}
@@ -130,11 +133,12 @@ export default function PlansPage() {
               </div>
               <Link
                 href="/start"
-                className={`w-full py-4 text-center font-bold rounded-xl transition-all ${
+                className={`w-full py-4 text-center font-bold rounded-full transition-all ${
                   plan.popular
-                    ? 'bg-[#38bdf8] text-black hover:bg-[#58cbfb]'
-                    : 'bg-zinc-900 text-white hover:bg-zinc-800 border border-zinc-800'
+                    ? 'bg-white text-black hover:bg-neutral-200'
+                    : 'bg-transparent text-white border border-white/10 hover:bg-white/5'
                 }`}
+                style={plan.popular ? { color: '#000000', backgroundColor: '#ffffff' } : undefined}
               >
                 {plan.cta}
               </Link>

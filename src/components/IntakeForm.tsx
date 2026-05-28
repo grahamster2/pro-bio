@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   ArrowLeft,
@@ -223,29 +223,46 @@ const initialData: FormData = {
 
 /* ----------------------------------------------------------- ui helpers --- */
 
-const inputClass =
-  'w-full bg-[#121212] border border-[#27272a] rounded-lg px-4 py-3 text-white text-base focus:outline-none focus:border-[#38bdf8] transition-colors';
+const inputClass = '';
 const labelClass = 'text-sm font-medium text-neutral-400';
 
 function Field({
   label,
   hint,
   required,
+  errorMsg,
   children,
+  className = "",
 }: {
   label: string;
   hint?: string;
   required?: boolean;
+  errorMsg?: string;
   children: React.ReactNode;
+  className?: string;
 }) {
+  let styledChild = children;
+  if (React.isValidElement(styledChild)) {
+    const props = styledChild.props as any;
+    const isSelect = styledChild.type === 'select';
+    
+    styledChild = React.cloneElement(styledChild as React.ReactElement<any>, {
+      placeholder: " ",
+      className: `${props.className || ''} ${isSelect && props.value ? 'has-value' : ''}`.trim()
+    } as any);
+  }
+
+  const hasError = className.includes('error');
+
   return (
-    <div className="space-y-2">
-      <label className={labelClass}>
+    <div className={`field ${className}`}>
+      {styledChild}
+      <label>
         {label}
         {required && <span className="text-[#38bdf8]"> *</span>}
       </label>
-      {children}
-      {hint && <p className="text-xs text-zinc-500 leading-relaxed">{hint}</p>}
+      {errorMsg && <div className="error-msg">{errorMsg}</div>}
+      {hint && !hasError && <p className="text-[11px] text-zinc-500 font-mono tracking-wide mt-2 pl-2 uppercase">{hint}</p>}
     </div>
   );
 }
@@ -483,6 +500,7 @@ export function IntakeForm() {
           <Link
             href="/"
             className="bg-white text-black font-bold rounded-full px-8 py-4 hover:bg-neutral-200 transition-colors"
+            style={{ color: '#000000', backgroundColor: '#ffffff' }}
           >
             Back to home
           </Link>
@@ -496,24 +514,23 @@ export function IntakeForm() {
 
   if (stage === 'lead') {
     return (
-      <div className="bg-[#0a0a0c] border border-white/5 rounded-3xl p-6 md:p-12 shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[#38bdf8] rounded-full blur-[120px] opacity-10 pointer-events-none" />
-
-        <form onSubmit={handleLeadSubmit} className="relative z-10 space-y-6">
-          <div className="mb-6">
+      <div className="form-card relative overflow-hidden">
+        <form onSubmit={handleLeadSubmit} className="relative z-10 space-y-8">
+          <div className="mb-2">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Tell us about your project</h2>
             <p className="text-zinc-400 leading-relaxed">
               Just a few basic details to get the conversation started. You can choose to provide more details afterward.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-neutral-400">
-                Your name <span className="text-[#38bdf8]">*</span>
-              </label>
+          <div className="form-grid">
+            <Field
+              label="Your name"
+              required
+              errorMsg="Name is required"
+              className={`half ${leadErrors.fullName ? 'error' : ''}`}
+            >
               <input
-                className={`${inputClass} ${leadErrors.fullName ? 'border-red-500/50' : ''}`}
                 value={data.contact.fullName}
                 onChange={(e) => {
                   setData((prev) => ({
@@ -522,18 +539,17 @@ export function IntakeForm() {
                   }));
                   setLeadErrors((errs) => ({ ...errs, fullName: false }));
                 }}
-                placeholder="John Smith"
                 required
               />
-              {leadErrors.fullName && <p className="text-xs text-red-400">Name is required</p>}
-            </div>
+            </Field>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-neutral-400">
-                Business name <span className="text-[#38bdf8]">*</span>
-              </label>
+            <Field
+              label="Business name"
+              required
+              errorMsg="Business name is required"
+              className={`half ${leadErrors.businessName ? 'error' : ''}`}
+            >
               <input
-                className={`${inputClass} ${leadErrors.businessName ? 'border-red-500/50' : ''}`}
                 value={data.contact.businessName}
                 onChange={(e) => {
                   setData((prev) => ({
@@ -542,19 +558,18 @@ export function IntakeForm() {
                   }));
                   setLeadErrors((errs) => ({ ...errs, businessName: false }));
                 }}
-                placeholder="Smith Plumbing"
                 required
               />
-              {leadErrors.businessName && <p className="text-xs text-red-400">Business name is required</p>}
-            </div>
+            </Field>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-neutral-400">
-                Email address <span className="text-[#38bdf8]">*</span>
-              </label>
+            <Field
+              label="Email address"
+              required
+              errorMsg="Valid email is required"
+              className={`half ${leadErrors.email ? 'error' : ''}`}
+            >
               <input
                 type="email"
-                className={`${inputClass} ${leadErrors.email ? 'border-red-500/50' : ''}`}
                 value={data.contact.email}
                 onChange={(e) => {
                   setData((prev) => ({
@@ -563,19 +578,16 @@ export function IntakeForm() {
                   }));
                   setLeadErrors((errs) => ({ ...errs, email: false }));
                 }}
-                placeholder="john@smithplumbing.com"
                 required
               />
-              {leadErrors.email && <p className="text-xs text-red-400">Valid email is required</p>}
-            </div>
+            </Field>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-neutral-400">
-                Phone number (optional)
-              </label>
+            <Field
+              label="Phone number (optional)"
+              className="half"
+            >
               <input
                 type="tel"
-                className={inputClass}
                 value={data.contact.phone}
                 onChange={(e) =>
                   setData((prev) => ({
@@ -583,27 +595,25 @@ export function IntakeForm() {
                     contact: { ...prev.contact, phone: e.target.value },
                   }))
                 }
-                placeholder="(555) 123-4567"
               />
-            </div>
-          </div>
+            </Field>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-neutral-400">
-              What are you looking for in a website? <span className="text-[#38bdf8]">*</span>
-            </label>
-            <textarea
-              rows={4}
-              className={`${inputClass} ${leadErrors.message ? 'border-red-500/50' : ''}`}
-              value={leadMessage}
-              onChange={(e) => {
-                setLeadMessage(e.target.value);
-                setLeadErrors((errs) => ({ ...errs, message: false }));
-              }}
-              placeholder="e.g. A fast website that shows our services, handles quote requests, and helps us show up on Google in our area."
+            <Field
+              label="What are you looking for in a website?"
               required
-            />
-            {leadErrors.message && <p className="text-xs text-red-400">Please describe what you need</p>}
+              errorMsg="Please describe what you need"
+              className={leadErrors.message ? 'error' : ''}
+            >
+              <textarea
+                rows={4}
+                value={leadMessage}
+                onChange={(e) => {
+                  setLeadMessage(e.target.value);
+                  setLeadErrors((errs) => ({ ...errs, message: false }));
+                }}
+                required
+              />
+            </Field>
           </div>
 
           {submitError && (
@@ -620,6 +630,7 @@ export function IntakeForm() {
               type="submit"
               disabled={submitting}
               className="inline-flex items-center justify-center gap-2 bg-white text-black font-bold rounded-full px-8 py-4 hover:bg-neutral-200 transition-colors disabled:opacity-50"
+              style={{ color: '#000000', backgroundColor: '#ffffff' }}
             >
               {submitting ? (
                 <>
@@ -639,12 +650,10 @@ export function IntakeForm() {
 
   if (stage === 'choice') {
     return (
-      <div className="bg-[#0a0a0c] border border-white/5 rounded-3xl p-6 md:p-12 shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[#38bdf8] rounded-full blur-[120px] opacity-10 pointer-events-none" />
-
+      <div className="form-card relative overflow-hidden">
         <div className="relative z-10 flex flex-col items-center text-center max-w-lg mx-auto py-6">
-          <div className="w-16 h-16 rounded-full bg-[#38bdf8]/10 border border-[#38bdf8]/20 flex items-center justify-center mb-6">
-            <Check className="w-8 h-8 text-[#38bdf8]" />
+          <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6" style={{ boxShadow: '0 0 16px rgba(255,255,255,0.05)' }}>
+            <Check className="w-8 h-8 text-white" />
           </div>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
             Request received!
@@ -661,13 +670,14 @@ export function IntakeForm() {
                 setStep(2); // Skip contact info step as we already have it
               }}
               className="inline-flex items-center justify-center gap-2 bg-white text-black font-bold rounded-full px-8 py-4 hover:bg-neutral-200 transition-all"
+              style={{ color: '#000000', backgroundColor: '#ffffff' }}
             >
               Customize my site now <ArrowRight className="w-4 h-4" />
             </button>
             <button
               type="button"
               onClick={() => setSuccess(true)}
-              className="inline-flex items-center justify-center gap-2 bg-zinc-950 border border-zinc-800 text-white rounded-full px-8 py-4 hover:bg-zinc-900 transition-all"
+              className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/10 text-white rounded-full px-8 py-4 hover:bg-white/5 transition-all"
             >
               No thanks, just email me
             </button>
@@ -678,28 +688,30 @@ export function IntakeForm() {
   }
 
   return (
-    <div className="bg-[#0a0a0c] border border-white/5 rounded-3xl p-6 md:p-12 shadow-2xl relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-[#38bdf8] rounded-full blur-[120px] opacity-10 pointer-events-none" />
-
+    <div className="form-card relative overflow-hidden">
       <div className="relative z-10">
         {/* progress */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-sm font-semibold text-[#38bdf8]">
-              Step {step} of {TOTAL_STEPS}
-            </span>
-            <span className="text-sm text-zinc-500">{STEP_TITLES[step - 1]}</span>
+        <div className="form-card-head mb-8 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between border-b border-white/5 pb-6">
+          <div>
+            <h3 className="text-xl font-bold text-white">Project <span className="italic font-light text-zinc-400">intake</span></h3>
+            <span className="text-xs font-mono text-zinc-500 tracking-wider uppercase mt-1 block">{STEP_TITLES[step - 1]}</span>
           </div>
-          <div className="w-full h-2 bg-[#121212] rounded-full overflow-hidden">
-            <div
-              className="h-full bg-[#38bdf8] rounded-full transition-all duration-300"
-              style={{ width: `${progressPct}%` }}
-            />
+          <div className="w-full sm:w-48">
+            <div className="flex items-center justify-between mb-1.5 font-mono text-[10px] text-zinc-400">
+              <span>Step {step} of {TOTAL_STEPS}</span>
+              <span>{Math.round(progressPct)}%</span>
+            </div>
+            <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-white transition-all duration-300"
+                style={{ width: `${progressPct}%`, boxShadow: '0 0 8px #ffffff' }}
+              />
+            </div>
           </div>
         </div>
 
         {/* steps */}
-        <div className="space-y-6">
+        <div className="space-y-8">
           {step === 1 && (
             <Step1 data={data} setField={setField} showRequiredError={showRequiredError} emailValid={emailValid} />
           )}
@@ -740,7 +752,7 @@ export function IntakeForm() {
             <button
               type="button"
               onClick={back}
-              className="inline-flex items-center justify-center gap-2 bg-zinc-900 border border-zinc-800 text-white rounded-full px-8 py-4 hover:bg-zinc-800 transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/10 text-white rounded-full px-8 py-4 hover:bg-white/5 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" /> Back
             </button>
@@ -753,6 +765,7 @@ export function IntakeForm() {
               type="button"
               onClick={next}
               className="inline-flex items-center justify-center gap-2 bg-white text-black font-bold rounded-full px-8 py-4 hover:bg-neutral-200 transition-colors"
+              style={{ color: '#000000', backgroundColor: '#ffffff' }}
             >
               Next <ArrowRight className="w-4 h-4" />
             </button>
@@ -762,6 +775,7 @@ export function IntakeForm() {
               onClick={handleSubmit}
               disabled={submitting || uploading}
               className="inline-flex items-center justify-center gap-2 bg-white text-black font-bold rounded-full px-8 py-4 hover:bg-neutral-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ color: '#000000', backgroundColor: '#ffffff' }}
             >
               {submitting ? (
                 <>
@@ -802,7 +816,7 @@ function CheckGrid({
   onToggle: (value: string) => void;
 }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
       {options.map((opt) => {
         const active = selected.includes(opt);
         return (
@@ -810,15 +824,15 @@ function CheckGrid({
             key={opt}
             type="button"
             onClick={() => onToggle(opt)}
-            className={`flex items-center gap-3 text-left rounded-lg border px-4 py-3 transition-colors ${
+            className={`flex items-center gap-3 text-left rounded-2xl border px-4 py-3.5 transition-all duration-200 ${
               active
-                ? 'bg-[#38bdf8]/10 border-[#38bdf8] text-white'
-                : 'bg-[#121212] border-[#27272a] text-zinc-300 hover:border-zinc-600'
+                ? 'bg-white/10 border-white text-white shadow-[0_0_16px_rgba(255,255,255,0.05)]'
+                : 'bg-white/[0.02] border-white/10 text-zinc-300 hover:border-white/20 hover:text-white'
             }`}
           >
             <span
-              className={`w-5 h-5 rounded flex items-center justify-center shrink-0 border ${
-                active ? 'bg-[#38bdf8] border-[#38bdf8]' : 'border-zinc-600'
+              className={`w-5 h-5 rounded flex items-center justify-center shrink-0 border transition-all ${
+                active ? 'bg-white border-white' : 'border-white/20'
               }`}
             >
               {active && <Check className="w-3.5 h-3.5 text-black" />}
@@ -841,7 +855,7 @@ function RadioGroup({
   onSelect: (value: string) => void;
 }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
       {options.map((opt) => {
         const active = selected === opt;
         return (
@@ -849,18 +863,18 @@ function RadioGroup({
             key={opt}
             type="button"
             onClick={() => onSelect(opt)}
-            className={`flex items-center gap-3 text-left rounded-lg border px-4 py-3 transition-colors ${
+            className={`flex items-center gap-3 text-left rounded-2xl border px-4 py-3.5 transition-all duration-200 ${
               active
-                ? 'bg-[#38bdf8]/10 border-[#38bdf8] text-white'
-                : 'bg-[#121212] border-[#27272a] text-zinc-300 hover:border-zinc-600'
+                ? 'bg-white/10 border-white text-white shadow-[0_0_16px_rgba(255,255,255,0.05)]'
+                : 'bg-white/[0.02] border-white/10 text-zinc-300 hover:border-white/20 hover:text-white'
             }`}
           >
             <span
-              className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 border ${
-                active ? 'border-[#38bdf8]' : 'border-zinc-600'
+              className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 border transition-all ${
+                active ? 'border-white bg-white' : 'border-white/20'
               }`}
             >
-              {active && <span className="w-2.5 h-2.5 rounded-full bg-[#38bdf8]" />}
+              {active && <span className="w-2 h-2 rounded-full bg-black" />}
             </span>
             <span className="text-sm font-medium">{opt}</span>
           </button>
@@ -904,73 +918,72 @@ function Step1({
           reach you.
         </div>
       )}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Field label="Your full name" required>
+      <div className="form-grid">
+        <Field
+          label="Your full name"
+          required
+          className={`half ${showRequiredError && !c.fullName.trim() ? 'error' : ''}`}
+          errorMsg="Name is required"
+        >
           <input
-            className={inputClass}
             value={c.fullName}
             onChange={(e) => setField('contact', 'fullName', e.target.value)}
-            placeholder="John Smith"
           />
         </Field>
-        <Field label="Business name" required>
+        <Field
+          label="Business name"
+          required
+          className={`half ${showRequiredError && !c.businessName.trim() ? 'error' : ''}`}
+          errorMsg="Business name is required"
+        >
           <input
-            className={inputClass}
             value={c.businessName}
             onChange={(e) => setField('contact', 'businessName', e.target.value)}
-            placeholder="Smith Plumbing"
           />
         </Field>
-        <Field label="Phone number" hint="So we can call or text if that's easier.">
+        <Field label="Phone number" hint="So we can call or text if that's easier." className="half">
           <input
-            className={inputClass}
             value={c.phone}
             onChange={(e) => setField('contact', 'phone', e.target.value)}
-            placeholder="(555) 123-4567"
             type="tel"
           />
         </Field>
-        <Field label="Email" required>
+        <Field
+          label="Email"
+          required
+          className={`half ${showRequiredError && (!c.email.trim() || !emailValid) ? 'error' : ''}`}
+          errorMsg="Valid email is required"
+        >
           <input
-            className={inputClass}
             value={c.email}
             onChange={(e) => setField('contact', 'email', e.target.value)}
-            placeholder="john@smithplumbing.com"
             type="email"
           />
-          {showRequiredError && c.email && !emailValid && (
-            <p className="text-xs text-red-400">That email looks off — mind double-checking it?</p>
-          )}
+        </Field>
+        <Field label="Best way to reach you">
+          <select
+            value={c.preferredContact}
+            onChange={(e) => setField('contact', 'preferredContact', e.target.value)}
+          >
+            <option value="">Pick one</option>
+            <option value="Call">Call</option>
+            <option value="Text">Text</option>
+            <option value="Email">Email</option>
+          </select>
+        </Field>
+        <Field label="Business address" hint="Where you're based. Leave blank if you work out of your truck.">
+          <input
+            value={c.businessAddress}
+            onChange={(e) => setField('contact', 'businessAddress', e.target.value)}
+          />
+        </Field>
+        <Field label="Areas you serve" hint="Towns, cities, or how far you'll travel for a job.">
+          <input
+            value={c.serviceAreas}
+            onChange={(e) => setField('contact', 'serviceAreas', e.target.value)}
+          />
         </Field>
       </div>
-      <Field label="Best way to reach you">
-        <select
-          className={inputClass}
-          value={c.preferredContact}
-          onChange={(e) => setField('contact', 'preferredContact', e.target.value)}
-        >
-          <option value="">Pick one</option>
-          <option value="Call">Call</option>
-          <option value="Text">Text</option>
-          <option value="Email">Email</option>
-        </select>
-      </Field>
-      <Field label="Business address" hint="Where you're based. Leave blank if you work out of your truck.">
-        <input
-          className={inputClass}
-          value={c.businessAddress}
-          onChange={(e) => setField('contact', 'businessAddress', e.target.value)}
-          placeholder="123 Main St, Springfield"
-        />
-      </Field>
-      <Field label="Areas you serve" hint="Towns, cities, or how far you'll travel for a job.">
-        <input
-          className={inputClass}
-          value={c.serviceAreas}
-          onChange={(e) => setField('contact', 'serviceAreas', e.target.value)}
-          placeholder="Springfield and within 30 miles"
-        />
-      </Field>
     </>
   );
 }
@@ -984,71 +997,54 @@ function Step2({ data, setField }: { data: FormData; setField: SetField }) {
         title="Tell us about your business"
         subtitle="The more we know, the better your site will fit you. Skip anything you're not sure about."
       />
-      <Field label="What does your business do?" hint="In plain words, like you'd tell a neighbor.">
-        <textarea
-          rows={3}
-          className={inputClass}
-          value={b.description}
-          onChange={(e) => setField('business', 'description', e.target.value)}
-          placeholder="We do residential plumbing — repairs, installs, and emergencies."
-        />
-      </Field>
-      <Field label="Services you offer" hint="List them out — one per line is fine.">
-        <textarea
-          rows={3}
-          className={inputClass}
-          value={b.services}
-          onChange={(e) => setField('business', 'services', e.target.value)}
-          placeholder="Drain cleaning, water heater installs, leak repair..."
-        />
-      </Field>
-      <Field label="Which services make you the most money?" hint="The ones you'd love more calls for.">
-        <input
-          className={inputClass}
-          value={b.priorityServices}
-          onChange={(e) => setField('business', 'priorityServices', e.target.value)}
-          placeholder="Water heater installs, repipes"
-        />
-      </Field>
-      <Field label="What makes you different from the competition?">
-        <textarea
-          rows={2}
-          className={inputClass}
-          value={b.differentiator}
-          onChange={(e) => setField('business', 'differentiator', e.target.value)}
-          placeholder="Family-owned, upfront pricing, we show up on time."
-        />
-      </Field>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Field label="Years in business">
+      <div className="form-grid">
+        <Field label="What does your business do?" hint="In plain words, like you'd tell a neighbor.">
+          <textarea
+            rows={3}
+            value={b.description}
+            onChange={(e) => setField('business', 'description', e.target.value)}
+          />
+        </Field>
+        <Field label="Services you offer" hint="List them out — one per line is fine.">
+          <textarea
+            rows={3}
+            value={b.services}
+            onChange={(e) => setField('business', 'services', e.target.value)}
+          />
+        </Field>
+        <Field label="Which services make you the most money?" hint="The ones you'd love more calls for.">
           <input
-            className={inputClass}
+            value={b.priorityServices}
+            onChange={(e) => setField('business', 'priorityServices', e.target.value)}
+          />
+        </Field>
+        <Field label="What makes you different from the competition?">
+          <textarea
+            rows={2}
+            value={b.differentiator}
+            onChange={(e) => setField('business', 'differentiator', e.target.value)}
+          />
+        </Field>
+        <Field label="Years in business" className="half">
+          <input
             value={b.yearsInBusiness}
             onChange={(e) => setField('business', 'yearsInBusiness', e.target.value)}
-            placeholder="12"
           />
         </Field>
-        <Field label="How many people on the team?">
+        <Field label="How many people on the team?" className="half">
           <input
-            className={inputClass}
             value={b.employees}
             onChange={(e) => setField('business', 'employees', e.target.value)}
-            placeholder="4"
           />
         </Field>
-      </div>
-      <Field label="Business hours">
-        <input
-          className={inputClass}
-          value={b.hours}
-          onChange={(e) => setField('business', 'hours', e.target.value)}
-          placeholder="Mon–Fri 8am–6pm, Sat by appointment"
-        />
-      </Field>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Field label="Do you offer emergency / 24-7 service?">
+        <Field label="Business hours">
+          <input
+            value={b.hours}
+            onChange={(e) => setField('business', 'hours', e.target.value)}
+          />
+        </Field>
+        <Field label="Do you offer emergency / 24-7 service?" className="half">
           <select
-            className={inputClass}
             value={b.emergencyServices}
             onChange={(e) => setField('business', 'emergencyServices', e.target.value)}
           >
@@ -1058,9 +1054,8 @@ function Step2({ data, setField }: { data: FormData; setField: SetField }) {
             ))}
           </select>
         </Field>
-        <Field label="Licensed & insured?">
+        <Field label="Licensed & insured?" className="half">
           <select
-            className={inputClass}
             value={b.licensedInsured}
             onChange={(e) => setField('business', 'licensedInsured', e.target.value)}
           >
@@ -1070,15 +1065,13 @@ function Step2({ data, setField }: { data: FormData; setField: SetField }) {
             ))}
           </select>
         </Field>
+        <Field label="Certifications or awards" hint="Anything that builds trust — licenses, BBB, manufacturer certs.">
+          <input
+            value={b.certifications}
+            onChange={(e) => setField('business', 'certifications', e.target.value)}
+          />
+        </Field>
       </div>
-      <Field label="Certifications or awards" hint="Anything that builds trust — licenses, BBB, manufacturer certs.">
-        <input
-          className={inputClass}
-          value={b.certifications}
-          onChange={(e) => setField('business', 'certifications', e.target.value)}
-          placeholder="Master Plumber License #12345, BBB A+"
-        />
-      </Field>
     </>
   );
 }
@@ -1099,29 +1092,31 @@ function Step3({
         title="What do you want this website to do?"
         subtitle="There's no wrong answer here — pick whatever matters most to you."
       />
-      <Field label="Main goals" hint="Check all that apply.">
-        <CheckGrid
-          options={MAIN_GOALS}
-          selected={data.goals.mainGoals}
-          onToggle={(v) => toggleInArray('goals', 'mainGoals', v)}
-        />
-      </Field>
-      <Field label="When someone lands on your site, what's the #1 thing you want them to do?">
-        <RadioGroup
-          options={PRIMARY_ACTIONS}
-          selected={data.goals.primaryAction}
-          onSelect={(v) => setField('goals', 'primaryAction', v)}
-        />
-      </Field>
-      <Field label="What would make this website a win for you?" hint="6 months from now, what does success look like?">
-        <textarea
-          rows={3}
-          className={inputClass}
-          value={data.goals.successDefinition}
-          onChange={(e) => setField('goals', 'successDefinition', e.target.value)}
-          placeholder="More phone calls and a few new jobs a month from the site."
-        />
-      </Field>
+      <div className="form-grid">
+        <div className="budget-options">
+          <div className="budget-options-label">Main goals (check all that apply)</div>
+          <CheckGrid
+            options={MAIN_GOALS}
+            selected={data.goals.mainGoals}
+            onToggle={(v) => toggleInArray('goals', 'mainGoals', v)}
+          />
+        </div>
+        <div className="budget-options mt-6">
+          <div className="budget-options-label">When someone lands on your site, what's the #1 thing you want them to do?</div>
+          <RadioGroup
+            options={PRIMARY_ACTIONS}
+            selected={data.goals.primaryAction}
+            onSelect={(v) => setField('goals', 'primaryAction', v)}
+          />
+        </div>
+        <Field label="What would make this website a win for you?" hint="6 months from now, what does success look like?">
+          <textarea
+            rows={3}
+            value={data.goals.successDefinition}
+            onChange={(e) => setField('goals', 'successDefinition', e.target.value)}
+          />
+        </Field>
+      </div>
     </>
   );
 }
@@ -1143,66 +1138,55 @@ function Step4({
         title="How should it look and feel?"
         subtitle="Don't overthink it — just tell us what you like. We'll handle the design."
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Field label="Brand colors" hint="If you have them — otherwise we'll suggest some.">
+      <div className="form-grid">
+        <Field label="Brand colors" hint="If you have them — otherwise we'll suggest some." className="half">
           <input
-            className={inputClass}
             value={br.brandColors}
             onChange={(e) => setField('branding', 'brandColors', e.target.value)}
-            placeholder="Navy blue and orange"
           />
         </Field>
-        <Field label="Fonts you like">
+        <Field label="Fonts you like" className="half">
           <input
-            className={inputClass}
             value={br.fonts}
             onChange={(e) => setField('branding', 'fonts', e.target.value)}
-            placeholder="Clean and bold — nothing fancy"
+          />
+        </Field>
+        <Field label="Tagline or slogan" hint="A short line that sums you up, if you have one.">
+          <input
+            value={br.tagline}
+            onChange={(e) => setField('branding', 'tagline', e.target.value)}
+          />
+        </Field>
+        <div className="budget-options">
+          <div className="budget-options-label">Styles that feel like you (check all that apply)</div>
+          <CheckGrid
+            options={STYLE_OPTIONS}
+            selected={br.styles}
+            onToggle={(v) => toggleInArray('branding', 'styles', v)}
+          />
+        </div>
+        <Field label="Websites you like" hint="Paste a few links — competitors or any site you think looks great.">
+          <textarea
+            rows={2}
+            value={br.websitesLiked}
+            onChange={(e) => setField('branding', 'websitesLiked', e.target.value)}
+          />
+        </Field>
+        <Field label="Websites you don't like">
+          <textarea
+            rows={2}
+            value={br.websitesDisliked}
+            onChange={(e) => setField('branding', 'websitesDisliked', e.target.value)}
+          />
+        </Field>
+        <Field label="Anything to avoid?" hint="Colors, styles, or anything that's a hard no.">
+          <textarea
+            rows={2}
+            value={br.avoid}
+            onChange={(e) => setField('branding', 'avoid', e.target.value)}
           />
         </Field>
       </div>
-      <Field label="Tagline or slogan" hint="A short line that sums you up, if you have one.">
-        <input
-          className={inputClass}
-          value={br.tagline}
-          onChange={(e) => setField('branding', 'tagline', e.target.value)}
-          placeholder="Done right, the first time."
-        />
-      </Field>
-      <Field label="Styles that feel like you" hint="Check all that apply.">
-        <CheckGrid
-          options={STYLE_OPTIONS}
-          selected={br.styles}
-          onToggle={(v) => toggleInArray('branding', 'styles', v)}
-        />
-      </Field>
-      <Field label="Websites you like" hint="Paste a few links — competitors or any site you think looks great.">
-        <textarea
-          rows={2}
-          className={inputClass}
-          value={br.websitesLiked}
-          onChange={(e) => setField('branding', 'websitesLiked', e.target.value)}
-          placeholder="example.com — love how clean it is"
-        />
-      </Field>
-      <Field label="Websites you don't like">
-        <textarea
-          rows={2}
-          className={inputClass}
-          value={br.websitesDisliked}
-          onChange={(e) => setField('branding', 'websitesDisliked', e.target.value)}
-          placeholder="example.com — too cluttered"
-        />
-      </Field>
-      <Field label="Anything to avoid?" hint="Colors, styles, or anything that's a hard no.">
-        <textarea
-          rows={2}
-          className={inputClass}
-          value={br.avoid}
-          onChange={(e) => setField('branding', 'avoid', e.target.value)}
-          placeholder="No bright pink, nothing too corporate."
-        />
-      </Field>
     </>
   );
 }
@@ -1216,74 +1200,60 @@ function Step5({ data, setField }: { data: FormData; setField: SetField }) {
         title="Words for your site"
         subtitle="Don't worry about making it perfect — we'll polish everything. Just give us the gist."
       />
-      <Field label="Main headline" hint="The big line people see first. We can write this for you.">
-        <input
-          className={inputClass}
-          value={ct.headline}
-          onChange={(e) => setField('content', 'headline', e.target.value)}
-          placeholder="Reliable plumbing you can count on"
-        />
-      </Field>
-      <Field label="Subheadline" hint="A supporting line under the headline.">
-        <input
-          className={inputClass}
-          value={ct.subheadline}
-          onChange={(e) => setField('content', 'subheadline', e.target.value)}
-          placeholder="Serving Springfield families for over 12 years"
-        />
-      </Field>
-      <Field label="A short description of your company">
-        <textarea
-          rows={3}
-          className={inputClass}
-          value={ct.companyDescription}
-          onChange={(e) => setField('content', 'companyDescription', e.target.value)}
-          placeholder="A couple sentences about who you are and what you do."
-        />
-      </Field>
-      <Field label="Button text" hint="What the main button should say.">
-        <input
-          className={inputClass}
-          value={ct.ctaText}
-          onChange={(e) => setField('content', 'ctaText', e.target.value)}
-          placeholder="Get a free quote"
-        />
-      </Field>
-      <Field label="Your story" hint="How did you get started? People love a good backstory.">
-        <textarea
-          rows={3}
-          className={inputClass}
-          value={ct.companyStory}
-          onChange={(e) => setField('content', 'companyStory', e.target.value)}
-          placeholder="Started in 2012 out of a single truck..."
-        />
-      </Field>
-      <Field label="Your mission" hint="What you're all about.">
-        <textarea
-          rows={2}
-          className={inputClass}
-          value={ct.mission}
-          onChange={(e) => setField('content', 'mission', e.target.value)}
-          placeholder="Honest work, fair prices, no surprises."
-        />
-      </Field>
-      <Field label="Team members" hint="Names and roles, if you'd like them on the site.">
-        <input
-          className={inputClass}
-          value={ct.team}
-          onChange={(e) => setField('content', 'team', e.target.value)}
-          placeholder="John (owner), Mike (lead tech)"
-        />
-      </Field>
-      <Field label="A bit about you, the owner" hint="Optional, but a personal touch builds trust.">
-        <textarea
-          rows={2}
-          className={inputClass}
-          value={ct.ownerBio}
-          onChange={(e) => setField('content', 'ownerBio', e.target.value)}
-          placeholder="John has been a licensed plumber for 20 years..."
-        />
-      </Field>
+      <div className="form-grid">
+        <Field label="Main headline" hint="The big line people see first. We can write this for you.">
+          <input
+            value={ct.headline}
+            onChange={(e) => setField('content', 'headline', e.target.value)}
+          />
+        </Field>
+        <Field label="Subheadline" hint="A supporting line under the headline.">
+          <input
+            value={ct.subheadline}
+            onChange={(e) => setField('content', 'subheadline', e.target.value)}
+          />
+        </Field>
+        <Field label="A short description of your company">
+          <textarea
+            rows={3}
+            value={ct.companyDescription}
+            onChange={(e) => setField('content', 'companyDescription', e.target.value)}
+          />
+        </Field>
+        <Field label="Button text" hint="What the main button should say.">
+          <input
+            value={ct.ctaText}
+            onChange={(e) => setField('content', 'ctaText', e.target.value)}
+          />
+        </Field>
+        <Field label="Your story" hint="How did you get started? People love a good backstory.">
+          <textarea
+            rows={3}
+            value={ct.companyStory}
+            onChange={(e) => setField('content', 'companyStory', e.target.value)}
+          />
+        </Field>
+        <Field label="Your mission" hint="What you're all about.">
+          <textarea
+            rows={2}
+            value={ct.mission}
+            onChange={(e) => setField('content', 'mission', e.target.value)}
+          />
+        </Field>
+        <Field label="Team members" hint="Names and roles, if you'd like them on the site.">
+          <input
+            value={ct.team}
+            onChange={(e) => setField('content', 'team', e.target.value)}
+          />
+        </Field>
+        <Field label="A bit about you, the owner" hint="Optional, but a personal touch builds trust.">
+          <textarea
+            rows={2}
+            value={ct.ownerBio}
+            onChange={(e) => setField('content', 'ownerBio', e.target.value)}
+          />
+        </Field>
+      </div>
     </>
   );
 }
@@ -1297,69 +1267,53 @@ function Step6({ data, setField }: { data: FormData; setField: SetField }) {
         title="Getting found on Google"
         subtitle="This helps the right local customers find you. Skip what you don't know."
       />
-      <Field label="Main city or town you want to rank in">
-        <input
-          className={inputClass}
-          value={s.mainCity}
-          onChange={(e) => setField('seo', 'mainCity', e.target.value)}
-          placeholder="Springfield"
-        />
-      </Field>
-      <Field label="Other areas you'd like to show up in">
-        <input
-          className={inputClass}
-          value={s.additionalAreas}
-          onChange={(e) => setField('seo', 'additionalAreas', e.target.value)}
-          placeholder="Shelbyville, Capital City"
-        />
-      </Field>
-      <Field label="Words customers search to find you" hint="What would you type into Google to find your business?">
-        <input
-          className={inputClass}
-          value={s.keywords}
-          onChange={(e) => setField('seo', 'keywords', e.target.value)}
-          placeholder="emergency plumber near me, water heater repair"
-        />
-      </Field>
-      <Field label="Competitors" hint="Who shows up when you search for your services?">
-        <input
-          className={inputClass}
-          value={s.competitors}
-          onChange={(e) => setField('seo', 'competitors', e.target.value)}
-          placeholder="Names or website links"
-        />
-      </Field>
-      <Field label="Google Business Profile link" hint="Your Google Maps / business listing, if you have one.">
-        <input
-          className={inputClass}
-          value={s.gbpLink}
-          onChange={(e) => setField('seo', 'gbpLink', e.target.value)}
-          placeholder="https://g.page/your-business"
-        />
-      </Field>
-      <Field label="Current website" hint="If you already have one.">
-        <input
-          className={inputClass}
-          value={s.existingUrl}
-          onChange={(e) => setField('seo', 'existingUrl', e.target.value)}
-          placeholder="https://yourbusiness.com"
-        />
-      </Field>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Field label="Domain name" hint="The web address you own or want.">
+      <div className="form-grid">
+        <Field label="Main city or town you want to rank in">
           <input
-            className={inputClass}
-            value={s.existingDomain}
-            onChange={(e) => setField('seo', 'existingDomain', e.target.value)}
-            placeholder="yourbusiness.com"
+            value={s.mainCity}
+            onChange={(e) => setField('seo', 'mainCity', e.target.value)}
           />
         </Field>
-        <Field label="Who hosts your site?" hint="If you know — totally fine if you don't.">
+        <Field label="Other areas you'd like to show up in">
           <input
-            className={inputClass}
+            value={s.additionalAreas}
+            onChange={(e) => setField('seo', 'additionalAreas', e.target.value)}
+          />
+        </Field>
+        <Field label="Words customers search to find you" hint="What would you type into Google to find your business?">
+          <input
+            value={s.keywords}
+            onChange={(e) => setField('seo', 'keywords', e.target.value)}
+          />
+        </Field>
+        <Field label="Competitors" hint="Who shows up when you search for your services?">
+          <input
+            value={s.competitors}
+            onChange={(e) => setField('seo', 'competitors', e.target.value)}
+          />
+        </Field>
+        <Field label="Google Business Profile link" hint="Your Google Maps / business listing, if you have one.">
+          <input
+            value={s.gbpLink}
+            onChange={(e) => setField('seo', 'gbpLink', e.target.value)}
+          />
+        </Field>
+        <Field label="Current website" hint="If you already have one.">
+          <input
+            value={s.existingUrl}
+            onChange={(e) => setField('seo', 'existingUrl', e.target.value)}
+          />
+        </Field>
+        <Field label="Domain name" hint="The web address you own or want." className="half">
+          <input
+            value={s.existingDomain}
+            onChange={(e) => setField('seo', 'existingDomain', e.target.value)}
+          />
+        </Field>
+        <Field label="Who hosts your site?" hint="If you know — totally fine if you don't." className="half">
+          <input
             value={s.hostingProvider}
             onChange={(e) => setField('seo', 'hostingProvider', e.target.value)}
-            placeholder="GoDaddy, Wix, not sure..."
           />
         </Field>
       </div>
@@ -1376,46 +1330,38 @@ function Step7({ data, setField }: { data: FormData; setField: SetField }) {
         title="Social media"
         subtitle="Drop in any profiles you'd like linked on your site. Skip the ones you don't use."
       />
-      <Field label="Facebook">
-        <input
-          className={inputClass}
-          value={so.facebook}
-          onChange={(e) => setField('social', 'facebook', e.target.value)}
-          placeholder="facebook.com/yourbusiness"
-        />
-      </Field>
-      <Field label="Instagram">
-        <input
-          className={inputClass}
-          value={so.instagram}
-          onChange={(e) => setField('social', 'instagram', e.target.value)}
-          placeholder="instagram.com/yourbusiness"
-        />
-      </Field>
-      <Field label="TikTok">
-        <input
-          className={inputClass}
-          value={so.tiktok}
-          onChange={(e) => setField('social', 'tiktok', e.target.value)}
-          placeholder="tiktok.com/@yourbusiness"
-        />
-      </Field>
-      <Field label="YouTube">
-        <input
-          className={inputClass}
-          value={so.youtube}
-          onChange={(e) => setField('social', 'youtube', e.target.value)}
-          placeholder="youtube.com/@yourbusiness"
-        />
-      </Field>
-      <Field label="LinkedIn">
-        <input
-          className={inputClass}
-          value={so.linkedin}
-          onChange={(e) => setField('social', 'linkedin', e.target.value)}
-          placeholder="linkedin.com/company/yourbusiness"
-        />
-      </Field>
+      <div className="form-grid">
+        <Field label="Facebook">
+          <input
+            value={so.facebook}
+            onChange={(e) => setField('social', 'facebook', e.target.value)}
+          />
+        </Field>
+        <Field label="Instagram">
+          <input
+            value={so.instagram}
+            onChange={(e) => setField('social', 'instagram', e.target.value)}
+          />
+        </Field>
+        <Field label="TikTok">
+          <input
+            value={so.tiktok}
+            onChange={(e) => setField('social', 'tiktok', e.target.value)}
+          />
+        </Field>
+        <Field label="YouTube">
+          <input
+            value={so.youtube}
+            onChange={(e) => setField('social', 'youtube', e.target.value)}
+          />
+        </Field>
+        <Field label="LinkedIn">
+          <input
+            value={so.linkedin}
+            onChange={(e) => setField('social', 'linkedin', e.target.value)}
+          />
+        </Field>
+      </div>
     </>
   );
 }
@@ -1428,11 +1374,16 @@ function Step8({ data, toggleInArray }: { data: FormData; toggleInArray: Toggle 
         title="What should your site have?"
         subtitle="Pick the features you'd like. Not sure? Check it anyway — we'll talk it through."
       />
-      <CheckGrid
-        options={FEATURE_OPTIONS}
-        selected={data.features}
-        onToggle={(v) => toggleInArray(null, 'features', v)}
-      />
+      <div className="form-grid">
+        <div className="budget-options">
+          <div className="budget-options-label">Pick the features you'd like (check all that apply)</div>
+          <CheckGrid
+            options={FEATURE_OPTIONS}
+            selected={data.features}
+            onToggle={(v) => toggleInArray(null, 'features', v)}
+          />
+        </div>
+      </div>
     </>
   );
 }
@@ -1463,104 +1414,101 @@ function Step9({
         subtitle="Upload your logo, photos of your work, anything helpful. Then a few final questions."
       />
 
-      {/* uploads */}
-      <Field label="Upload files" hint="Logo, job photos, your old site's images — anything. You can add several.">
-        <label className="flex flex-col items-center justify-center gap-3 w-full bg-[#121212] border border-dashed border-[#27272a] rounded-lg px-4 py-10 text-center cursor-pointer hover:border-[#38bdf8] transition-colors">
-          {uploading ? (
-            <Loader2 className="w-8 h-8 text-[#38bdf8] animate-spin" />
-          ) : (
-            <UploadCloud className="w-8 h-8 text-zinc-500" />
-          )}
-          <span className="text-sm text-zinc-300 font-medium">
-            {uploading ? 'Uploading…' : 'Tap to choose files'}
-          </span>
-          <span className="text-xs text-zinc-500">
-            Photos, logo, PDFs — whatever you&apos;ve got.
-          </span>
-          <input
-            type="file"
-            multiple
-            onChange={handleFiles}
-            disabled={uploading}
-            className="hidden"
-          />
-        </label>
-      </Field>
-
-      {uploadError && (
-        <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-lg text-sm font-medium">
-          {uploadError}
+      <div className="form-grid">
+        <div className="budget-options">
+          <div className="budget-options-label">Upload files</div>
+          <label className="flex flex-col items-center justify-center gap-3 w-full bg-white/5 border border-dashed border-white/10 rounded-2xl px-4 py-10 text-center cursor-pointer hover:border-white/20 transition-colors mt-2">
+            {uploading ? (
+              <Loader2 className="w-8 h-8 text-white animate-spin" />
+            ) : (
+              <UploadCloud className="w-8 h-8 text-zinc-400" />
+            )}
+            <span className="text-sm text-zinc-300 font-medium font-sans">
+              {uploading ? 'Uploading…' : 'Tap to choose files'}
+            </span>
+            <span className="text-xs text-zinc-500 font-sans">
+              Photos, logo, PDFs — whatever you&apos;ve got.
+            </span>
+            <input
+              type="file"
+              multiple
+              onChange={handleFiles}
+              disabled={uploading}
+              className="hidden"
+            />
+          </label>
+          <div className="text-[10px] text-zinc-500 font-mono tracking-wide mt-2 pl-2 uppercase">
+            Logo, job photos, your old site's images — anything. You can add several.
+          </div>
         </div>
-      )}
 
-      {uploadedFiles.length > 0 && (
-        <ul className="space-y-2">
-          {uploadedFiles.map((f) => (
-            <li
-              key={f.url}
-              className="flex items-center justify-between gap-3 bg-[#121212] border border-[#27272a] rounded-lg px-4 py-3"
-            >
-              <span className="text-sm text-zinc-200 truncate flex items-center gap-2">
-                <Check className="w-4 h-4 text-[#38bdf8] shrink-0" />
-                <span className="truncate">{f.name}</span>
-              </span>
-              <button
-                type="button"
-                onClick={() => removeFile(f.url)}
-                className="text-zinc-500 hover:text-red-400 transition-colors shrink-0"
-                aria-label={`Remove ${f.name}`}
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+        {uploadError && (
+          <div className="col-span-2 p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-lg text-sm font-medium">
+            {uploadError}
+          </div>
+        )}
 
-      {/* project fields */}
-      <Field label="When would you like to launch?" hint="A target date is fine — no pressure.">
-        <input
-          type="date"
-          className={inputClass}
-          value={p.launchDate}
-          onChange={(e) => setField('project', 'launchDate', e.target.value)}
-        />
-      </Field>
-      <Field label="Any special requests?">
-        <textarea
-          rows={2}
-          className={inputClass}
-          value={p.specialRequests}
-          onChange={(e) => setField('project', 'specialRequests', e.target.value)}
-          placeholder="Anything else on your wishlist."
-        />
-      </Field>
-      <Field label="Must-haves" hint="Anything the site absolutely needs to have.">
-        <textarea
-          rows={2}
-          className={inputClass}
-          value={p.mustInclude}
-          onChange={(e) => setField('project', 'mustInclude', e.target.value)}
-          placeholder="My phone number front and center on every page."
-        />
-      </Field>
-      <Field label="Anything to avoid?">
-        <textarea
-          rows={2}
-          className={inputClass}
-          value={p.avoid}
-          onChange={(e) => setField('project', 'avoid', e.target.value)}
-          placeholder="No pop-ups, please."
-        />
-      </Field>
-      <Field label="Who makes the final call on the project?" hint="So we know who to check in with.">
-        <input
-          className={inputClass}
-          value={p.decisionMaker}
-          onChange={(e) => setField('project', 'decisionMaker', e.target.value)}
-          placeholder="Me — John Smith"
-        />
-      </Field>
+        {uploadedFiles.length > 0 && (
+          <div className="col-span-2 mt-2">
+            <ul className="space-y-2">
+              {uploadedFiles.map((f) => (
+                <li
+                  key={f.url}
+                  className="flex items-center justify-between gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3"
+                >
+                  <span className="text-sm text-zinc-200 truncate flex items-center gap-2">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span className="truncate">{f.name}</span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => removeFile(f.url)}
+                    className="text-zinc-500 hover:text-red-400 transition-colors shrink-0"
+                    aria-label={`Remove ${f.name}`}
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <Field label="When would you like to launch?" hint="A target date is fine — no pressure.">
+          <input
+            type="date"
+            value={p.launchDate}
+            onChange={(e) => setField('project', 'launchDate', e.target.value)}
+          />
+        </Field>
+        <Field label="Any special requests?">
+          <textarea
+            rows={2}
+            value={p.specialRequests}
+            onChange={(e) => setField('project', 'specialRequests', e.target.value)}
+          />
+        </Field>
+        <Field label="Must-haves" hint="Anything the site absolutely needs to have.">
+          <textarea
+            rows={2}
+            value={p.mustInclude}
+            onChange={(e) => setField('project', 'mustInclude', e.target.value)}
+          />
+        </Field>
+        <Field label="Anything to avoid?">
+          <textarea
+            rows={2}
+            value={p.avoid}
+            onChange={(e) => setField('project', 'avoid', e.target.value)}
+          />
+        </Field>
+        <Field label="Who makes the final call on the project?" hint="So we know who to check in with.">
+          <input
+            value={p.decisionMaker}
+            onChange={(e) => setField('project', 'decisionMaker', e.target.value)}
+          />
+        </Field>
+      </div>
     </>
   );
 }

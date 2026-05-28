@@ -476,6 +476,7 @@ export default function AuroraHome() {
                     <Link
                       href="/start?from=home"
                       className="bg-white text-black font-bold rounded-full px-6 py-3 hover:bg-neutral-200 text-sm transition-all font-semibold animate-pulse"
+                      style={{ color: '#000000', backgroundColor: '#ffffff' }}
                     >
                       Customize my site now
                     </Link>
