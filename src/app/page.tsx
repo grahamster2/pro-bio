@@ -20,10 +20,10 @@ export default function AgencyLandingPage() {
       <section className="pt-32 pb-32 px-6 flex flex-col items-center text-center justify-center min-h-[70vh]">
         <span className="text-sm font-semibold tracking-wide text-white uppercase mb-4">Websites for local business</span>
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6 max-w-4xl leading-tight">
-          Websites that work as hard as you do.
+          A website that actually brings in customers.
         </h1>
         <p className="text-lg md:text-xl text-zinc-400 mb-10 max-w-2xl leading-relaxed">
-          Running a business is hard enough. Your website should be the easiest part. We build fast, reliable sites that turn visitors into customers.
+          You're great at your job — but if people can't find you online, you're losing business to someone who isn't. We handle the website stuff so you don't have to.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 w-full justify-center max-w-sm sm:max-w-none">
@@ -42,30 +42,30 @@ export default function AgencyLandingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                Real results for real businesses.
+                People in your area are searching for you right now.
               </h2>
               <p className="text-zinc-400 text-lg mb-8 leading-relaxed">
-                We don't do generic templates. We build custom sites that actually help you scale. Last month, we helped a local logistics firm grow their pipeline by 400%.
+                Every day someone nearby searches for what you offer — and if your website isn't showing up, they're calling your competitor instead. We fix that.
               </p>
-              
+
               <div className="space-y-6">
                 <div className="flex gap-4 items-start">
                   <div className="w-12 h-12 rounded bg-zinc-900 flex items-center justify-center shrink-0 border border-zinc-800">
                     <TrendingUp className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white">400% Pipeline Growth</h4>
-                    <p className="text-zinc-400 text-sm">After moving to our custom headless architecture, leads started flowing immediately.</p>
+                    <h4 className="font-bold text-white">More calls, more jobs</h4>
+                    <p className="text-zinc-400 text-sm">One of our clients doubled their inbound calls within two weeks of launching their new site. No ads — just a better website.</p>
                   </div>
                 </div>
-                
+
                 <div className="flex gap-4 items-start">
                   <div className="w-12 h-12 rounded bg-zinc-900 flex items-center justify-center shrink-0 border border-zinc-800">
                     <Zap className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white">Lighthouse Scores over 95</h4>
-                    <p className="text-zinc-400 text-sm">Our sites load in milliseconds, and they're optimized for Google search results from day one.</p>
+                    <h4 className="font-bold text-white">Loads fast on any phone</h4>
+                    <p className="text-zinc-400 text-sm">Most of your customers are on their phones. A slow or broken site sends them away. Ours load in under a second, every time.</p>
                   </div>
                 </div>
 
@@ -74,8 +74,8 @@ export default function AgencyLandingPage() {
                     <CheckCircle2 className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white">Built-in Local SEO</h4>
-                    <p className="text-zinc-400 text-sm">We make sure people in your neighborhood can find your business when they need individual services.</p>
+                    <h4 className="font-bold text-white">Shows up on Google</h4>
+                    <p className="text-zinc-400 text-sm">We set up your site so Google knows exactly what you do and where you're located — so the right people can find you.</p>
                   </div>
                 </div>
               </div>
@@ -104,17 +104,17 @@ export default function AgencyLandingPage() {
       <section className="py-32 px-6 bg-zinc-950 border-t border-zinc-900" id="services">
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">What we do.</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">We take care of everything.</h2>
             <p className="text-zinc-400 text-lg max-w-xl">
-              We handle the tech so you can focus on your work. From design to hosting, we've got you covered.
+              You don't need to know anything about websites. Tell us about your business and we handle the rest — start to finish.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="p-10 rounded-2xl bg-[#0a0a0a] border border-zinc-800 hover:border-zinc-700 transition-colors">
-              <h3 className="text-2xl font-bold text-white mb-4">Web Design that sells</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">A site built around your business</h3>
               <p className="text-zinc-400 mb-6 leading-relaxed">
-                Your website shouldn't just look good—it should work. we design every page to make it as easy as possible for your customers to contact you.
+                No cookie-cutter templates. We build something that actually looks like you and makes it dead simple for customers to reach out, call, or book.
               </p>
               <Link href="/process" className="inline-flex items-center gap-2 text-sm font-bold text-white hover:underline underline-offset-4">
                 How we work <ArrowRight className="w-4 h-4" />
@@ -122,14 +122,14 @@ export default function AgencyLandingPage() {
             </div>
 
             <div className="p-10 rounded-2xl bg-[#0a0a0a] border border-zinc-800 hover:border-zinc-700 transition-colors">
-              <h3 className="text-2xl font-bold text-white mb-4">Fast, Secure Hosting</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">We keep it running — you do nothing</h3>
               <p className="text-zinc-400 mb-6 leading-relaxed">
-                We use global edge computing to make your site load instantly for every user, anywhere in the world. No maintenance required from your side.
+                Once your site is live, forget about it. We keep everything fast, safe, and up to date. No monthly headaches, no confusing dashboards, no tech support calls.
               </p>
               <ul className="space-y-2 text-sm text-zinc-500">
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white" /> Auto-scaling servers</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white" /> Daily backups</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white" /> DDoS protection</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white" /> Always backed up</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white" /> Protected from hackers</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white" /> Zero maintenance on your end</li>
               </ul>
             </div>
           </div>
@@ -142,23 +142,23 @@ export default function AgencyLandingPage() {
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
           <div className="flex-1">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-8 leading-[1.1]">
-              Designed to <br/> disrupt.
+              Your competitors <br/> already have one.
             </h2>
             <p className="text-neutral-400 text-base md:text-lg leading-relaxed mb-10 font-medium">
-              We discard the templates and the generic shortcuts. Our process is a deep dive into your business logic, translating core values into a high-performance digital presence.
+              A great website used to be a nice-to-have. Now it's how customers decide who to call. We make sure that when someone finds you, they choose you.
             </p>
             <ul className="space-y-5">
               <li className="flex gap-3 items-center">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></div>
-                <span className="font-semibold text-white/90">Custom interaction design that defines brand feel.</span>
+                <span className="font-semibold text-white/90">Looks great and feels trustworthy from the first click.</span>
               </li>
               <li className="flex gap-3 items-center">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></div>
-                <span className="font-semibold text-white/90">Lighthouse scores that never dip below 95.</span>
+                <span className="font-semibold text-white/90">Loads fast so customers don't give up and leave.</span>
               </li>
               <li className="flex gap-3 items-center">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></div>
-                <span className="font-semibold text-white/90">Strategic content hierarchy for maximum flow.</span>
+                <span className="font-semibold text-white/90">Makes it easy for people to call, text, or get a quote.</span>
               </li>
             </ul>
           </div>
@@ -180,10 +180,10 @@ export default function AgencyLandingPage() {
       <section className="py-32 px-6">
         <div className="max-w-4xl mx-auto bg-white rounded-3xl p-12 md:p-20 text-center">
            <h2 className="text-3xl md:text-5xl font-bold text-black mb-6 tracking-tight">
-             Ready to grow?
+             Let's get you more customers.
            </h2>
            <p className="text-zinc-600 max-w-lg mx-auto mb-10 text-lg leading-relaxed">
-             Join the dozens of local business owners who have upgraded their digital presence with us.
+             No contracts, no confusing packages. Just tell us about your business and we'll take it from there.
            </p>
            <Link href="/contact" className="px-10 py-5 bg-black text-white font-bold rounded-full hover:bg-zinc-800 transition-all inline-block">
              Let's Chat
