@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { Footer } from '@/components/Footer';
 
 const Arrow = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -512,42 +513,7 @@ export default function AuroraHome() {
       </section>
 
       {/* FOOTER */}
-      <footer>
-        <div className="container">
-          <div className="footer-grid">
-            <div>
-              <div className="footer-brand-name">rovult<span className="dot">.</span></div>
-              <div className="footer-brand-tag">Websites that bring in customers for the people who built the business.</div>
-            </div>
-            <div className="footer-col">
-              <h5>Services</h5>
-              <a href="#services" onClick={scrollTo('services')}>Websites</a>
-              <a href="#services" onClick={scrollTo('services')}>Local SEO</a>
-              <a href="#services" onClick={scrollTo('services')}>Care plans</a>
-              <a href="#services" onClick={scrollTo('services')}>Audits</a>
-            </div>
-            <div className="footer-col">
-              <h5>Company</h5>
-              <a href="#work" onClick={scrollTo('work')}>Work</a>
-              <a href="#process" onClick={scrollTo('process')}>Process</a>
-              <Link href="/plans">Plans</Link>
-              <Link href="/start">Start a project</Link>
-              <a href="#contact" onClick={scrollTo('contact')}>Contact</a>
-            </div>
-            <div className="footer-col">
-              <h5>Get in touch</h5>
-              <a href="mailto:hello@rovult.com">hello@rovult.com</a>
-              <a href="#contact" onClick={scrollTo('contact')}>Book a call</a>
-              <a href="#">Instagram</a>
-              <a href="#">LinkedIn</a>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <div>© {new Date().getFullYear()} Rovult LLC</div>
-            <div>Made in Lexington, KY</div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
