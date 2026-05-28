@@ -490,8 +490,8 @@ export function IntakeForm() {
           <div className="w-16 h-16 rounded-full bg-[#38bdf8]/10 border border-[#38bdf8]/20 flex items-center justify-center mb-6">
             <PartyPopper className="w-8 h-8 text-[#38bdf8]" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Thanks — we got everything.
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'var(--display)', letterSpacing: '-0.03em' }}>
+            Thanks — we got <span className="italic font-light text-zinc-400">everything.</span>
           </h2>
           <p className="text-zinc-400 text-lg max-w-md mb-8 leading-relaxed">
             We&apos;ll be in touch within 1 business day to talk through your
@@ -499,8 +499,7 @@ export function IntakeForm() {
           </p>
           <Link
             href="/"
-            className="bg-white text-black font-bold rounded-full px-8 py-4 hover:bg-neutral-200 transition-colors"
-            style={{ color: '#000000', backgroundColor: '#ffffff' }}
+            className="btn-white font-bold rounded-full px-8 py-4 transition-colors"
           >
             Back to home
           </Link>
@@ -516,12 +515,10 @@ export function IntakeForm() {
     return (
       <div className="form-card relative overflow-hidden">
         <form onSubmit={handleLeadSubmit} className="relative z-10 space-y-8">
-          <div className="mb-2">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Tell us about your project</h2>
-            <p className="text-zinc-400 leading-relaxed">
-              Just a few basic details to get the conversation started. You can choose to provide more details afterward.
-            </p>
-          </div>
+          <StepHeader
+            title="Tell us about your project"
+            subtitle="Just a few basic details to get the conversation started. You can customize details afterward."
+          />
 
           <div className="form-grid">
             <Field
@@ -629,8 +626,7 @@ export function IntakeForm() {
             <button
               type="submit"
               disabled={submitting}
-              className="inline-flex items-center justify-center gap-2 bg-white text-black font-bold rounded-full px-8 py-4 hover:bg-neutral-200 transition-colors disabled:opacity-50"
-              style={{ color: '#000000', backgroundColor: '#ffffff' }}
+              className="inline-flex items-center justify-center gap-2 btn-white font-bold rounded-full px-8 py-4 transition-colors disabled:opacity-50"
             >
               {submitting ? (
                 <>
@@ -655,8 +651,8 @@ export function IntakeForm() {
           <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6" style={{ boxShadow: '0 0 16px rgba(255,255,255,0.05)' }}>
             <Check className="w-8 h-8 text-white" />
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Request received!
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'var(--display)', letterSpacing: '-0.03em' }}>
+            Request <span className="italic font-light text-zinc-400">received!</span>
           </h2>
           <p className="text-zinc-400 text-base md:text-lg mb-8 leading-relaxed">
             We&apos;ve received your initial info.
@@ -669,8 +665,7 @@ export function IntakeForm() {
                 setStage('intake');
                 setStep(2); // Skip contact info step as we already have it
               }}
-              className="inline-flex items-center justify-center gap-2 bg-white text-black font-bold rounded-full px-8 py-4 hover:bg-neutral-200 transition-all"
-              style={{ color: '#000000', backgroundColor: '#ffffff' }}
+              className="inline-flex items-center justify-center gap-2 btn-white font-bold rounded-full px-8 py-4 transition-all"
             >
               Customize my site now <ArrowRight className="w-4 h-4" />
             </button>
@@ -764,8 +759,7 @@ export function IntakeForm() {
             <button
               type="button"
               onClick={next}
-              className="inline-flex items-center justify-center gap-2 bg-white text-black font-bold rounded-full px-8 py-4 hover:bg-neutral-200 transition-colors"
-              style={{ color: '#000000', backgroundColor: '#ffffff' }}
+              className="inline-flex items-center justify-center gap-2 btn-white font-bold rounded-full px-8 py-4 transition-colors"
             >
               Next <ArrowRight className="w-4 h-4" />
             </button>
@@ -774,8 +768,7 @@ export function IntakeForm() {
               type="button"
               onClick={handleSubmit}
               disabled={submitting || uploading}
-              className="inline-flex items-center justify-center gap-2 bg-white text-black font-bold rounded-full px-8 py-4 hover:bg-neutral-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ color: '#000000', backgroundColor: '#ffffff' }}
+              className="inline-flex items-center justify-center gap-2 btn-white font-bold rounded-full px-8 py-4 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {submitting ? (
                 <>
@@ -886,9 +879,14 @@ function RadioGroup({
 
 function StepHeader({ title, subtitle }: { title: string; subtitle: string }) {
   return (
-    <div className="mb-2">
-      <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">{title}</h2>
-      <p className="text-zinc-400 leading-relaxed">{subtitle}</p>
+    <div className="mb-6">
+      <h2 
+        className="text-2xl md:text-3xl font-bold text-white mb-2" 
+        style={{ fontFamily: 'var(--display)', letterSpacing: '-0.03em' }}
+      >
+        {title}
+      </h2>
+      <p className="text-zinc-400 leading-relaxed text-sm md:text-base">{subtitle}</p>
     </div>
   );
 }

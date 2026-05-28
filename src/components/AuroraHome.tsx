@@ -475,8 +475,7 @@ export default function AuroraHome() {
                   <div className="flex flex-col sm:flex-row gap-3 w-full justify-center">
                     <Link
                       href="/start?from=home"
-                      className="bg-white text-black font-bold rounded-full px-6 py-3 hover:bg-neutral-200 text-sm transition-all font-semibold animate-pulse"
-                      style={{ color: '#000000', backgroundColor: '#ffffff' }}
+                      className="btn-white font-bold rounded-full px-6 py-3 text-sm transition-all font-semibold animate-pulse"
                     >
                       Customize my site now
                     </Link>

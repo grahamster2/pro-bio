@@ -444,6 +444,16 @@ body {
   & .btn-primary:hover { background: var(--blue-400); transform: translateY(-1px); }
   & .btn-ghost { background: rgba(255,255,255,0.04); color: var(--text); border: 1px solid var(--a-border); }
   & .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--border-strong); }
+  & .btn-white {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.1) inset, 0 8px 20px -8px rgba(255,255,255,0.15);
+  }
+  & .btn-white:hover {
+    background-color: #f4f4f5 !important;
+    color: #000000 !important;
+    transform: translateY(-1px);
+  }
   & .btn svg { width: 14px; height: 14px; }
 
   & .hero-meta {
