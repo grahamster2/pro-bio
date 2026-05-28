@@ -16,11 +16,10 @@ const scrollTo = (id: string) => (e: React.MouseEvent) => {
 };
 
 const BUDGETS = [
-  { v: 'under-2k', label: 'Under $2k' },
-  { v: '2-5k', label: '$2k – $5k' },
-  { v: '5-10k', label: '$5k – $10k' },
-  { v: '10k+', label: '$10k+' },
-  { v: 'unsure', label: 'Not sure yet' },
+  { v: 'under-1k', label: 'Under $1,000' },
+  { v: '1k+', label: '$1,000+' },
+  { v: '2k+', label: '$2,000+' },
+  { v: '3k+', label: '$3,000+' },
 ];
 
 const FAQS = [
@@ -49,7 +48,7 @@ const FAQS = [
 export default function AuroraHome() {
   const rootRef = useRef<HTMLDivElement>(null);
   const [openFaq, setOpenFaq] = useState(0);
-  const [budget, setBudget] = useState('2-5k');
+  const [budget, setBudget] = useState('1k+');
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',

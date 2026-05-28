@@ -2,57 +2,54 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
-import { Check, Info } from 'lucide-react';
+import { Check } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Subscription Plans',
-  description: 'Simple, transparent hosting and care plans for local business websites. Get peace of mind while we handle the tech.',
+  description: 'Simple hosting and care plans for local business websites. Pricing tailored to your needs.',
 };
 
 const PLANS = [
   {
-    name: 'Launch Care',
-    price: '$79',
-    period: '/mo',
-    desc: 'Perfect for small businesses needing reliable, lightning-fast hosting and basic support.',
+    name: 'Basic',
+    tagline: 'Your site, kept running and up to date.',
     features: [
-      'Premium, ultra-fast hosting & SSL',
-      'Daily automated backups',
-      'Continuous security monitoring',
-      '1 hour of content edits per month',
-      'Email & text-based support support',
+      'Hosting & SSL included',
+      'Domain fees covered',
+      'Daily backups',
+      'Up to 20 changes per month',
+      'Monthly analytics report',
     ],
     cta: 'Get Started',
     popular: false,
   },
   {
-    name: 'Growth Care',
-    price: '$149',
-    period: '/mo',
-    desc: 'Designed for active contractors looking to dominate search results and win more local jobs.',
+    name: 'Standard',
+    tagline: 'Everything in Basic, plus tools to grow.',
     features: [
-      'All Launch Care features',
-      'Local SEO & Map Pack optimization',
-      'Google Business Profile posting support',
-      '3 hours of custom design & dev updates',
-      'Review generation & collection setup',
-      'Priority 12-hour support response',
+      'All Basic plan features',
+      '1 team member seat',
+      'Analytics dashboard',
+      'Basic SEO setup',
+      'Email support',
     ],
     cta: 'Get Started',
     popular: true,
   },
   {
-    name: 'Enterprise Care',
-    price: 'Custom',
-    period: '',
-    desc: 'Custom care plans for multi-location teams and companies requiring deep custom integration.',
+    name: 'Premium',
+    tagline: 'Built for agencies and multi-client teams.',
     features: [
-      'All Growth Care features',
-      'Dedicated Slack / phone channel',
-      'CRM, scheduling & API integrations',
-      'Unlimited design & dev edits',
-      'Custom sub-pages & location landing pages',
-      'SLA-guaranteed uptime & support',
+      'All Standard plan features',
+      '15 active client seats',
+      '5 team member seats',
+      'Weekly reporting',
+      'Full SEO management',
+      'Performance tracking',
+      'Custom analytics',
+      'Full API access',
+      'Priority support',
+      'Custom integrations',
     ],
     cta: 'Contact Us',
     popular: false,
@@ -75,27 +72,15 @@ export default function PlansPage() {
             Subscription Plans
           </span>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
-            Simple pricing. <span className="italic font-normal text-zinc-400">No surprise bills.</span>
+            We keep your site <span className="italic font-normal text-zinc-400">running and growing.</span>
           </h1>
           <p className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-2xl mx-auto">
-            Hosting, maintenance, and updates taken care of. You run your business, we keep your website in top shape.
+            Hosting, maintenance, and updates taken care of. Pricing is tailored to your business — reach out and we&apos;ll find the right fit.
           </p>
         </div>
 
-        {/* Bookmark Notice Alert */}
-        <div className="max-w-3xl mx-auto mb-16 bg-amber-500/10 border border-amber-500/20 rounded-2xl p-5 flex items-start gap-4 relative z-10">
-          <Info className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-          <div>
-            <h4 className="font-bold text-amber-300 text-sm mb-1">Plans being finalized</h4>
-            <p className="text-xs text-amber-200/80 leading-relaxed">
-              We are currently fine-tuning our care package details and setup options. 
-              Official pricing details will go live tonight. In the meantime, you can reach out below to request info or reserve early-bird spots.
-            </p>
-          </div>
-        </div>
-
-        {/* Pricing Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10">
+        {/* Plan Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10 mb-16">
           {PLANS.map((plan) => (
             <div
               key={plan.name}
@@ -114,13 +99,7 @@ export default function PlansPage() {
                     </span>
                   )}
                 </div>
-                <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-4xl md:text-5xl font-extrabold text-white">
-                    {plan.price}
-                  </span>
-                  <span className="text-sm font-medium text-zinc-500">{plan.period}</span>
-                </div>
-                <p className="text-sm text-zinc-400 leading-relaxed mb-8">{plan.desc}</p>
+                <p className="text-sm text-zinc-400 leading-relaxed mb-8">{plan.tagline}</p>
                 <div className="h-px bg-zinc-900 mb-8" />
                 <ul className="space-y-4 mb-8">
                   {plan.features.map((feat) => (
@@ -144,6 +123,17 @@ export default function PlansPage() {
               </Link>
             </div>
           ))}
+        </div>
+
+        {/* Pricing note */}
+        <div className="max-w-2xl mx-auto text-center relative z-10">
+          <p className="text-zinc-500 text-sm leading-relaxed">
+            Pricing varies based on your site&apos;s size and needs. Fill out our{' '}
+            <Link href="/start" className="text-[var(--blue-300)] hover:underline">
+              project form
+            </Link>{' '}
+            and we&apos;ll put together a quote that fits your budget.
+          </p>
         </div>
       </main>
 
