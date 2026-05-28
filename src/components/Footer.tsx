@@ -15,29 +15,36 @@ export function Footer() {
           </div>
           <div className="footer-col">
             <h5>Services</h5>
-            <Link href="/#services">Websites</Link>
-            <Link href="/#services">Local SEO</Link>
+            <Link href="/services/websites">Websites</Link>
+            <Link href="/services/seo">Local SEO</Link>
             <Link href="/plans">Care plans</Link>
-            <Link href="/#services">Audits</Link>
+            <Link href="/services/audits">Audits</Link>
           </div>
           <div className="footer-col">
             <h5>Company</h5>
-            <Link href="/#work">Work</Link>
-            <Link href="/#process">Process</Link>
+            <Link href="/work">Work</Link>
+            <Link href="/process">Process</Link>
             <Link href="/plans">Plans</Link>
             <Link href="/start">Start a project</Link>
-            <Link href="/#contact">Contact</Link>
+            <Link href="/contact">Contact</Link>
           </div>
           <div className="footer-col">
             <h5>Get in touch</h5>
             <a href="mailto:hello@rovult.com">hello@rovult.com</a>
-            <Link href="/#contact">Book a call</Link>
+            <Link href="/contact">Book a call</Link>
             <a href="#">Instagram</a>
             <a href="#">LinkedIn</a>
           </div>
         </div>
-        <div className="footer-bottom">
-          <div>© {new Date().getFullYear()} Rovult LLC</div>
+        <div className="footer-bottom flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-neutral-500 pt-8 mt-8 border-t border-white/5">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div>© {new Date().getFullYear()} Rovult LLC</div>
+            <div className="hidden sm:block text-neutral-800">|</div>
+            <div className="flex gap-4">
+              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+            </div>
+          </div>
           <div>Made in Lexington, KY</div>
         </div>
       </div>

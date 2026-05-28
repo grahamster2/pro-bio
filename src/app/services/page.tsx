@@ -1,44 +1,113 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import Link from 'next/link';
+import { Code2, Search, Zap } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Services | Rovult',
-  description: 'Our capabilities and service offerings.',
+  description: 'Everything you need to capture traffic, convert leads, and distribute your local service brand securely.',
 };
 
 export default function ServicesPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#050505] text-[#f4f4f5] font-sans">
-      <Navigation />
-      
-      <main className="flex-1 pt-40 px-6 max-w-6xl mx-auto w-full pb-20">
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">Services</h1>
-        <p className="text-xl text-neutral-400 max-w-2xl font-medium mb-16">
-          Everything you need to capture traffic, convert leads, and distribute your brand securely.
-        </p>
+    <div className="aurora-page min-h-screen flex flex-col bg-[#050507] text-[#f4f4f5] font-sans selection:bg-white selection:text-black">
+      <div className="aurora">
+        <div className="aurora-grain" />
+        <div className="aurora-vignette" />
+      </div>
 
-        <div className="grid grid-cols-1 gap-12">
-           <div className="group relative p-10 md:p-16 rounded-3xl bg-[#0a0a0e] border border-[#1f1f22] overflow-hidden min-h-[400px] flex flex-col justify-end">
-              {/* ⚡ Bolt: Optimized image loading using Next.js Image component for automatic WebP conversion and caching */}
-              <Image src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1600" alt="Web Design" fill className="object-cover opacity-30 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700 mix-blend-luminosity" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent z-10"></div>
-              <div className="relative z-20">
-                 <h2 className="text-4xl font-bold text-white mb-4">Web Design & Strategy</h2>
-                 <p className="text-neutral-300 text-lg leading-relaxed max-w-2xl font-medium">We build custom digital architectures optimized for your specific conversion goals. Every interface is a precise mechanism designed for brand growth.</p>
+      <Navigation />
+
+      <main className="flex-1 pt-48 pb-24 relative z-10 w-full">
+        <div className="narrow">
+          <div className="contact-glow" />
+          
+          {/* Header */}
+          <div className="text-center mb-16 relative z-10">
+            <span className="eyebrow mb-4 font-mono text-xs">Our Offerings</span>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6" style={{ fontFamily: 'var(--display)', letterSpacing: '-0.04em' }}>
+              Engineered for <br /><span style={{
+                fontWeight: 300,
+                fontStyle: 'normal',
+                background: 'linear-gradient(180deg, var(--blue-300) 0%, var(--blue-500) 60%, var(--blue-700) 100%)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+                letterSpacing: '-0.045em'
+              }} className="italic font-light">local growth.</span>
+            </h1>
+            <p className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-2xl mx-auto">
+              Everything you need to capture customer traffic, convert leads, and run your local service business online with zero technical friction.
+            </p>
+          </div>
+
+          {/* Services Grid */}
+          <div className="grid grid-cols-1 gap-6 relative z-10">
+            
+            {/* Websites */}
+            <Link href="/services/websites" className="group block bg-[#0b0c10]/40 border border-white/5 backdrop-blur-xl p-8 md:p-12 rounded-3xl hover:border-white/15 transition-all duration-300 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none group-hover:bg-blue-500/10 transition-colors" />
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="space-y-4 max-w-2xl">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#38bdf8]">
+                    <Code2 className="w-6 h-6" />
+                  </div>
+                  <h2 className="text-3xl font-bold text-white group-hover:text-[#38bdf8] transition-colors" style={{ fontFamily: 'var(--display)' }}>
+                    Web Design &amp; Strategy
+                  </h2>
+                  <p className="text-neutral-400 text-sm leading-relaxed">
+                    Custom-coded Next.js architectures optimized for conversion. Zero slow templates. Sub-second load speeds, professional copy, and secure layouts.
+                  </p>
+                </div>
+                <div className="text-neutral-500 group-hover:text-white transition-colors text-2xl font-light font-mono shrink-0 hidden md:block">
+                  →
+                </div>
               </div>
-           </div>
-           
-           <div className="group relative p-10 md:p-16 rounded-3xl bg-[#0a0a0e] border border-[#1f1f22] overflow-hidden min-h-[400px] flex flex-col justify-end">
-              {/* ⚡ Bolt: Optimized image loading using Next.js Image component for automatic WebP conversion and caching */}
-              <Image src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600" alt="SEO" fill className="object-cover opacity-30 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700 mix-blend-luminosity" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent z-10"></div>
-              <div className="relative z-20">
-                 <h2 className="text-4xl font-bold text-white mb-4">SEO Dominance</h2>
-                 <p className="text-neutral-300 text-lg leading-relaxed max-w-2xl font-medium">Comprehensive local search engine optimization, content strategy, and technical audits to capture intent. Dominate your market's search volume.</p>
+            </Link>
+
+            {/* SEO */}
+            <Link href="/services/seo" className="group block bg-[#0b0c10]/40 border border-white/5 backdrop-blur-xl p-8 md:p-12 rounded-3xl hover:border-white/15 transition-all duration-300 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none group-hover:bg-blue-500/10 transition-colors" />
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="space-y-4 max-w-2xl">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#38bdf8]">
+                    <Search className="w-6 h-6" />
+                  </div>
+                  <h2 className="text-3xl font-bold text-white group-hover:text-[#38bdf8] transition-colors" style={{ fontFamily: 'var(--display)' }}>
+                    Local SEO Dominance
+                  </h2>
+                  <p className="text-neutral-400 text-sm leading-relaxed">
+                    Dominate local search lists, optimize your Google Maps profile, build consistent directory citations, and rank in surrounding service cities.
+                  </p>
+                </div>
+                <div className="text-neutral-500 group-hover:text-white transition-colors text-2xl font-light font-mono shrink-0 hidden md:block">
+                  →
+                </div>
               </div>
-           </div>
+            </Link>
+
+            {/* Audits */}
+            <Link href="/services/audits" className="group block bg-[#0b0c10]/40 border border-white/5 backdrop-blur-xl p-8 md:p-12 rounded-3xl hover:border-white/15 transition-all duration-300 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none group-hover:bg-blue-500/10 transition-colors" />
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="space-y-4 max-w-2xl">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#38bdf8]">
+                    <Zap className="w-6 h-6" />
+                  </div>
+                  <h2 className="text-3xl font-bold text-white group-hover:text-[#38bdf8] transition-colors" style={{ fontFamily: 'var(--display)' }}>
+                    Website Audits &amp; Diagnostics
+                  </h2>
+                  <p className="text-neutral-400 text-sm leading-relaxed">
+                    Identify hidden issues. A comprehensive review of your current site&apos;s loading speeds, security gaps, layout flow, and search accessibility.
+                  </p>
+                </div>
+                <div className="text-neutral-500 group-hover:text-white transition-colors text-2xl font-light font-mono shrink-0 hidden md:block">
+                  →
+                </div>
+              </div>
+            </Link>
+          </div>
         </div>
       </main>
 

@@ -8,11 +8,11 @@ export function Navigation() {
           rovult<span className="dot">.</span>
         </Link>
         <div className="nav-links">
-          <Link href="/#work" className="nav-link">Work</Link>
-          <Link href="/#services" className="nav-link">Services</Link>
+          <Link href="/work" className="nav-link">Work</Link>
+          <Link href="/services" className="nav-link">Services</Link>
           <Link href="/plans" className="nav-link">Plans</Link>
-          <Link href="/#process" className="nav-link">Process</Link>
-          <Link href="/#contact" className="nav-link">Contact</Link>
+          <Link href="/process" className="nav-link">Process</Link>
+          <Link href="/contact" className="nav-link">Contact</Link>
         </div>
         <Link href="/start" className="nav-cta">
           Start Project
