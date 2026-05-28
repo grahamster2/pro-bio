@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 const PLANS = [
   {
     name: 'Basic',
+    price: '$30',
+    period: '/mo',
     tagline: 'Your site, kept running and up to date.',
     features: [
       'Hosting & SSL included',
@@ -25,6 +27,8 @@ const PLANS = [
   },
   {
     name: 'Standard',
+    price: '$45',
+    period: '/mo',
     tagline: 'Everything in Basic, plus tools to grow.',
     features: [
       'All Basic plan features',
@@ -38,6 +42,8 @@ const PLANS = [
   },
   {
     name: 'Premium',
+    price: '$65',
+    period: '/mo',
     tagline: 'Built for agencies and multi-client teams.',
     features: [
       'All Standard plan features',
@@ -51,7 +57,7 @@ const PLANS = [
       'Priority support',
       'Custom integrations',
     ],
-    cta: 'Contact Us',
+    cta: 'Get Started',
     popular: false,
   },
 ];
@@ -99,6 +105,10 @@ export default function PlansPage() {
                     </span>
                   )}
                 </div>
+                <div className="flex items-baseline gap-1 mb-4">
+                  <span className="text-4xl md:text-5xl font-extrabold text-white">{plan.price}</span>
+                  <span className="text-sm font-medium text-zinc-500">{plan.period}</span>
+                </div>
                 <p className="text-sm text-zinc-400 leading-relaxed mb-8">{plan.tagline}</p>
                 <div className="h-px bg-zinc-900 mb-8" />
                 <ul className="space-y-4 mb-8">
@@ -128,11 +138,11 @@ export default function PlansPage() {
         {/* Pricing note */}
         <div className="max-w-2xl mx-auto text-center relative z-10">
           <p className="text-zinc-500 text-sm leading-relaxed">
-            Pricing varies based on your site&apos;s size and needs. Fill out our{' '}
+            All plans require a one-time site build. Fill out our{' '}
             <Link href="/start" className="text-[var(--blue-300)] hover:underline">
               project form
             </Link>{' '}
-            and we&apos;ll put together a quote that fits your budget.
+            and we&apos;ll get you a build quote before anything starts.
           </p>
         </div>
       </main>
