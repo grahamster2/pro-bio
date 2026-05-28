@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Oswald, Geist_Mono, Geist } from "next/font/google";
+import { Inter, Oswald, Geist_Mono, Geist, Bricolage_Grotesque, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import "./globals.css";
@@ -19,6 +19,21 @@ const oswald = Oswald({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+});
+
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
+  subsets: ["latin"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
 });
 
@@ -141,7 +156,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("dark", "font-sans", geist.variable)}>
       <body
-        className={`${inter.variable} ${oswald.variable} ${geistMono.variable} antialiased font-sans bg-zinc-950 text-slate-100`}
+        className={`${inter.variable} ${oswald.variable} ${geistMono.variable} ${bricolage.variable} ${interTight.variable} ${jetbrainsMono.variable} antialiased font-sans bg-zinc-950 text-slate-100`}
       >
         {children}
         <Analytics />
