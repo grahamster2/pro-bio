@@ -190,13 +190,24 @@ export default function AuroraHome() {
       <section className="logos">
         <div className="container">
           <div className="logos-label">Helping owner-operators across the country</div>
-          <div className="logos-track">
+          <div className="logos-track flex items-center justify-between gap-8 flex-wrap">
+            <img 
+              src="https://lexingtonoverstockwarehouse.com/wp-content/uploads/2016/09/cropped-local_logo_alpha-copy.png" 
+              alt="Lexington Overstock Warehouse" 
+              className="h-7 object-contain opacity-50 grayscale invert brightness-0 hover:opacity-100 hover:grayscale-0 hover:invert-0 hover:brightness-100 transition-all duration-300"
+            />
+            <img 
+              src="https://horizons-cdn.hostinger.com/7e5fc9a0-be58-4bfe-8620-02d0b4a89192/74998d188a14e133cceb474bd1a7001e.png" 
+              alt="TCM Construction" 
+              className="h-8 object-contain opacity-50 grayscale invert brightness-0 hover:opacity-100 hover:grayscale-0 hover:invert-0 hover:brightness-100 transition-all duration-300" 
+            />
+            <div className="flex items-center gap-2 font-heading font-semibold text-lg opacity-50 hover:opacity-100 hover:text-[#5A67D8] transition-all duration-300 select-none">
+              <svg viewBox="0 0 512 512" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="shrink-0"><rect x="160" y="112" width="80" height="256" rx="20" fill="currentColor"></rect><rect x="272" y="144" width="80" height="256" rx="20" fill="#5A67D8"></rect></svg>
+              <span className="font-sans font-medium tracking-tight text-white">focally</span>
+            </div>
             <span className="logo-mark">Cedar &amp; Pine</span>
             <span className="logo-mark caps">North Bay HVAC</span>
-            <span className="logo-mark sans">Atlas<span className="accent">&amp;</span>Co</span>
             <span className="logo-mark mono">// kestrel.law</span>
-            <span className="logo-mark">Maison Bleu</span>
-            <span className="logo-mark caps">Ironside</span>
           </div>
         </div>
       </section>
@@ -270,37 +281,43 @@ export default function AuroraHome() {
             <div className="testimonial featured">
               <div className="stars">★★★★★</div>
               <blockquote className="quote">
-                “Rovult handled <span className="italic">everything.</span> Within two months our phone was ringing with new jobs every week. They understood exactly what we needed to grow our local business.”
+                “Rovult built us a clean, professional site that showcases our custom home builds. We started getting <span className="italic">estimate requests</span> directly from the web within three weeks of launch. The local SEO has been a total game changer for our Kentucky business.”
               </blockquote>
               <div className="testimonial-author">
-                <div className="author-avatar" />
+                <div className="author-avatar bg-white flex items-center justify-center overflow-hidden p-1.5 border border-white/10">
+                  <img src="https://horizons-cdn.hostinger.com/7e5fc9a0-be58-4bfe-8620-02d0b4a89192/74998d188a14e133cceb474bd1a7001e.png" alt="TCM Construction Logo" className="w-full h-full object-contain" />
+                </div>
                 <div>
-                  <div className="author-name">Marcus Hale</div>
-                  <div className="author-role">Owner · Hale &amp; Sons Roofing · Asheville, NC</div>
+                  <div className="author-name">Tyler McCloud</div>
+                  <div className="author-role">Owner &amp; General Contractor · TCM Construction · Lexington, KY</div>
                 </div>
               </div>
             </div>
 
             <div className="testimonial">
               <div className="stars">★★★★★</div>
-              <blockquote className="quote">“We went from page four of Google to the top of the map pack in our city. <span className="italic">Worth every penny.</span>”</blockquote>
+              <blockquote className="quote">“The custom design and speed optimization are <span className="italic">top-tier.</span> Our photography link-in-bio platform looks incredible, and the load times are blazing fast. We recommend Rovult to everyone.”</blockquote>
               <div className="testimonial-author">
-                <div className="author-avatar" />
+                <div className="author-avatar bg-zinc-950 flex items-center justify-center overflow-hidden p-2.5 border border-white/10">
+                  <svg viewBox="0 0 512 512" className="w-full h-full text-white" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="160" y="112" width="80" height="256" rx="20" fill="currentColor"></rect><rect x="272" y="144" width="80" height="256" rx="20" fill="#5A67D8"></rect></svg>
+                </div>
                 <div>
-                  <div className="author-name">Priya Anand</div>
-                  <div className="author-role">Founder · North Bay HVAC</div>
+                  <div className="author-name">Maya Choi</div>
+                  <div className="author-role">Founder &amp; CEO · Focally</div>
                 </div>
               </div>
             </div>
 
             <div className="testimonial">
               <div className="stars">★★★★★</div>
-              <blockquote className="quote">“They actually <span className="italic">listened.</span> The site sounds like us and books appointments while we sleep.”</blockquote>
+              <blockquote className="quote">“As Lexington’s largest furniture outlet, we needed a site that drives <span className="italic">foot traffic</span> to our showroom and handles 24/7 web orders. Rovult delivered exactly that.”</blockquote>
               <div className="testimonial-author">
-                <div className="author-avatar" />
+                <div className="author-avatar bg-white flex items-center justify-center overflow-hidden p-1 border border-white/10">
+                  <img src="https://lexingtonoverstockwarehouse.com/wp-content/uploads/2016/09/cropped-local_logo_alpha-copy.png" alt="Lexington Overstock Warehouse Logo" className="w-full h-full object-contain" />
+                </div>
                 <div>
-                  <div className="author-name">Daniel Okafor</div>
-                  <div className="author-role">Partner · Kestrel Law Group</div>
+                  <div className="author-name">John Fothergill</div>
+                  <div className="author-role">Founder &amp; President · Lexington Overstock Warehouse · Lexington, KY</div>
                 </div>
               </div>
             </div>
@@ -359,7 +376,7 @@ export default function AuroraHome() {
                   </div>
                   <div>
                     <div className="contact-info-label">Phone</div>
-                    <div className="contact-info-value">(828) 555-0142</div>
+                    <div className="contact-info-value">(859) 312-8778</div>
                   </div>
                 </div>
 
@@ -369,7 +386,7 @@ export default function AuroraHome() {
                   </div>
                   <div>
                     <div className="contact-info-label">Based in</div>
-                    <div className="contact-info-value">Asheville, NC · serving everywhere</div>
+                    <div className="contact-info-value">Lexington, KY · serving everywhere</div>
                   </div>
                 </div>
               </div>
@@ -527,7 +544,7 @@ export default function AuroraHome() {
           </div>
           <div className="footer-bottom">
             <div>© {new Date().getFullYear()} Rovult LLC</div>
-            <div>Made in Asheville, NC</div>
+            <div>Made in Lexington, KY</div>
           </div>
         </div>
       </footer>

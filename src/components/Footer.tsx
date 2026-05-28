@@ -38,7 +38,7 @@ export function Footer() {
         </div>
         <div className="footer-bottom">
           <div>© {new Date().getFullYear()} Rovult LLC</div>
-          <div>Made in Asheville, NC</div>
+          <div>Made in Lexington, KY</div>
         </div>
       </div>
     </footer>
