@@ -263,6 +263,50 @@ export function IntakeForm() {
   const [success, setSuccess] = useState(false);
   const [showRequiredError, setShowRequiredError] = useState(false);
 
+  const [stage, setStage] = useState<'lead' | 'choice' | 'intake'>('lead');
+  const [leadMessage, setLeadMessage] = useState('');
+  const [leadErrors, setLeadErrors] = useState<Record<string, boolean>>({});
+
+  const handleLeadSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitError('');
+    const nextErrors: Record<string, boolean> = {};
+    if (!data.contact.fullName.trim()) nextErrors.fullName = true;
+    if (!data.contact.businessName.trim()) nextErrors.businessName = true;
+    if (!data.contact.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contact.email)) {
+      nextErrors.email = true;
+    }
+    if (!leadMessage.trim()) nextErrors.message = true;
+    setLeadErrors(nextErrors);
+    if (Object.keys(nextErrors).length) return;
+
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: data.contact.fullName,
+          lastName: '',
+          email: data.contact.email,
+          projectDetails: `Business: ${data.contact.businessName}\nPhone: ${data.contact.phone || '—'}\n\nWhat they are looking for:\n${leadMessage}`,
+        }),
+      });
+      if (!res.ok) throw new Error('Failed to send details. Please check your connection and try again.');
+      
+      // Pre-populate description of business so they don't have to retype it in the full form
+      setData((prev) => ({
+        ...prev,
+        business: { ...prev.business, description: leadMessage }
+      }));
+      setStage('choice');
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Something went wrong.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   /* ---- generic setters ---- */
   function setField<S extends Section>(
     section: S,
@@ -416,6 +460,189 @@ export function IntakeForm() {
 
   /* ------------------------------------------------------------ progress -- */
   const progressPct = (step / TOTAL_STEPS) * 100;
+
+  if (stage === 'lead') {
+    return (
+      <div className="bg-[#0a0a0c] border border-white/5 rounded-3xl p-6 md:p-12 shadow-2xl relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#38bdf8] rounded-full blur-[120px] opacity-10 pointer-events-none" />
+
+        <form onSubmit={handleLeadSubmit} className="relative z-10 space-y-6">
+          <div className="mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Tell us about your project</h2>
+            <p className="text-zinc-400 leading-relaxed">
+              Just a few basic details to get the conversation started. You can choose to provide more details afterward.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-neutral-400">
+                Your name <span className="text-[#38bdf8]">*</span>
+              </label>
+              <input
+                className={`${inputClass} ${leadErrors.fullName ? 'border-red-500/50' : ''}`}
+                value={data.contact.fullName}
+                onChange={(e) => {
+                  setData((prev) => ({
+                    ...prev,
+                    contact: { ...prev.contact, fullName: e.target.value },
+                  }));
+                  setLeadErrors((errs) => ({ ...errs, fullName: false }));
+                }}
+                placeholder="John Smith"
+                required
+              />
+              {leadErrors.fullName && <p className="text-xs text-red-400">Name is required</p>}
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-neutral-400">
+                Business name <span className="text-[#38bdf8]">*</span>
+              </label>
+              <input
+                className={`${inputClass} ${leadErrors.businessName ? 'border-red-500/50' : ''}`}
+                value={data.contact.businessName}
+                onChange={(e) => {
+                  setData((prev) => ({
+                    ...prev,
+                    contact: { ...prev.contact, businessName: e.target.value },
+                  }));
+                  setLeadErrors((errs) => ({ ...errs, businessName: false }));
+                }}
+                placeholder="Smith Plumbing"
+                required
+              />
+              {leadErrors.businessName && <p className="text-xs text-red-400">Business name is required</p>}
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-neutral-400">
+                Email address <span className="text-[#38bdf8]">*</span>
+              </label>
+              <input
+                type="email"
+                className={`${inputClass} ${leadErrors.email ? 'border-red-500/50' : ''}`}
+                value={data.contact.email}
+                onChange={(e) => {
+                  setData((prev) => ({
+                    ...prev,
+                    contact: { ...prev.contact, email: e.target.value },
+                  }));
+                  setLeadErrors((errs) => ({ ...errs, email: false }));
+                }}
+                placeholder="john@smithplumbing.com"
+                required
+              />
+              {leadErrors.email && <p className="text-xs text-red-400">Valid email is required</p>}
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-neutral-400">
+                Phone number (optional)
+              </label>
+              <input
+                type="tel"
+                className={inputClass}
+                value={data.contact.phone}
+                onChange={(e) =>
+                  setData((prev) => ({
+                    ...prev,
+                    contact: { ...prev.contact, phone: e.target.value },
+                  }))
+                }
+                placeholder="(555) 123-4567"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-neutral-400">
+              What are you looking for in a website? <span className="text-[#38bdf8]">*</span>
+            </label>
+            <textarea
+              rows={4}
+              className={`${inputClass} ${leadErrors.message ? 'border-red-500/50' : ''}`}
+              value={leadMessage}
+              onChange={(e) => {
+                setLeadMessage(e.target.value);
+                setLeadErrors((errs) => ({ ...errs, message: false }));
+              }}
+              placeholder="e.g. A fast website that shows our services, handles quote requests, and helps us show up on Google in our area."
+              required
+            />
+            {leadErrors.message && <p className="text-xs text-red-400">Please describe what you need</p>}
+          </div>
+
+          {submitError && (
+            <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-lg text-sm font-medium">
+              {submitError}
+            </div>
+          )}
+
+          <div className="pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <small className="text-zinc-500">
+              By submitting, you agree we can contact you. We never spam.
+            </small>
+            <button
+              type="submit"
+              disabled={submitting}
+              className="inline-flex items-center justify-center gap-2 bg-white text-black font-bold rounded-full px-8 py-4 hover:bg-neutral-200 transition-colors disabled:opacity-50"
+            >
+              {submitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" /> Sending...
+                </>
+              ) : (
+                <>
+                  Send Request <ArrowRight className="w-4 h-4" />
+                </>
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  }
+
+  if (stage === 'choice') {
+    return (
+      <div className="bg-[#0a0a0c] border border-white/5 rounded-3xl p-6 md:p-12 shadow-2xl relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#38bdf8] rounded-full blur-[120px] opacity-10 pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col items-center text-center max-w-lg mx-auto py-6">
+          <div className="w-16 h-16 rounded-full bg-[#38bdf8]/10 border border-[#38bdf8]/20 flex items-center justify-center mb-6">
+            <Check className="w-8 h-8 text-[#38bdf8]" />
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            Request received!
+          </h2>
+          <p className="text-zinc-400 text-base md:text-lg mb-8 leading-relaxed">
+            We&apos;ve received your initial info.
+            To help us give you a more accurate quote, would you like to customize your site features and design preferences now?
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 w-full justify-center">
+            <button
+              type="button"
+              onClick={() => {
+                setStage('intake');
+                setStep(2); // Skip contact info step as we already have it
+              }}
+              className="inline-flex items-center justify-center gap-2 bg-white text-black font-bold rounded-full px-8 py-4 hover:bg-neutral-200 transition-all"
+            >
+              Customize my site now <ArrowRight className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => setSuccess(true)}
+              className="inline-flex items-center justify-center gap-2 bg-zinc-950 border border-zinc-800 text-white rounded-full px-8 py-4 hover:bg-zinc-900 transition-all"
+            >
+              No thanks, just email me
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-[#0a0a0c] border border-white/5 rounded-3xl p-6 md:p-12 shadow-2xl relative overflow-hidden">

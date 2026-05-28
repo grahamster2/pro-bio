@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 
 const Arrow = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -128,6 +129,7 @@ export default function AuroraHome() {
           <div className="nav-links">
             <a className="nav-link" href="#work" onClick={scrollTo('work')}>Work</a>
             <a className="nav-link" href="#services" onClick={scrollTo('services')}>Services</a>
+            <Link className="nav-link" href="/plans">Plans</Link>
             <a className="nav-link" href="#process" onClick={scrollTo('process')}>Process</a>
             <a className="nav-link" href="#contact" onClick={scrollTo('contact')}>Contact</a>
           </div>
@@ -474,7 +476,8 @@ export default function AuroraHome() {
               <h5>Company</h5>
               <a href="#work" onClick={scrollTo('work')}>Work</a>
               <a href="#process" onClick={scrollTo('process')}>Process</a>
-              <a href="/start">Start a project</a>
+              <Link href="/plans">Plans</Link>
+              <Link href="/start">Start a project</Link>
               <a href="#contact" onClick={scrollTo('contact')}>Contact</a>
             </div>
             <div className="footer-col">
