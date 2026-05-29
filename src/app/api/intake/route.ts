@@ -12,6 +12,7 @@ type IntakePayload = {
   content: { headline: string; subheadline: string; companyDescription: string; ctaText: string; companyStory: string; mission: string; team: string; ownerBio: string };
   seo: { mainCity: string; additionalAreas: string; keywords: string; competitors: string; gbpLink: string; existingUrl: string; existingDomain: string; hostingProvider: string };
   social: { facebook: string; instagram: string; tiktok: string; youtube: string; linkedin: string };
+  upkeep: { updateFrequency: string; supportLevel: string; seoNeeds: string; reporting: string; teamAccess: string; clientSites: string; extras: string[]; ongoingNotes: string };
   features: string[];
   project: { launchDate: string; specialRequests: string; mustInclude: string; avoid: string; decisionMaker: string };
   fileUrls: string[];
@@ -95,6 +96,16 @@ function buildSummary(p: IntakePayload): string {
 
   lines.push('\n=== FEATURES ===');
   lines.push(row('Requested Features', p.features));
+
+  lines.push('\n=== SUPPORT & UPKEEP (plan-sizing) ===');
+  lines.push(row('Update Frequency', p.upkeep?.updateFrequency));
+  lines.push(row('Support Level', p.upkeep?.supportLevel));
+  lines.push(row('SEO Needs', p.upkeep?.seoNeeds));
+  lines.push(row('Reporting', p.upkeep?.reporting));
+  lines.push(row('Team Access', p.upkeep?.teamAccess));
+  lines.push(row('Client Sites', p.upkeep?.clientSites));
+  lines.push(row('Extras', p.upkeep?.extras));
+  lines.push(row('Ongoing Notes', p.upkeep?.ongoingNotes));
 
   lines.push('\n=== PROJECT ===');
   lines.push(row('Launch Date', p.project?.launchDate));

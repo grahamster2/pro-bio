@@ -78,6 +78,16 @@ type FormData = {
     youtube: string;
     linkedin: string;
   };
+  upkeep: {
+    updateFrequency: string;
+    supportLevel: string;
+    seoNeeds: string;
+    reporting: string;
+    teamAccess: string;
+    clientSites: string;
+    extras: string[];
+    ongoingNotes: string;
+  };
   features: string[];
   project: {
     launchDate: string;
@@ -143,6 +153,51 @@ const FEATURE_OPTIONS = [
 
 const YES_NO = ['Yes', 'No'];
 
+const UPDATE_FREQUENCY = [
+  'Rarely — set it and forget it',
+  'A few times a year',
+  'Monthly tweaks',
+  'Weekly updates',
+  'Constant changes — very active site',
+];
+
+const SUPPORT_LEVELS = [
+  'Standard support is fine',
+  'Priority — fast response when I need it',
+  'Dedicated direct line / phone support',
+];
+
+const SEO_NEEDS = [
+  'Not focused on it right now',
+  'Basic local SEO — get found in my area',
+  'Full SEO management — ongoing ranking & content',
+];
+
+const REPORTING_NEEDS = [
+  'No reports needed',
+  'Monthly performance report',
+  'Weekly reporting',
+];
+
+const TEAM_ACCESS = [
+  'Just me',
+  'A small team (2–5 people)',
+  'Larger team (5+ people)',
+];
+
+const CLIENT_SITES = [
+  'No — just my own site',
+  'Yes — I manage sites for clients too',
+];
+
+const UPKEEP_EXTRAS = [
+  'Performance tracking',
+  'Custom analytics dashboard',
+  'Full API access',
+  'Custom integrations (CRM, scheduling, etc.)',
+  'Online store / payments upkeep',
+];
+
 const STEP_TITLES = [
   'Your contact info',
   'About your business',
@@ -152,6 +207,7 @@ const STEP_TITLES = [
   'Getting found on Google',
   'Social media',
   'Features you want',
+  'Support & upkeep',
   'Files & final details',
 ];
 
@@ -210,6 +266,16 @@ const initialData: FormData = {
     hostingProvider: '',
   },
   social: { facebook: '', instagram: '', tiktok: '', youtube: '', linkedin: '' },
+  upkeep: {
+    updateFrequency: '',
+    supportLevel: '',
+    seoNeeds: '',
+    reporting: '',
+    teamAccess: '',
+    clientSites: '',
+    extras: [],
+    ongoingNotes: '',
+  },
   features: [],
   project: {
     launchDate: '',
@@ -370,8 +436,8 @@ export function IntakeForm() {
   }
 
   function toggleInArray(
-    section: 'goals' | 'branding' | null,
-    key: 'mainGoals' | 'styles' | 'features',
+    section: 'goals' | 'branding' | 'upkeep' | null,
+    key: 'mainGoals' | 'styles' | 'features' | 'extras',
     value: string,
   ) {
     setData((prev) => {
@@ -382,7 +448,7 @@ export function IntakeForm() {
           : [...list, value];
         return { ...prev, features: next };
       }
-      const sec = section as 'goals' | 'branding';
+      const sec = section as 'goals' | 'branding' | 'upkeep';
       const list = (prev[sec] as unknown as Record<string, string[]>)[key];
       const next = list.includes(value)
         ? list.filter((v) => v !== value)
@@ -722,7 +788,10 @@ export function IntakeForm() {
           {step === 7 && <Step7 data={data} setField={setField} />}
           {step === 8 && <Step8 data={data} toggleInArray={toggleInArray} />}
           {step === 9 && (
-            <Step9
+            <Step9Upkeep data={data} setField={setField} toggleInArray={toggleInArray} />
+          )}
+          {step === 10 && (
+            <Step10
               data={data}
               setField={setField}
               uploading={uploading}
@@ -794,8 +863,8 @@ type SetField = <S extends Section>(
 ) => void;
 
 type Toggle = (
-  section: 'goals' | 'branding' | null,
-  key: 'mainGoals' | 'styles' | 'features',
+  section: 'goals' | 'branding' | 'upkeep' | null,
+  key: 'mainGoals' | 'styles' | 'features' | 'extras',
   value: string,
 ) => void;
 
@@ -1387,7 +1456,102 @@ function Step8({ data, toggleInArray }: { data: FormData; toggleInArray: Toggle 
 }
 
 /* -------------------------------------------------------------- step 9 ----- */
-function Step9({
+function Step9Upkeep({
+  data,
+  setField,
+  toggleInArray,
+}: {
+  data: FormData;
+  setField: SetField;
+  toggleInArray: Toggle;
+}) {
+  const u = data.upkeep;
+  return (
+    <>
+      <StepHeader
+        title="Support & upkeep"
+        subtitle="This helps us build a plan that fits your budget. Tell us how hands-on you want us after launch — there are no wrong answers."
+      />
+      <div className="form-grid">
+        <div className="budget-options">
+          <div className="budget-options-label">How often will the site need updates?</div>
+          <RadioGroup
+            options={UPDATE_FREQUENCY}
+            selected={u.updateFrequency}
+            onSelect={(v) => setField('upkeep', 'updateFrequency', v)}
+          />
+        </div>
+
+        <div className="budget-options mt-6">
+          <div className="budget-options-label">What level of support do you want?</div>
+          <RadioGroup
+            options={SUPPORT_LEVELS}
+            selected={u.supportLevel}
+            onSelect={(v) => setField('upkeep', 'supportLevel', v)}
+          />
+        </div>
+
+        <div className="budget-options mt-6">
+          <div className="budget-options-label">How much do you care about getting found on Google?</div>
+          <RadioGroup
+            options={SEO_NEEDS}
+            selected={u.seoNeeds}
+            onSelect={(v) => setField('upkeep', 'seoNeeds', v)}
+          />
+        </div>
+
+        <div className="budget-options mt-6">
+          <div className="budget-options-label">Do you want regular performance reports?</div>
+          <RadioGroup
+            options={REPORTING_NEEDS}
+            selected={u.reporting}
+            onSelect={(v) => setField('upkeep', 'reporting', v)}
+          />
+        </div>
+
+        <div className="budget-options mt-6">
+          <div className="budget-options-label">Who needs to access or manage the site?</div>
+          <RadioGroup
+            options={TEAM_ACCESS}
+            selected={u.teamAccess}
+            onSelect={(v) => setField('upkeep', 'teamAccess', v)}
+          />
+        </div>
+
+        <div className="budget-options mt-6">
+          <div className="budget-options-label">Are you managing sites for clients too?</div>
+          <RadioGroup
+            options={CLIENT_SITES}
+            selected={u.clientSites}
+            onSelect={(v) => setField('upkeep', 'clientSites', v)}
+          />
+        </div>
+
+        <div className="budget-options mt-6">
+          <div className="budget-options-label">Anything extra you&apos;ll want (check all that apply)</div>
+          <CheckGrid
+            options={UPKEEP_EXTRAS}
+            selected={u.extras}
+            onToggle={(v) => toggleInArray('upkeep', 'extras', v)}
+          />
+        </div>
+
+        <Field
+          label="Anything else about ongoing support?"
+          hint="Optional — busy seasons, response-time expectations, etc."
+        >
+          <textarea
+            value={u.ongoingNotes}
+            onChange={(e) => setField('upkeep', 'ongoingNotes', e.target.value)}
+          />
+        </Field>
+      </div>
+    </>
+  );
+}
+
+/* ------------------------------------------------------------- step 10 ----- */
+function Step10({
   data,
   setField,
   uploading,
