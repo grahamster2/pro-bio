@@ -285,7 +285,7 @@ export default function AuroraHome() {
                   <img src="https://horizons-cdn.hostinger.com/7e5fc9a0-be58-4bfe-8620-02d0b4a89192/74998d188a14e133cceb474bd1a7001e.png" alt="TCM Construction Logo" className="w-full h-full object-contain" />
                 </div>
                 <div>
-                  <div className="author-name">Tyler McCloud</div>
+                  <div className="author-name">Steven Sherrow</div>
                   <div className="author-role">Owner &amp; General Contractor · TCM Construction · Lexington, KY</div>
                 </div>
               </div>
@@ -313,8 +313,8 @@ export default function AuroraHome() {
                   <img src="/logos/lex-header.png" alt="Lexington Overstock Warehouse Logo" className="w-full h-full object-contain" />
                 </div>
                 <div>
-                  <div className="author-name">John Fothergill</div>
-                  <div className="author-role">Founder &amp; President · Lexington Overstock Warehouse · Lexington, KY</div>
+                  <div className="author-name">The Calihan Family</div>
+                  <div className="author-role">Owners · Lexington Overstock Warehouse · Lexington, KY</div>
                 </div>
               </div>
             </div>

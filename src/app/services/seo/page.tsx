@@ -84,8 +84,8 @@ export default function SeoServicePage() {
             <p className="text-xl md:text-2xl text-neutral-200 font-medium italic mb-8 max-w-3xl mx-auto leading-relaxed">
               “As Lexington’s largest furniture outlet, we needed a site that drives foot traffic to our showroom and handles 24/7 web orders. Rovult delivered exactly that and dominated our local search results.”
             </p>
-            <div className="font-heading font-semibold text-white">John Fothergill</div>
-            <div className="text-neutral-500 text-xs mt-1">Founder &amp; President · Lexington Overstock Warehouse · Lexington, KY</div>
+            <div className="font-heading font-semibold text-white">The Calihan Family</div>
+            <div className="text-neutral-500 text-xs mt-1">Owners · Lexington Overstock Warehouse · Lexington, KY</div>
           </div>
 
           {/* CTA */}

@@ -84,7 +84,7 @@ export default function WebsitesServicePage() {
             <p className="text-xl md:text-2xl text-neutral-200 font-medium italic mb-8 max-w-3xl mx-auto leading-relaxed">
               “Rovult built us a clean, professional site that showcases our custom home builds. We started getting estimate requests directly from the web within three weeks of launch.”
             </p>
-            <div className="font-heading font-semibold text-white">Tyler McCloud</div>
+            <div className="font-heading font-semibold text-white">Steven Sherrow</div>
             <div className="text-neutral-500 text-xs mt-1">Owner · TCM Construction · Lexington, KY</div>
           </div>
 
