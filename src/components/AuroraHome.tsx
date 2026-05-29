@@ -159,7 +159,6 @@ export default function AuroraHome() {
           <div className="aurora-vignette" />
         </div>
         <div className="hero-inner">
-          <span className="eyebrow">Websites for local business</span>
           <h1>
             A website that <span className="italic">actually</span>
             <br />
@@ -216,7 +215,6 @@ export default function AuroraHome() {
       <section className="section" id="process">
         <div className="container">
           <div className="section-head reveal">
-            <span className="eyebrow">How we work</span>
             <h2>A simple process,<br /><span className="italic">no fluff.</span></h2>
             <p>Four weeks from kickoff to launch. You stay in your lane — running your business — while we handle every detail.</p>
           </div>
@@ -273,7 +271,6 @@ export default function AuroraHome() {
       <section className="section" id="work" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="section-head reveal">
-            <span className="eyebrow">What clients say</span>
             <h2>Real results from<br /><span className="italic">real businesses.</span></h2>
           </div>
 
@@ -329,7 +326,6 @@ export default function AuroraHome() {
       <section className="section" id="services" style={{ paddingTop: 0 }}>
         <div className="narrow">
           <div className="section-head reveal" style={{ textAlign: 'left', maxWidth: 'none' }}>
-            <span className="eyebrow">Frequently asked</span>
             <h2 style={{ textAlign: 'left' }}>Questions, <span className="italic">answered.</span></h2>
           </div>
 
@@ -355,7 +351,6 @@ export default function AuroraHome() {
         <div className="container">
           <div className="contact-grid">
             <div className="contact-intro reveal">
-              <span className="eyebrow">Start a project</span>
               <h2>Let&apos;s <span className="italic">talk shop.</span></h2>
               <p>Tell us a bit about your business and we&apos;ll send back a free audit of where you stand and what we&apos;d do — usually within 24 hours.</p>
 
