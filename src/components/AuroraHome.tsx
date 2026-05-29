@@ -191,7 +191,7 @@ export default function AuroraHome() {
           <div className="logos-label">Helping owner-operators across the country</div>
           <div className="logos-track flex items-center justify-between gap-8 flex-wrap">
             <img 
-              src="https://lexingtonoverstockwarehouse.com/wp-content/uploads/2016/09/cropped-local_logo_alpha-copy.png" 
+              src="/logos/lex-header.png" 
               alt="Lexington Overstock Warehouse" 
               className="h-7 object-contain opacity-50 grayscale invert brightness-0 hover:opacity-100 hover:grayscale-0 hover:invert-0 hover:brightness-100 transition-all duration-300"
             />
@@ -310,7 +310,7 @@ export default function AuroraHome() {
               <blockquote className="quote">“As Lexington’s largest furniture outlet, we needed a site that drives <span className="italic">foot traffic</span> to our showroom and handles 24/7 web orders. Rovult delivered exactly that.”</blockquote>
               <div className="testimonial-author">
                 <div className="author-avatar bg-white flex items-center justify-center overflow-hidden p-1 border border-white/10">
-                  <img src="https://lexingtonoverstockwarehouse.com/wp-content/uploads/2016/09/cropped-local_logo_alpha-copy.png" alt="Lexington Overstock Warehouse Logo" className="w-full h-full object-contain" />
+                  <img src="/logos/lex-header.png" alt="Lexington Overstock Warehouse Logo" className="w-full h-full object-contain" />
                 </div>
                 <div>
                   <div className="author-name">John Fothergill</div>

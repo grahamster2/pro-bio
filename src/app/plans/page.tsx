@@ -72,7 +72,7 @@ export default function PlansPage() {
 
       <Navigation />
 
-      <main className="flex-1 pt-40 pb-24 relative z-10 container w-full">
+      <main className="flex-1 pt-56 pb-24 relative z-10 container w-full">
         <div className="text-center mb-16 relative z-10 flex flex-col items-center">
           <span className="eyebrow mb-4">
             Subscription Plans

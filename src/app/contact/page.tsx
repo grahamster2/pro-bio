@@ -47,7 +47,11 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#050505] text-[#f4f4f5] font-sans">
+    <div className="aurora-page flex flex-col min-h-screen bg-[#050505] text-[#f4f4f5] font-sans">
+      <div className="aurora">
+        <div className="aurora-grain" />
+        <div className="aurora-vignette" />
+      </div>
       <Navigation />
       
       <main className="flex-1 pt-40 px-6 max-w-3xl mx-auto w-full pb-20">
