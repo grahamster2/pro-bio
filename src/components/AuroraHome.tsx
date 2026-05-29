@@ -352,7 +352,7 @@ export default function AuroraHome() {
           <div className="contact-grid">
             <div className="contact-intro reveal">
               <h2>Let&apos;s <span className="italic">talk shop.</span></h2>
-              <p>Tell us a bit about your business and we&apos;ll send back a free audit of where you stand and what we&apos;d do — usually within 24 hours.</p>
+              <p>Tell us a bit about your business and we&apos;ll send back a free audit of where you stand and what we&apos;d do.</p>
 
               <div className="contact-info">
                 <div className="contact-info-item">
@@ -390,7 +390,6 @@ export default function AuroraHome() {
             <form className="form-card reveal" onSubmit={handleSubmit} noValidate>
               <div className="form-card-head">
                 <h3>Project <span className="italic">brief</span></h3>
-                <div className="form-card-meta">24-hour response</div>
               </div>
 
               {!success ? (
@@ -473,7 +472,7 @@ export default function AuroraHome() {
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} width="28" height="28"><path d="M5 12l5 5L20 7" /></svg>
                   </div>
                   <h4>Brief <span className="italic">received.</span></h4>
-                  <p>Thanks — we&apos;ll review and reply within 24 hours. Keep an eye on your inbox.</p>
+                  <p>Thanks — we&apos;ll review and reply shortly. Keep an eye on your inbox.</p>
                 </div>
               ) : (
                 <div className="form-success show flex flex-col items-center text-center">

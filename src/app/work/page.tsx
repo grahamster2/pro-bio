@@ -26,15 +26,7 @@ export default function WorkPage() {
           <div className="text-center mb-16 relative z-10">
             <span className="eyebrow mb-4">Case Studies</span>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6" style={{ fontFamily: 'var(--display)', letterSpacing: '-0.04em' }}>
-              Websites built <br /><span style={{
-                fontWeight: 300,
-                fontStyle: 'normal',
-                background: 'linear-gradient(180deg, var(--blue-300) 0%, var(--blue-500) 60%, var(--blue-700) 100%)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                color: 'transparent',
-                letterSpacing: '-0.045em'
-              }} className="italic font-light">to perform.</span>
+              Websites built <br /><span className="italic font-light text-zinc-400" style={{ fontWeight: 300, letterSpacing: '-0.045em' }}>to perform.</span>
             </h1>
             <p className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-2xl mx-auto">
               A showcase of recent digital products and local search engines we've shipped for our clients.

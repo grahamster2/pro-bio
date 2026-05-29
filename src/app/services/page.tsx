@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
-import { Code2, Search, Zap } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Services | Rovult',
@@ -27,15 +26,7 @@ export default function ServicesPage() {
           <div className="text-center mb-16 relative z-10">
             <span className="eyebrow mb-4 font-mono text-xs">Our Offerings</span>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6" style={{ fontFamily: 'var(--display)', letterSpacing: '-0.04em' }}>
-              Engineered for <br /><span style={{
-                fontWeight: 300,
-                fontStyle: 'normal',
-                background: 'linear-gradient(180deg, var(--blue-300) 0%, var(--blue-500) 60%, var(--blue-700) 100%)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                color: 'transparent',
-                letterSpacing: '-0.045em'
-              }} className="italic font-light">local growth.</span>
+              Engineered for <br /><span className="italic font-light text-zinc-400" style={{ fontWeight: 300, letterSpacing: '-0.045em' }}>local growth.</span>
             </h1>
             <p className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-2xl mx-auto">
               Everything you need to capture customer traffic, convert leads, and run your local service business online with zero technical friction.
@@ -47,12 +38,8 @@ export default function ServicesPage() {
             
             {/* Websites */}
             <Link href="/services/websites" className="group block bg-[#0b0c10]/40 border border-white/5 backdrop-blur-xl p-8 md:p-12 rounded-3xl hover:border-white/15 transition-all duration-300 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none group-hover:bg-blue-500/10 transition-colors" />
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="space-y-4 max-w-2xl">
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#38bdf8]">
-                    <Code2 className="w-6 h-6" />
-                  </div>
                   <h2 className="text-3xl font-bold text-white group-hover:text-[#38bdf8] transition-colors" style={{ fontFamily: 'var(--display)' }}>
                     Web Design &amp; Strategy
                   </h2>
@@ -68,12 +55,8 @@ export default function ServicesPage() {
 
             {/* SEO */}
             <Link href="/services/seo" className="group block bg-[#0b0c10]/40 border border-white/5 backdrop-blur-xl p-8 md:p-12 rounded-3xl hover:border-white/15 transition-all duration-300 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none group-hover:bg-blue-500/10 transition-colors" />
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="space-y-4 max-w-2xl">
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#38bdf8]">
-                    <Search className="w-6 h-6" />
-                  </div>
                   <h2 className="text-3xl font-bold text-white group-hover:text-[#38bdf8] transition-colors" style={{ fontFamily: 'var(--display)' }}>
                     Local SEO Dominance
                   </h2>
@@ -89,12 +72,8 @@ export default function ServicesPage() {
 
             {/* Audits */}
             <Link href="/services/audits" className="group block bg-[#0b0c10]/40 border border-white/5 backdrop-blur-xl p-8 md:p-12 rounded-3xl hover:border-white/15 transition-all duration-300 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none group-hover:bg-blue-500/10 transition-colors" />
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="space-y-4 max-w-2xl">
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#38bdf8]">
-                    <Zap className="w-6 h-6" />
-                  </div>
                   <h2 className="text-3xl font-bold text-white group-hover:text-[#38bdf8] transition-colors" style={{ fontFamily: 'var(--display)' }}>
                     Website Audits &amp; Diagnostics
                   </h2>

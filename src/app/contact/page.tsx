@@ -62,9 +62,7 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="bg-[#0a0a0c] border border-white/5 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
-           <div className="absolute top-0 right-0 w-64 h-64 bg-[#38bdf8] rounded-full blur-[120px] opacity-10 pointer-events-none"></div>
-           
+        <div className="bg-[#0a0a0c] border border-white/5 rounded-3xl p-8 md:p-12 relative overflow-hidden">
            <form onSubmit={handleSubmit} className="space-y-6 relative z-10 flex flex-col">
               {success && (
                 <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-lg text-sm font-medium">

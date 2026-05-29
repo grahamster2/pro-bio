@@ -26,15 +26,7 @@ export default function PrivacyPage() {
           <div className="mb-16 relative z-10">
             <span className="eyebrow mb-4">Legal Framework</span>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6" style={{ fontFamily: 'var(--display)', letterSpacing: '-0.04em' }}>
-              Privacy <br /><span style={{
-                fontWeight: 300,
-                fontStyle: 'normal',
-                background: 'linear-gradient(180deg, var(--blue-300) 0%, var(--blue-500) 60%, var(--blue-700) 100%)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                color: 'transparent',
-                letterSpacing: '-0.045em'
-              }} className="italic font-light">policy.</span>
+              Privacy <br /><span className="italic font-light text-zinc-400" style={{ fontWeight: 300, letterSpacing: '-0.045em' }}>policy.</span>
             </h1>
             <p className="text-neutral-400 text-sm">Last updated: May 28, 2026</p>
           </div>

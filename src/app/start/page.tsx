@@ -22,15 +22,7 @@ export default function StartPage() {
           <div className="contact-glow" />
           <div className="text-center mb-16 relative z-10">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6" style={{ fontFamily: 'var(--display)', letterSpacing: '-0.04em' }}>
-              Let&apos;s build your <span style={{
-                fontWeight: 300,
-                fontStyle: 'normal',
-                background: 'linear-gradient(180deg, var(--blue-300) 0%, var(--blue-500) 60%, var(--blue-700) 100%)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                color: 'transparent',
-                letterSpacing: '-0.045em'
-              }} className="italic font-light">website.</span>
+              Let&apos;s build your <span className="italic font-light text-zinc-400" style={{ fontWeight: 300, letterSpacing: '-0.045em' }}>website.</span>
             </h1>
             <p className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-2xl mx-auto">
               Tell us about your business. It only takes a minute to get started,

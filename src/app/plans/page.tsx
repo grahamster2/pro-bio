@@ -2,7 +2,12 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
-import { Check } from 'lucide-react';
+
+const Check = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} className={className}>
+    <path d="M5 12l5 5L20 7" />
+  </svg>
+);
 
 export const metadata: Metadata = {
   title: 'Subscription Plans',
@@ -92,7 +97,7 @@ export default function PlansPage() {
               key={plan.name}
               className={`flex flex-col justify-between rounded-3xl p-8 bg-[#0a0a0c] border transition-all ${
                 plan.popular
-                  ? 'border-[var(--blue-500)] shadow-[0_0_32px_var(--blue-glow)] scale-[1.02] lg:translate-y-[-8px] bg-white/[0.02]'
+                  ? 'border-white/20 lg:translate-y-[-8px] bg-white/[0.03]'
                   : 'border-white/10 hover:border-white/20 bg-white/[0.01]'
               }`}
             >

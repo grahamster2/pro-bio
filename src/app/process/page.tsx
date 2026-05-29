@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
-import { Check } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Our Process | Rovult',
@@ -27,15 +26,7 @@ export default function ProcessPage() {
           <div className="text-center mb-16 relative z-10">
             <span className="eyebrow mb-4">How We Build</span>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6" style={{ fontFamily: 'var(--display)', letterSpacing: '-0.04em' }}>
-              A simple process, <br /><span style={{
-                fontWeight: 300,
-                fontStyle: 'normal',
-                background: 'linear-gradient(180deg, var(--blue-300) 0%, var(--blue-500) 60%, var(--blue-700) 100%)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                color: 'transparent',
-                letterSpacing: '-0.045em'
-              }} className="italic font-light">no fluff.</span>
+              A simple process, <br /><span className="italic font-light text-zinc-400" style={{ fontWeight: 300, letterSpacing: '-0.045em' }}>no fluff.</span>
             </h1>
             <p className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-2xl mx-auto">
               A systematic approach to engineering your digital presence. No shortcuts, just clear deliverables and sub-millisecond launches.
