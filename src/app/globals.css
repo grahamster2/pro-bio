@@ -403,7 +403,7 @@ body {
     font-size: clamp(48px, 7vw, 92px);
     line-height: 1.02;
     letter-spacing: -0.04em;
-    margin: 28px 0 28px;
+    margin: 24px 0 18px;
     font-variation-settings: 'opsz' 96;
   }
   & .hero h1 .italic {
@@ -418,9 +418,9 @@ body {
   & .hero p {
     font-size: 19px;
     color: var(--text-2);
-    max-width: 580px;
-    margin: 0 auto 40px;
-    line-height: 1.55;
+    max-width: 560px;
+    margin: 0 auto 32px;
+    line-height: 1.5;
     text-wrap: pretty;
   }
   & .hero-ctas { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
@@ -538,7 +538,7 @@ body {
     overflow: hidden;
   }
   & .process-step {
-    background: var(--surface);
+    background: #0f1118;
     padding: 40px;
     position: relative;
     min-height: 280px;
@@ -577,7 +577,7 @@ body {
     background: var(--surface);
     border: 1px solid var(--a-border);
     border-radius: var(--a-radius-lg);
-    padding: 36px;
+    padding: 44px;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -597,7 +597,7 @@ body {
     font-size: 22px;
     line-height: 1.4;
     letter-spacing: -0.025em;
-    color: var(--text);
+    color: #cbd5e1;
     margin: 0;
     text-wrap: pretty;
   }
@@ -615,8 +615,9 @@ body {
   & .author-role { font-size: 13px; color: var(--text-3); margin-top: 2px; }
 
   /* FAQ */
-  & .faq-list { border-top: 1px solid var(--a-border); }
-  & .faq-item { border-bottom: 1px solid var(--a-border); }
+  & .faq-list { border-top: 1px solid rgba(255,255,255,0.09); }
+  & .faq-item { border-bottom: 1px solid rgba(255,255,255,0.09); transition: background .2s; }
+  & .faq-item:hover { background: rgba(255,255,255,0.015); }
   & .faq-q {
     width: 100%;
     background: transparent;
@@ -727,7 +728,7 @@ body {
     background: rgba(255,255,255,0.02);
     border: 1px solid var(--a-border);
     border-radius: var(--a-radius);
-    padding: 22px 16px 10px;
+    padding: 26px 16px 14px;
     font-size: 15px;
     font-family: var(--a-sans);
     color: var(--text);
@@ -784,13 +785,13 @@ body {
     color: var(--text-2);
     font-size: 13.5px;
     font-weight: 500;
-    padding: 10px 16px;
+    padding: 11px 18px;
     border-radius: var(--radius-pill);
     cursor: pointer;
     transition: all .2s;
   }
   & .budget-pill:hover { color: var(--text); border-color: var(--border-strong); }
-  & .budget-pill.active { background: rgba(59,130,246,0.12); color: var(--blue-200); border-color: rgba(96,165,250,0.45); box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+  & .budget-pill.active { background: var(--blue-500); color: #fff; font-weight: 600; border-color: var(--blue-400); box-shadow: 0 0 0 3px rgba(59,130,246,0.2); }
 
   & .form-submit { grid-column: span 2; margin-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
   & .form-submit small { color: var(--text-3); font-size: 12.5px; max-width: 280px; }
