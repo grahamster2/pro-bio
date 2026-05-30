@@ -140,6 +140,19 @@ export default function PlansPage() {
           ))}
         </div>
 
+        {/* No-plan note */}
+        <div className="max-w-2xl mx-auto mb-12 relative z-10">
+          <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 md:p-7">
+            <h4 className="text-white font-bold text-base mb-2">Prefer no subscription?</h4>
+            <p className="text-zinc-400 text-sm leading-relaxed">
+              That&apos;s fine — we&apos;ll build your site and hand it over. Just know that
+              without a plan, you&apos;re on your own for hosting, your domain, backups, security,
+              and updates. We&apos;ll give you a quick walkthrough of how to set it up, but after
+              that the upkeep is yours to manage.
+            </p>
+          </div>
+        </div>
+
         {/* Pricing note */}
         <div className="max-w-2xl mx-auto text-center relative z-10">
           <p className="text-zinc-500 text-sm leading-relaxed">
